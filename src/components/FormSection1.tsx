@@ -16,7 +16,7 @@ const FormSection1 = () => {
       gridTemplateRows={"1fr 1fr"}
       gridTemplateColumns={"1fr 1fr"}
       h="100px"
-      gap={2}
+      gap={3}
       color={"#ffff"}
     >
       <GridItem area={"title"}>
