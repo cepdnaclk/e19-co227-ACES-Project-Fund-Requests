@@ -1,0 +1,35 @@
+{
+    "team": [
+        {
+            "name": "Mewan Dimalsha",
+            "email": "e19111@eng.pdn.ac.lk",
+            "eNumber": "E/19/111"
+        },
+        {
+            "name": "Jaliya Kumarasiri",
+            "email": "e19210@eng.pdn.ac.lk",
+            "eNumber": "E/19/210"
+        },
+        {
+            "name": "Sandamini Madhurasinghe",
+            "email": "e19224@eng.pdn.ac.lk",
+            "eNumber": "E/19/224"
+        },
+        {
+            "name": "Sayumi Muthukumarana",
+            "email": "e19249@eng.pdn.ac.lk",
+            "eNumber": "E/19/249"
+        }
+    ],
+    "supervisors": [
+        {
+            "name": "Dr. Isuru Nawinne",
+            "email": "email@eng.pdn.ac.lk"
+        },
+        {
+            "name": "Supervisor 2",
+            "email": "email@eng.pdn.ac.lk"
+        }
+    ],
+    "tags": []
+}
