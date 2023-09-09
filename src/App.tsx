@@ -8,6 +8,7 @@ function App() {
 
   return (
     <>
+      <Header></Header>
       <FormSection1></FormSection1>
     </>
   );
