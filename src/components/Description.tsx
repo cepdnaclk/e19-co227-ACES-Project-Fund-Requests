@@ -3,25 +3,28 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 const Description = () => {
   return (
     <Box justifyContent={"center"} paddingY={"60px"}>
-      <Heading
+      <Text
+        lineHeight={"40.86px"}
         paddingBottom={"30px"}
         textAlign={"center"}
-        as={"h5"}
         fontSize={"30px"}
-        fontWeight={"semibold"}
-        fontFamily={"Noto Sans"}
+        fontWeight={"600"}
         color={"#00334E"}
       >
         ACES Project Fund
-      </Heading>
+      </Text>
       <Box
         borderRadius={"15px"}
         paddingX={"5%"}
         paddingY={"3%"}
-        marginX={"20%"}
+        marginX={{ base: "5%", md: "20%" }}
         backgroundColor={"#E6F0F6"}
       >
-        <Text>
+        <Text
+          fontSize={{ base: "14px", md: "16px" }}
+          lineHeight={{ base: "26px", md: "30px" }}
+          fontWeight={"normal"}
+        >
           The project fund is set up by ACES with the help of donations from
           ACES Alumni. It is managed by a committee appointed by ACES and the
           members are ACES executives and the Head of the Department.

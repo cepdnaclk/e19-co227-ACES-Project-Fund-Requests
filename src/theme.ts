@@ -6,7 +6,14 @@ const config: ThemeConfig = {
     // initialColorMode: 'dark',
 }
 
-const theme = extendTheme({config});
+const theme = extendTheme({...config, fonts: {
+    heading:`'Montserrat', sans-serif`,
+    body: `'Noto Sans', sans-serif`,
+  },
+fontWeights: {
+    black: 700, // You can adjust the numeric value as needed
+    normal: 400,
+  },});
 
 export default theme
 

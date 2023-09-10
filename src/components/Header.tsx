@@ -25,10 +25,14 @@ const Header = () => {
           <Image maxHeight={"150px"} objectFit={"cover"} src={uniLogo}></Image>
         </GridItem>
         <GridItem color={"white"}>
-          <Heading fontSize={{ base: "xl", md: "4xl" }} as={"h2"}>
+          <Heading
+            lineHeight={"36.57px"}
+            fontWeight={"black"}
+            fontSize={{ base: "xl", md: "30px" }}
+          >
             PROJECT FUND REQUESTS
           </Heading>
-          <Text>Department of Computer Engineering</Text>
+          <Text fontWeight={"normal"}>Department of Computer Engineering</Text>
           <Text>University of Peradeniya</Text>
         </GridItem>
       </Grid>
