@@ -26,7 +26,7 @@ const steps = [
 const FormStepper = ({ currentStep }: Props) => {
   const stepperOrientation = useBreakpointValue({
     base: "vertical",
-    md: "horizontal",
+    lg: "horizontal",
   });
 
   return (
