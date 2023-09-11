@@ -9,7 +9,6 @@ import {
   StepSeparator,
   StepStatus,
   StepTitle,
-  useSteps,
   useBreakpointValue,
 } from "@chakra-ui/react";
 

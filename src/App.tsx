@@ -5,10 +5,11 @@ import Header from "./components/Header";
 import Description from "./components/Description";
 import FormStepper from "./components/FormStepper";
 import { useSteps } from "@chakra-ui/react";
-import { FormSection2 } from "./components/FormSection2";
+
 import NextButton from "./components/NextButton";
-import { FormSection3 } from "./components/FormSection3";
-import { FormSection4 } from "./components/FormSection4";
+import FormSection3 from "./components/FormSection3";
+import FormSection4 from "./components/FormSection4";
+import FormSection2 from "./components/FormSection2";
 
 let formElements = [
   <FormSection1></FormSection1>,
