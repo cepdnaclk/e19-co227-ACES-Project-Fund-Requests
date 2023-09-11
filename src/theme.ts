@@ -9,6 +9,7 @@ const config: ThemeConfig = {
 const theme = extendTheme({...config, fonts: {
     heading:`'Montserrat', sans-serif`,
     body: `'Noto Sans', sans-serif`,
+    button: `'Outfit', sans-serif`,
   },
 fontWeights: {
     black: 700, // You can adjust the numeric value as needed

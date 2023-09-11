@@ -13,18 +13,19 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 
+interface Props {
+  currentStep: number;
+  onStepperChange: (index: number) => void;
+}
+
 const steps = [
-  { title: "First", description: "Contact Info" },
-  { title: "Second", description: "Date & Time" },
-  { title: "Third", description: "Select Rooms" },
+  { title: "Contact", description: "Contact Information" },
+  { title: "Project", description: "About the Project" },
+  { title: "Approval", description: "Approval of the Project" },
+  { title: "Provision", description: "Provision of Funds" },
 ];
 
-const FormStepper = () => {
-  const { activeStep, setActiveStep } = useSteps({
-    index: 1,
-    count: steps.length,
-  });
-
+const FormStepper = ({ currentStep, onStepperChange }: Props) => {
   const stepperOrientation = useBreakpointValue({
     base: "vertical",
     md: "horizontal",
@@ -34,13 +35,13 @@ const FormStepper = () => {
     <Box paddingX={{ base: "2%", md: "10%" }}>
       {stepperOrientation == "horizontal" ? (
         <Stepper
-          size="lg"
-          index={activeStep}
+          size="md"
+          index={currentStep}
           orientation="horizontal"
           paddingBottom={"60px"}
         >
           {steps.map((step, index) => (
-            <Step key={index} onClick={() => setActiveStep(index)}>
+            <Step key={index} onClick={() => onStepperChange(index)}>
               <StepIndicator>
                 <StepStatus
                   complete={<StepIcon />}
@@ -63,12 +64,12 @@ const FormStepper = () => {
           <Stepper
             minHeight={"350px"}
             size="lg"
-            index={activeStep}
+            index={currentStep}
             orientation="vertical"
             paddingBottom={"60px"}
           >
             {steps.map((step, index) => (
-              <Step key={index} onClick={() => setActiveStep(index)}>
+              <Step key={index} onClick={() => onStepperChange(index)}>
                 <StepIndicator>
                   <StepStatus
                     complete={<StepIcon />}
