@@ -2,7 +2,7 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 
 const Description = () => {
   return (
-    <Box justifyContent={"center"} paddingY={"60px"}>
+    <Box justifyContent={"center"} paddingTop={"60px"}>
       <Text
         lineHeight={"40.86px"}
         paddingBottom={"30px"}
@@ -30,6 +30,17 @@ const Description = () => {
           members are ACES executives and the Head of the Department.
         </Text>
       </Box>
+      <Text
+        paddingTop={"60px"}
+        lineHeight={"40.86px"}
+        paddingBottom={"30px"}
+        textAlign={"center"}
+        fontSize={"30px"}
+        fontWeight={"600"}
+        color={"#021F2F"}
+      >
+        Application Form
+      </Text>
     </Box>
   );
 };

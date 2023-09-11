@@ -8,14 +8,12 @@ const FormSection1 = () => {
   return (
     <Box paddingX={"10%"} display={"block"}>
       <Text
-        lineHeight={"40.86px"}
-        paddingBottom={"50px"}
-        textAlign={"center"}
-        fontSize={"30px"}
-        fontWeight={"600"}
-        color={"#021F2F"}
+        color={"#00334E"}
+        fontSize={"24px"}
+        fontWeight={"normal"}
+        paddingBottom={"60px"}
       >
-        Application Form
+        Contact Information
       </Text>
       <Grid
         paddingX={{ base: "20px", md: "10%" }}
