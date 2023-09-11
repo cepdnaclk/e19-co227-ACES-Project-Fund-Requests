@@ -15,7 +15,6 @@ import {
 
 interface Props {
   currentStep: number;
-  onStepperChange: (index: number) => void;
 }
 
 const steps = [
@@ -25,7 +24,7 @@ const steps = [
   { title: "Provision", description: "Provision of Funds" },
 ];
 
-const FormStepper = ({ currentStep, onStepperChange }: Props) => {
+const FormStepper = ({ currentStep }: Props) => {
   const stepperOrientation = useBreakpointValue({
     base: "vertical",
     md: "horizontal",
@@ -41,7 +40,7 @@ const FormStepper = ({ currentStep, onStepperChange }: Props) => {
           paddingBottom={"60px"}
         >
           {steps.map((step, index) => (
-            <Step key={index} onClick={() => onStepperChange(index)}>
+            <Step key={index}>
               <StepIndicator>
                 <StepStatus
                   complete={<StepIcon />}
@@ -69,7 +68,7 @@ const FormStepper = ({ currentStep, onStepperChange }: Props) => {
             paddingBottom={"60px"}
           >
             {steps.map((step, index) => (
-              <Step key={index} onClick={() => onStepperChange(index)}>
+              <Step key={index}>
                 <StepIndicator>
                   <StepStatus
                     complete={<StepIcon />}

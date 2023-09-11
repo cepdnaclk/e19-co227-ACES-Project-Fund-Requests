@@ -4,14 +4,17 @@ import FormSection1 from "./components/FormSection1";
 import Header from "./components/Header";
 import Description from "./components/Description";
 import FormStepper from "./components/FormStepper";
-import { jsx } from "@emotion/react";
 import { useSteps } from "@chakra-ui/react";
 import { FormSection2 } from "./components/FormSection2";
 import NextButton from "./components/NextButton";
+import { FormSection3 } from "./components/FormSection3";
+import { FormSection4 } from "./components/FormSection4";
 
 let formElements = [
   <FormSection1></FormSection1>,
   <FormSection2></FormSection2>,
+  <FormSection3></FormSection3>,
+  <FormSection4></FormSection4>,
 ];
 
 function updateFormSection(index: number) {
@@ -32,15 +35,15 @@ function App() {
       <Header></Header>
       <Description></Description>
       {/* This is the way to create the changing stepper */}
-      <FormStepper
-        currentStep={activeStep}
+      <FormStepper currentStep={activeStep}></FormStepper>
+      {updateFormSection(activeStep)}
+      {/* <FormSection1></FormSection1> */}
+      <NextButton
+        currrentStep={activeStep}
         onStepperChange={(index) => {
           setActiveStep(index);
         }}
-      ></FormStepper>
-      {updateFormSection(activeStep)}
-      {/* <FormSection1></FormSection1> */}
-      <NextButton></NextButton>
+      ></NextButton>
     </>
   );
 }

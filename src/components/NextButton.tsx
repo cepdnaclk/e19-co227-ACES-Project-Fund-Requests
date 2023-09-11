@@ -1,9 +1,21 @@
 import { Button } from "@chakra-ui/react";
 
-const NextButton = () => {
+interface Props {
+  currrentStep: number;
+  onStepperChange: (index: number) => void;
+}
+
+const NextButton = ({ onStepperChange, currrentStep }: Props) => {
   return (
     <>
       <Button
+        onClick={() => {
+          if (currrentStep < 4) {
+            currrentStep += 1;
+          }
+
+          onStepperChange(currrentStep);
+        }}
         style={{
           fontFamily: "'Outfit', sans-serif", // Use the custom font
         }}
