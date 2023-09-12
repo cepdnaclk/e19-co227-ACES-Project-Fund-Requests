@@ -9,12 +9,14 @@ const NextButton = ({ onStepperChange, currrentStep }: Props) => {
   return (
     <>
       <Button
+        _hover={{ bgColor: "#5588A3" }}
         onClick={() => {
           if (currrentStep < 4) {
             currrentStep += 1;
           }
 
           onStepperChange(currrentStep);
+          window.scrollTo({ top: 500 });
         }}
         style={{
           fontFamily: "'Outfit', sans-serif", // Use the custom font

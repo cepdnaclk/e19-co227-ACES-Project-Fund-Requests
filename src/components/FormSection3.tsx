@@ -21,7 +21,7 @@ const FormSection3 = () => {
         bg={gridBackgrougndColor}
         marginBottom={5}
       >
-        <Text paddingBottom={"25px"} whiteSpace={"nowrap"} color={labelColor}>
+        <Text paddingBottom={"25px"} whiteSpace={"normal"} color={labelColor}>
           Information about the Lecture In-charge
         </Text>
 
