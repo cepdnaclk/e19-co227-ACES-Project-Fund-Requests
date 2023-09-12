@@ -44,12 +44,14 @@ function App() {
       <FormStepper currentStep={activeStep}></FormStepper>
       {updateFormSection(activeStep)}
       {/* <FormSection1></FormSection1> */}
-      <NextButton
-        currrentStep={activeStep}
-        onStepperChange={(index) => {
-          setActiveStep(index);
-        }}
-      ></NextButton>
+      {activeStep < 2 ? (
+        <NextButton
+          currrentStep={activeStep}
+          onStepperChange={(index) => {
+            setActiveStep(index);
+          }}
+        ></NextButton>
+      ) : null}
       {activeStep == 2 ? <ReviewSection></ReviewSection> : null}
       {/* {activeStep == 2 ? <QualifiedSection></QualifiedSection> : null} */}
       {activeStep == 2 ? <DeniedSection></DeniedSection> : null}

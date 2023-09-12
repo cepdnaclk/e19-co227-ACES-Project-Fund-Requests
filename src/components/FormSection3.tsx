@@ -1,4 +1,4 @@
-import { Text, Grid, GridItem, Input, Box } from "@chakra-ui/react";
+import { Text, Grid, GridItem, Input, Box, Button } from "@chakra-ui/react";
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
@@ -103,6 +103,23 @@ const FormSection3 = () => {
             ></Input>
           </GridItem>
         </Grid>
+        <Box textAlign={"end"}>
+          <Button
+            bgColor={"#FEFAFA"}
+            boxShadow={"lg"}
+            style={{
+              fontFamily: "'Outfit', sans-serif", // Use the custom font
+            }}
+            fontWeight={"thin"}
+            _hover={{ bgColor: "black", color: "white" }}
+            border={"1px solid black"}
+            height={"45px"}
+            width={"135px"}
+            borderRadius={"30px"}
+          >
+            SUBMIT
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
