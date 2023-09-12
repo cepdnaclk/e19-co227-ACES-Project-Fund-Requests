@@ -10,6 +10,7 @@ import NextButton from "./components/NextButton";
 import FormSection3 from "./components/FormSection3";
 import FormSection4 from "./components/FormSection4";
 import FormSection2 from "./components/FormSection2";
+import ReviewSection from "./components/ReviewSection";
 
 let formElements = [
   <FormSection1></FormSection1>,
@@ -45,6 +46,7 @@ function App() {
           setActiveStep(index);
         }}
       ></NextButton>
+      {activeStep == 2 ? <ReviewSection></ReviewSection> : null}
     </>
   );
 }

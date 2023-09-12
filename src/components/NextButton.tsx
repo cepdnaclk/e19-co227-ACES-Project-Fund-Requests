@@ -30,7 +30,7 @@ const NextButton = ({ onStepperChange, currrentStep }: Props) => {
         fontWeight={"700"}
         fontSize={"18"}
       >
-        NEXT
+        {currrentStep == 2 ? "SUBMIT" : "NEXT"}
       </Button>
     </>
   );

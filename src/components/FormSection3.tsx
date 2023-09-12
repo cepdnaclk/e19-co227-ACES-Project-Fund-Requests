@@ -15,37 +15,95 @@ const FormSection3 = () => {
       >
         Approval of the Project
       </Text>
-      <Grid
+      <Box
         paddingX={{ base: "20px", md: "10%" }}
         paddingY={{ base: "20px", md: "2%" }}
         bg={gridBackgrougndColor}
-        templateAreas={{
-          base: `"title"
-            "inputArea"`,
-
-          md: `"title inputArea"`,
-        }}
-        gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
-        gap={3}
         marginBottom={5}
       >
-        <GridItem area={"title"}>
-          <Text whiteSpace={"nowrap"} color={labelColor}>
-            Information about the Lecture In-charge
-          </Text>
-        </GridItem>
-        <GridItem area={"inputArea"}>
-          <Input
-            variant={"Outline"}
-            size="sm"
-            borderRadius={0}
-            color={inputFieldTextColor}
-            marginBottom={2}
-            // border={"1px solid ${#97bfd4}"}
-            border={`1px solid ${inputBorderColor}`}
-          ></Input>
-        </GridItem>
-      </Grid>
+        <Text paddingBottom={"25px"} whiteSpace={"nowrap"} color={labelColor}>
+          Information about the Lecture In-charge
+        </Text>
+
+        <Grid
+          alignContent={"center"}
+          alignItems={"center"}
+          paddingX={{ base: "20px", md: "10%" }}
+          paddingY={{ base: "20px", md: "2%" }}
+          bg={gridBackgrougndColor}
+          templateAreas={{
+            base: `"title"
+            "inputArea"`,
+
+            md: `"title inputArea"`,
+          }}
+          gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
+          gap={3}
+          marginBottom={5}
+        >
+          <GridItem
+            alignContent={"center"}
+            alignItems={"center"}
+            textAlign={"center"}
+            area={"title"}
+          >
+            <Text whiteSpace={"nowrap"} color={labelColor}>
+              Name
+            </Text>
+          </GridItem>
+          <GridItem
+            alignContent={"center"}
+            alignItems={"center"}
+            area={"inputArea"}
+          >
+            <Input
+              variant={"Outline"}
+              size="md"
+              borderRadius={0}
+              color={inputFieldTextColor}
+              // border={"1px solid ${#97bfd4}"}
+              border={`1px solid ${inputBorderColor}`}
+            ></Input>
+          </GridItem>
+        </Grid>
+        <Grid
+          alignContent={"center"}
+          alignItems={"center"}
+          paddingX={{ base: "20px", md: "10%" }}
+          paddingY={{ base: "20px", md: "2%" }}
+          bg={gridBackgrougndColor}
+          templateAreas={{
+            base: `"title"
+            "inputArea"`,
+
+            md: `"title inputArea"`,
+          }}
+          gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
+          gap={3}
+          marginBottom={5}
+        >
+          <GridItem
+            alignContent={"center"}
+            alignItems={"center"}
+            textAlign={"center"}
+            area={"title"}
+          >
+            <Text whiteSpace={"nowrap"} color={labelColor}>
+              Email
+            </Text>
+          </GridItem>
+          <GridItem area={"inputArea"}>
+            <Input
+              variant={"Outline"}
+              size="md"
+              borderRadius={0}
+              color={inputFieldTextColor}
+              // border={"1px solid ${#97bfd4}"}
+              border={`1px solid ${inputBorderColor}`}
+            ></Input>
+          </GridItem>
+        </Grid>
+      </Box>
     </Box>
   );
 };
