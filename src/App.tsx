@@ -12,6 +12,8 @@ import FormSection4 from "./components/FormSection4";
 import FormSection2 from "./components/FormSection2";
 import ReviewSection from "./components/ReviewSection";
 
+import QualifiedSection from "./components/QualifiedSection";
+
 let formElements = [
   <FormSection1></FormSection1>,
   <FormSection2></FormSection2>,
@@ -47,6 +49,7 @@ function App() {
         }}
       ></NextButton>
       {activeStep == 2 ? <ReviewSection></ReviewSection> : null}
+      {activeStep == 2 ? <QualifiedSection></QualifiedSection> : null}
     </>
   );
 }

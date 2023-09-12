@@ -3,7 +3,7 @@ import React from "react";
 
 const ReviewSection = () => {
   return (
-    <Box marginBottom={"5%"} paddingX={"10%"}>
+    <Box marginBottom={"30px"} paddingX={"10%"}>
       <Text paddingY={5} color={"#033595"}>
         Your application is currently under review. You can find the current
         status of your request displayed below for your convenience.
