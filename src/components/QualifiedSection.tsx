@@ -3,7 +3,7 @@ import success from "../assets/images/successR.png";
 
 const QualifiedSection = () => {
   return (
-    <Box textAlign={"center"} paddingX={"20%"}>
+    <Box paddingBottom={"60px"} textAlign={"center"} paddingX={"20%"}>
       <Text fontWeight={"semibold"} color={"#00334E"}>
         Great news! You're now qualified to receive the project funding voucher
       </Text>
@@ -18,11 +18,7 @@ const QualifiedSection = () => {
       <Text marginTop={"30px"} fontWeight={"semibold"} color={"#1B8F27"}>
         Good Luck with your Project !!
       </Text>
-      <Link
-        paddingBottom={"60px"}
-        color={"#273BEE"}
-        textDecoration={"underline"}
-      >
+      <Link color={"#273BEE"} textDecoration={"underline"}>
         Go to Voucher
       </Link>
     </Box>
