@@ -70,9 +70,9 @@ function App() {
           }}
         ></NextButton>
       ) : null}
-      {activeStep == 2 ? <ReviewSection></ReviewSection> : null}
+      {isSubmitted3 && activeStep == 2 ? <ReviewSection></ReviewSection> : null}
       {/* {activeStep == 2 ? <QualifiedSection></QualifiedSection> : null} */}
-      {activeStep == 2 ? <DeniedSection></DeniedSection> : null}
+      {/* {activeStep == 2 ? <DeniedSection></DeniedSection> : null} */}
       <FooterSection></FooterSection>
     </>
   );

@@ -51,9 +51,10 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
 
   return (
     <Box
-      paddingY={"5%"}
-      marginX={"10px"}
-      boxShadow="base"
+      paddingTop={"5%"}
+      paddingBottom={"2%"}
+      // marginX={"10px"}
+      // boxShadow="base"
       paddingX={"10%"}
       display={"block"}
     >
@@ -279,6 +280,7 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
                 status: "success",
                 duration: 3000,
                 isClosable: true,
+                position: "top",
               });
             }
 
