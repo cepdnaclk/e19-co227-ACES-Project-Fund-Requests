@@ -25,6 +25,8 @@ function App() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted2, setIsSubmitted2] = useState(false);
+  const [isSubmitted3, setIsSubmitted3] = useState(false);
 
   let formElements = [
     <FormSection1
@@ -33,8 +35,16 @@ function App() {
         setIsSubmitted(status);
       }}
     ></FormSection1>,
-    <FormSection2></FormSection2>,
-    <FormSection3></FormSection3>,
+    <FormSection2
+      onSubmit={(status) => {
+        setIsSubmitted2(status);
+      }}
+    ></FormSection2>,
+    <FormSection3
+      onSubmit={(status) => {
+        setIsSubmitted3(status);
+      }}
+    ></FormSection3>,
     <FormSection4></FormSection4>,
   ];
 
@@ -51,11 +61,12 @@ function App() {
       <FormStepper currentStep={activeStep}></FormStepper>
       {updateFormSection(activeStep)}
       {/* <FormSection1></FormSection1> */}
-      {isSubmitted && activeStep < 2 ? (
+      {(isSubmitted && activeStep == 0) || (isSubmitted2 && activeStep == 1) ? (
         <NextButton
           currrentStep={activeStep}
           onStepperChange={(index) => {
             setActiveStep(index);
+            console.log("index: " + index);
           }}
         ></NextButton>
       ) : null}

@@ -7,6 +7,8 @@ import {
   FormControl,
 } from "@chakra-ui/react";
 
+import { useToast } from "@chakra-ui/react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -38,6 +40,7 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
+  const toast = useToast();
   const {
     register,
     handleSubmit,
@@ -265,7 +268,20 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
         <button
           onClick={() => {
             // event?.preventDefault();
+
             onSubmit(isValid);
+
+            if (isValid) {
+              toast({
+                title: "Contact Information",
+                description:
+                  "You've successfully submitted contact information",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
+            }
+
             console.log(!submitStatus);
           }}
           className="submit-btn"

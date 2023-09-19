@@ -1,10 +1,42 @@
 import { Text, Grid, GridItem, Input, Box, Button } from "@chakra-ui/react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { useToast } from "@chakra-ui/react";
+
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
 
-const FormSection3 = () => {
+interface Props {
+  onSubmit: (status: boolean) => void;
+}
+
+const schema = z.object({
+  lecturerName: z.string().min(3, {
+    message: "The name should be atleast 3 characters long!",
+  }),
+
+  lectureremail: z
+    .string()
+    .email({ message: "Please enter a valid email address" }),
+});
+
+type formData = z.infer<typeof schema>;
+
+const FormSection3 = ({ onSubmit }: Props) => {
+  const toast = useToast();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<formData>({
+    resolver: zodResolver(schema),
+  });
   return (
     <Box paddingX={"10%"} display={"block"}>
       <Text
@@ -25,85 +57,132 @@ const FormSection3 = () => {
           Information about the Lecture In-charge
         </Text>
 
-        <Grid
-          alignContent={"center"}
-          alignItems={"center"}
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "20px", md: "2%" }}
-          bg={gridBackgrougndColor}
-          templateAreas={{
-            base: `"title"
+        <form
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+          })}
+          action=""
+        >
+          <Grid
+            alignContent={"center"}
+            alignItems={"center"}
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "20px", md: "2%" }}
+            bg={gridBackgrougndColor}
+            templateAreas={{
+              base: `"title"
             "inputArea"`,
 
-            md: `"title inputArea"`,
-          }}
-          gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
-          gap={3}
-          marginBottom={5}
-        >
-          <GridItem
+              md: `"title inputArea"`,
+            }}
+            gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
+            gap={3}
+            marginBottom={5}
+          >
+            <GridItem
+              alignContent={"center"}
+              alignItems={"center"}
+              textAlign={"center"}
+              area={"title"}
+            >
+              <Text whiteSpace={"nowrap"} color={labelColor}>
+                Name
+              </Text>
+            </GridItem>
+            <GridItem
+              alignContent={"center"}
+              alignItems={"center"}
+              area={"inputArea"}
+            >
+              <Input
+                {...register("lecturerName")}
+                variant={"Outline"}
+                size="md"
+                borderRadius={0}
+                color={inputFieldTextColor}
+                // border={"1px solid ${#97bfd4}"}
+                border={
+                  errors.lecturerName
+                    ? `1px solid red`
+                    : `1px solid ${inputBorderColor}`
+                }
+              ></Input>
+              {errors.lecturerName && (
+                <Text fontSize="xs" color="red">
+                  {errors.lecturerName.message}
+                </Text>
+              )}
+            </GridItem>
+          </Grid>
+          <Grid
             alignContent={"center"}
             alignItems={"center"}
-            textAlign={"center"}
-            area={"title"}
-          >
-            <Text whiteSpace={"nowrap"} color={labelColor}>
-              Name
-            </Text>
-          </GridItem>
-          <GridItem
-            alignContent={"center"}
-            alignItems={"center"}
-            area={"inputArea"}
-          >
-            <Input
-              variant={"Outline"}
-              size="md"
-              borderRadius={0}
-              color={inputFieldTextColor}
-              // border={"1px solid ${#97bfd4}"}
-              border={`1px solid ${inputBorderColor}`}
-            ></Input>
-          </GridItem>
-        </Grid>
-        <Grid
-          alignContent={"center"}
-          alignItems={"center"}
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "20px", md: "2%" }}
-          bg={gridBackgrougndColor}
-          templateAreas={{
-            base: `"title"
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "20px", md: "2%" }}
+            bg={gridBackgrougndColor}
+            templateAreas={{
+              base: `"title"
             "inputArea"`,
 
-            md: `"title inputArea"`,
-          }}
-          gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
-          gap={3}
-          marginBottom={5}
-        >
-          <GridItem
-            alignContent={"center"}
-            alignItems={"center"}
-            textAlign={"center"}
-            area={"title"}
+              md: `"title inputArea"`,
+            }}
+            gridTemplateColumns={{ md: "0.6fr 1.4fr" }}
+            gap={3}
+            marginBottom={5}
           >
-            <Text whiteSpace={"nowrap"} color={labelColor}>
-              Email
-            </Text>
-          </GridItem>
-          <GridItem area={"inputArea"}>
-            <Input
-              variant={"Outline"}
-              size="md"
-              borderRadius={0}
-              color={inputFieldTextColor}
-              // border={"1px solid ${#97bfd4}"}
-              border={`1px solid ${inputBorderColor}`}
-            ></Input>
-          </GridItem>
-        </Grid>
-        <Box textAlign={"end"}>
+            <GridItem
+              alignContent={"center"}
+              alignItems={"center"}
+              textAlign={"center"}
+              area={"title"}
+            >
+              <Text whiteSpace={"nowrap"} color={labelColor}>
+                Email
+              </Text>
+            </GridItem>
+            <GridItem area={"inputArea"}>
+              <Input
+                {...register("lectureremail")}
+                variant={"Outline"}
+                size="md"
+                borderRadius={0}
+                color={inputFieldTextColor}
+                // border={"1px solid ${#97bfd4}"}
+                border={
+                  errors.lectureremail
+                    ? `1px solid red`
+                    : `1px solid ${inputBorderColor}`
+                }
+              ></Input>
+              {errors.lectureremail && (
+                <Text fontSize="xs" color="red">
+                  {errors.lectureremail.message}
+                </Text>
+              )}
+            </GridItem>
+          </Grid>
+          <button
+            onClick={() => {
+              // event?.preventDefault();
+              onSubmit(isValid);
+              if (isValid)
+                toast({
+                  title: "Completed the Request",
+                  description: "You've successfully Completed the request",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                });
+              {
+              }
+            }}
+            className="submit-btn"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+        {/* <Box textAlign={"end"}>
           <Button
             bgColor={"#FEFAFA"}
             boxShadow={"lg"}
@@ -119,7 +198,7 @@ const FormSection3 = () => {
           >
             SUBMIT
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
