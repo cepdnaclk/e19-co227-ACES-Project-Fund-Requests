@@ -1,0 +1,18 @@
+.submit-btn {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: monospace;
+    color: #000000;
+    font-size: 18px;
+    background: #ffffff;
+    padding: 10px 20px 10px 20px;
+    border: solid #000000 2px;
+    text-decoration: none;
+}
+
+.submit-btn:hover {
+    color: white;
+    background: #000000;
+    text-decoration: none;
+}

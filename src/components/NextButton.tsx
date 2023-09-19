@@ -9,6 +9,7 @@ const NextButton = ({ onStepperChange, currrentStep }: Props) => {
   return (
     <>
       <Button
+        marginTop={"10px"}
         _hover={{ bgColor: "#5588A3" }}
         onClick={() => {
           if (currrentStep < 4) {

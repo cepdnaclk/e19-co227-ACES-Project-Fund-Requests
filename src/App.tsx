@@ -16,25 +16,32 @@ import QualifiedSection from "./components/QualifiedSection";
 import FooterSection from "./components/FooterSection";
 import DeniedSection from "./components/DeniedSection";
 
-let formElements = [
-  <FormSection1></FormSection1>,
-  <FormSection2></FormSection2>,
-  <FormSection3></FormSection3>,
-  <FormSection4></FormSection4>,
-];
-
-function updateFormSection(index: number) {
-  console.log(formElements[index]);
-  return formElements[index];
-}
-
 function App() {
   // const [count, setCount] = useState(0);
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
-    count: formElements.length,
+    count: 4,
   });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  let formElements = [
+    <FormSection1
+      submitStatus={isSubmitted}
+      onSubmit={(status) => {
+        setIsSubmitted(status);
+      }}
+    ></FormSection1>,
+    <FormSection2></FormSection2>,
+    <FormSection3></FormSection3>,
+    <FormSection4></FormSection4>,
+  ];
+
+  function updateFormSection(index: number) {
+    console.log(formElements[index]);
+    return formElements[index];
+  }
 
   return (
     <>
@@ -44,7 +51,7 @@ function App() {
       <FormStepper currentStep={activeStep}></FormStepper>
       {updateFormSection(activeStep)}
       {/* <FormSection1></FormSection1> */}
-      {activeStep < 2 ? (
+      {isSubmitted && activeStep < 2 ? (
         <NextButton
           currrentStep={activeStep}
           onStepperChange={(index) => {
