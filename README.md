@@ -1,27 +1,52 @@
-# React + TypeScript + Vite
+# ACES-Project-Fund-Requests
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
+![AFMS](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/assets/115539818/145cc6a8-d3c8-4573-a567-f78528712074)
+## Team
+### Group 11
+-  e19111, Galappaththi M.D., [email](mailto:e19111@eng.pdn.ac.lk)
+-  e19210, R.P.J.R.Kumarasiri, [email](mailto:e19210@eng.pdn.ac.lk)
+-  e19224, M.P.S.A. Muthukumarana, [email](mailto:e19224@eng.pdn.ac.lk)
+-  e19249, M.M.S.H. Madhurasinghe, [email](mailto:e19249@eng.pdn.ac.lk)
 
-Currently, two official plugins are available:
+## Table of Contents
+1. [Problem Overview](#problem-overview)
+2. [Proposed Solution](#proposed-solution)
+3. [Technology Stack](#technology-stack)
+4. [Links](#links)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Problem Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ ### Current Fund Management Challenges:
+ 
+ * Tedious Manual Process
+ * Misplacement Risks
+ * Unclear Handwriting
+ * Vulnerability to Damage
+ * Paper Crisis Impact
 
-- Configure the top-level `parserOptions` property like this:
+## Proposed Solution
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+ ### The eFund Approach:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ Our solution, eFund Management, is a streamlined and user-friendly web application designed to automate and simplify the project fund request and approval process. It empowers students, supervisors, and department heads with a seamless digital platform for efficient fund management.
+
+ ### Why eFund Management?
+ * Efficiency and Time Savings
+ * Reduced Errors and Clarity
+ * Enhanced Organization
+ * Accessibility and Transparency
+ * Security and Data Integrity
+ * Eco-Friendly Approach
+ * Real-time Reporting and Analytics
+ * Automation of Workflows
+ * Audit Trail and Compliance
+ * Scalability and Future-Readiness
+ * Cost Savings
+ * User-Friendly Experience
+
+## Technology Stack
+
+![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/assets/115539818/a30e22c0-9e5b-4e99-91b8-d7791b2aecdb)
