@@ -1,6 +1,8 @@
 const exspress = require('express');
+const cors = require("cors");
 
 const app = exspress();
+
 
 app.use(exspress.static('./public'))
 
@@ -13,6 +15,7 @@ app.use(exspress.urlencoded({extended: false})) // handle POST requests body. Ha
 app.use(exspress.json()); // Handle the data in the type "application/json"
 
 app.use("/change/",countriesMiddleware);
+app.use(cors())
 
 app.get("/", (req, res) => {
     res.status(200).json({success:true})

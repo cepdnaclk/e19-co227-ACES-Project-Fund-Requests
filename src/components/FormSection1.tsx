@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
+import { useState } from "react";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -41,6 +42,7 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
+  const [formSentStatus, setFormSentStatus] = useState(0);
   const toast = useToast();
   const {
     register,
@@ -70,9 +72,13 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
 
       <form
         onSubmit={handleSubmit((data) => {
+          if (!isValid) {
+            return;
+          }
           axios
             .post("http://localhost:5000/formdata", data)
             .then((res) => {
+              setFormSentStatus(Number(res.status));
               console.log(res.status);
             })
             .catch((err) => {
@@ -279,9 +285,10 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
           onClick={() => {
             // event?.preventDefault();
 
-            onSubmit(isValid);
+            // onSubmit(isValid);
+            onSubmit(formSentStatus == 200);
 
-            if (isValid) {
+            if (formSentStatus == 200) {
               toast({
                 title: "Contact Information",
                 description:
