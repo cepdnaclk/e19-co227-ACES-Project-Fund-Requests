@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 //     }
 // });
 
-app.post("/formdata", (req, res) => {
+app.post("/contactDetails", (req, res) => {
     const data = req.body
     console.log("receiving data");
     console.log(data);

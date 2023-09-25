@@ -76,7 +76,7 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
             return;
           }
           axios
-            .post("http://localhost:5000/formdata", data)
+            .post("http://localhost:5000/contactDetails", data)
             .then((res) => {
               setFormSentStatus(Number(res.status));
               console.log("REady to display the toast");
