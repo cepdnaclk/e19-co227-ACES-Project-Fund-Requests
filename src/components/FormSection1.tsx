@@ -79,6 +79,20 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
             .post("http://localhost:5000/formdata", data)
             .then((res) => {
               setFormSentStatus(Number(res.status));
+              console.log("REady to display the toast");
+
+              if (res.status == 200) {
+                toast({
+                  title: "Contact Information",
+                  description:
+                    "You've successfully submitted contact information",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                  position: "top",
+                });
+              }
+              onSubmit(res.status == 200);
               console.log(res.status);
             })
             .catch((err) => {
@@ -286,19 +300,20 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
             // event?.preventDefault();
 
             // onSubmit(isValid);
-            onSubmit(formSentStatus == 200);
+            // eep track below
+            // onSubmit(formSentStatus == 200);
 
-            if (formSentStatus == 200) {
-              toast({
-                title: "Contact Information",
-                description:
-                  "You've successfully submitted contact information",
-                status: "success",
-                duration: 3000,
-                isClosable: true,
-                position: "top",
-              });
-            }
+            // if (formSentStatus == 200) {
+            //   toast({
+            //     title: "Contact Information",
+            //     description:
+            //       "You've successfully submitted contact information",
+            //     status: "success",
+            //     duration: 3000,
+            //     isClosable: true,
+            //     position: "top",
+            //   });
+            // }
 
             console.log(!submitStatus);
           }}
