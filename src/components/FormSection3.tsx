@@ -172,6 +172,7 @@ const FormSection3 = ({ onSubmit }: Props) => {
                   status: "success",
                   duration: 3000,
                   isClosable: true,
+                  position: "top",
                 });
               {
               }
