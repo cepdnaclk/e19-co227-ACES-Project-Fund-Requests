@@ -18,6 +18,7 @@ import DragDrop from "./DragnDrop";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import axios from "axios";
 
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
@@ -112,6 +113,31 @@ const FormSection2 = ({ onSubmit }: Props) => {
       </Text>
       <form
         onSubmit={handleSubmit((data) => {
+          if (!isValid) {
+            return;
+          }
+
+          axios
+            .post("http://localhost:5000/aboutProject", data)
+            .then((res) => {
+              if (res.status == 200) {
+                toast({
+                  title: "About the Project",
+                  description:
+                    "You've successfully submitted the details about the project",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                  position: "top",
+                });
+              }
+
+              onSubmit(res.status == 200);
+              console.log(res.status);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           console.log(data);
         })}
         action=""
@@ -428,18 +454,19 @@ const FormSection2 = ({ onSubmit }: Props) => {
         <button
           onClick={() => {
             // event?.preventDefault();
-            onSubmit(isValid);
-            if (isValid) {
-              toast({
-                title: "About the Project",
-                description:
-                  "You've successfully submitted the details about the project",
-                status: "success",
-                duration: 3000,
-                isClosable: true,
-                position: "top"
-              });
-            }
+
+            // onSubmit(isValid);
+            // if (isValid) {
+            //   // toast({
+            //   //   title: "About the Project",
+            //   //   description:
+            //   //     "You've successfully submitted the details about the project",
+            //   //   status: "success",
+            //   //   duration: 3000,
+            //   //   isClosable: true,
+            //   //   position: "top"
+            //   // });
+            // }
             console.log("is valid: " + isValid);
           }}
           className="submit-btn"

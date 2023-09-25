@@ -43,6 +43,16 @@ app.post("/contactDetails", (req, res) => {
    
 })
 
+app.post("/aboutProject", (req, res) => {
+    const data = req.body
+    console.log("receiving data");
+    console.log(data);
+    if (data) {
+         res.status(200).json({success: true})
+    }
+   
+})
+
 app.post("/contact", (req, res)=>{
     const {names, leadsName, email, phoneNo} = req.body;
     if (names && leadsName && email && phoneNo) {
