@@ -12,6 +12,7 @@ import { useToast } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import axios from "axios";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -69,9 +70,17 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
 
       <form
         onSubmit={handleSubmit((data) => {
+          axios
+            .post("http://localhost:5000/formdata", data)
+            .then((res) => {
+              console.log(res.status);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           console.log(data);
         })}
-        action=""
+        action="POST"
       >
         <Grid
           paddingX={{ base: "20px", md: "10%" }}
