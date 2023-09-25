@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, HStack, Text } from "@chakra-ui/react";
 
 interface Props {
   currrentStep: number;
@@ -7,7 +7,7 @@ interface Props {
 
 const NextButton = ({ onStepperChange, currrentStep }: Props) => {
   return (
-    <>
+    <HStack>
       <Button
         marginTop={"10px"}
         _hover={{ bgColor: "#5588A3" }}
@@ -35,7 +35,11 @@ const NextButton = ({ onStepperChange, currrentStep }: Props) => {
       >
         {currrentStep == 2 ? "SUBMIT" : "NEXT"}
       </Button>
-    </>
+      <Text color={"#5588A3"} fontSize={"sm"}>
+        {" "}
+        Once you "NEXT" you can't come back!
+      </Text>
+    </HStack>
   );
 };
 
