@@ -27,6 +27,26 @@ interface Props {
   onSubmit: (status: boolean) => void;
 }
 
+// For file upload
+const fileSchema = z
+  .object({
+    name: z.string(),
+    type: z.string(),
+    size: z.number(),
+  })
+  .refine(
+    (file) => {
+      return ACCEPTED_FILE_TYPES.includes(file.type);
+    },
+    { message: "Only PDF files are accepted" }
+  )
+  .refine(
+    (file) => {
+      return file.size <= MAX_FILE_SIZE;
+    },
+    { message: "Max file size is 50MB" }
+  );
+
 const schema = z.object({
   title: z.string().trim().min(3, {
     message: "The title should be atleast 3 characters long!",
@@ -88,14 +108,43 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
+type uploadData = z.infer<typeof fileSchema>;
+
+type CombinedData = formData & uploadData;
+
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
 
+const combinedSchema = z.object({
+  schema1Data: schema, // Your first schema
+  schema2Data: fileSchema, // Your second schema
+});
+
 const FormSection2 = ({ onSubmit }: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileNotSelected, setFileNotSelected] = useState(true);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    if (file) {
+      console.log("Having file");
+
+      setSelectedFile(file);
+      setFileNotSelected(false); // Reset the file not selected flag
+    } else {
+      setSelectedFile(null);
+      setFileNotSelected(true); // Set the file not selected flag
+    }
+    console.log("selectedFile: ", selectedFile);
+    console.log("fileNotSelected: ", fileNotSelected);
+  };
 
   const {
     register,
@@ -117,7 +166,13 @@ const FormSection2 = ({ onSubmit }: Props) => {
       </Text>
       <form
         onSubmit={handleSubmit((data) => {
-          if (!isValid) {
+          console.log(errors.title);
+          console.log("file not select status: ", fileNotSelected);
+
+          if (!isValid || fileNotSelected) {
+            console.log("is valid status: ", isValid);
+            console.log("file not select status: ", fileNotSelected);
+
             return;
           }
 
@@ -424,20 +479,21 @@ const FormSection2 = ({ onSubmit }: Props) => {
             requirements of the purchasing equipment.
           </Text>
           <Text color={"#FA3939"}>
-            Note: Applications submitted without this information cannot be
-            considered for funding.
+            {fileNotSelected &&
+              "Note: Applications submitted without this information cannot be considered for funding."}
           </Text>
           <Text paddingTop={4} color={"#828282"}>
             Attach the budget report in the .pdf format
           </Text>
 
           {/* <DragDrop></DragDrop> */}
-          {/* <input
+          <input
             // {...register("pdfFile")}
             type="file"
             id="fileInput"
-            accept="application/pdf"
-          /> */}
+            accept=".pdf"
+            onChange={handleFileChange}
+          />
 
           {/* {errors.pdfFile && (
             <Text fontSize="xs" color="red">
@@ -478,6 +534,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
             //   //   position: "top"
             //   // });
             // }
+
             console.log("is valid: " + isValid);
           }}
           className="submit-btn"
