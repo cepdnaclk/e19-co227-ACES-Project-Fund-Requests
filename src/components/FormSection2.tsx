@@ -13,7 +13,6 @@ import {
 import { useToast } from "@chakra-ui/react";
 
 import React, { useState } from "react";
-import DragDrop from "./DragnDrop";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -26,26 +25,6 @@ const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 interface Props {
   onSubmit: (status: boolean) => void;
 }
-
-// For file upload
-const fileSchema = z
-  .object({
-    name: z.string(),
-    type: z.string(),
-    size: z.number(),
-  })
-  .refine(
-    (file) => {
-      return ACCEPTED_FILE_TYPES.includes(file.type);
-    },
-    { message: "Only PDF files are accepted" }
-  )
-  .refine(
-    (file) => {
-      return file.size <= MAX_FILE_SIZE;
-    },
-    { message: "Max file size is 50MB" }
-  );
 
 const schema = z.object({
   title: z.string().trim().min(3, {
@@ -108,19 +87,10 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-type uploadData = z.infer<typeof fileSchema>;
-
-type CombinedData = formData & uploadData;
-
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
-
-const combinedSchema = z.object({
-  schema1Data: schema, // Your first schema
-  schema2Data: fileSchema, // Your second schema
-});
 
 const FormSection2 = ({ onSubmit }: Props) => {
   const [value, setValue] = useState("1");
