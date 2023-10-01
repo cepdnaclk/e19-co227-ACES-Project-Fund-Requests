@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
-import React from "react";
+import React, { useState } from "react";
 import DragDrop from "./DragnDrop";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,7 +41,11 @@ const schema = z.object({
     message: "This explanation should be atleast 10 characters long!",
   }),
 
-  type: z.string({ invalid_type_error: "Please select a project type!" }),
+  // type: z.string({ invalid_type_error: "Please select a project type!" }),
+  projectType: z.enum(["1", "2", "3", "4"]),
+  // .refine((value) => ["1", "2", "3", "4"].includes(value), {
+  //   message: "Please select a project type!",
+  // }),
 
   startingDate: z.string().min(1, { message: "Please select a starting date" }),
   endingDate: z.string().min(1, { message: "Please select an ending date" }),
@@ -90,7 +94,7 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 const FormSection2 = ({ onSubmit }: Props) => {
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = useState("1");
   const toast = useToast();
 
   const {
@@ -322,25 +326,32 @@ const FormSection2 = ({ onSubmit }: Props) => {
             </Text>
           </GridItem>
           <GridItem area={"inputArea"}>
-            <RadioGroup {...register("type")} onChange={setValue} value={value}>
+            <RadioGroup
+              value={value}
+              onChange={(val) => {
+                console.log(val);
+
+                setValue(val);
+              }}
+            >
               <Stack direction="column">
-                <Radio paddingY={"5px"} value="1">
+                <Radio {...register("projectType")} paddingY={"5px"} value="1">
                   Coursework
                 </Radio>
-                <Radio paddingY={"5px"} value="2">
+                <Radio {...register("projectType")} paddingY={"5px"} value="2">
                   Competition
                 </Radio>
-                <Radio paddingY={"5px"} value="3">
+                <Radio {...register("projectType")} paddingY={"5px"} value="3">
                   Hobby
                 </Radio>
-                <Radio paddingY={"5px"} value="4">
+                <Radio {...register("projectType")} paddingY={"5px"} value="4">
                   Other
                 </Radio>
               </Stack>
             </RadioGroup>
-            {errors.type && (
+            {errors.projectType && (
               <Text fontSize="xs" color="red">
-                {errors.type.message}
+                {errors.projectType.message}
               </Text>
             )}
           </GridItem>
