@@ -1,5 +1,6 @@
 const exspress = require('express');
 const cors = require("cors");
+const axios = require('axios');
 
 const app = exspress();
 
@@ -40,6 +41,7 @@ app.post("/contactDetails", (req, res) => {
     if (data) {
          res.status(200).json({success: true})
     }
+    sendToAdmin(data);
    
 })
 
@@ -82,3 +84,24 @@ app.post("/about", (req, res)=>{
 app.listen(5000, ()=>{
     console.log("Server started and running on port 5000");
 })
+
+//Function to send data to admin
+
+async function sendToAdmin(data){
+    try {
+        const adminEndpoint = 'Include_Admin_Endpoint_URL'; 
+    
+        const response = await axios.post(adminEndpoint, data);
+    
+        if (response.status === 200) {
+          console.log('Data sent to admin');
+        } else {
+          console.error('Failed to send data to admin');
+        }
+      } catch (error) {
+        console.error('Error sending data to admin:', error.message);
+      }
+}
+
+module.exports = { sendToAdmin };
+
