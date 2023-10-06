@@ -12,8 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
-import React from "react";
-import DragDrop from "./DragnDrop";
+import React, { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -41,7 +40,11 @@ const schema = z.object({
     message: "This explanation should be atleast 10 characters long!",
   }),
 
-  type: z.string({ invalid_type_error: "Please select a project type!" }),
+  // type: z.string({ invalid_type_error: "Please select a project type!" }),
+  projectType: z.enum(["1", "2", "3", "4"]),
+  // .refine((value) => ["1", "2", "3", "4"].includes(value), {
+  //   message: "Please select a project type!",
+  // }),
 
   startingDate: z.string().min(1, { message: "Please select a starting date" }),
   endingDate: z.string().min(1, { message: "Please select an ending date" }),
@@ -90,8 +93,28 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 const FormSection2 = ({ onSubmit }: Props) => {
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = useState("1");
   const toast = useToast();
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileNotSelected, setFileNotSelected] = useState(true);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    console.log(file);
+
+    if (file) {
+      console.log("Having file");
+
+      setSelectedFile(file);
+      setFileNotSelected(false); // Reset the file not selected flag
+    } else {
+      setSelectedFile(null);
+      setFileNotSelected(true); // Set the file not selected flag
+    }
+    console.log("selectedFile: ", selectedFile);
+    console.log("fileNotSelected: ", fileNotSelected);
+  };
 
   const {
     register,
@@ -113,7 +136,13 @@ const FormSection2 = ({ onSubmit }: Props) => {
       </Text>
       <form
         onSubmit={handleSubmit((data) => {
-          if (!isValid) {
+          console.log(errors.title);
+          console.log("file not select status: ", fileNotSelected);
+
+          if (!isValid || fileNotSelected) {
+            console.log("is valid status: ", isValid);
+            console.log("file not select status: ", fileNotSelected);
+
             return;
           }
 
@@ -322,25 +351,32 @@ const FormSection2 = ({ onSubmit }: Props) => {
             </Text>
           </GridItem>
           <GridItem area={"inputArea"}>
-            <RadioGroup {...register("type")} onChange={setValue} value={value}>
+            <RadioGroup
+              value={value}
+              onChange={(val) => {
+                console.log(val);
+
+                setValue(val);
+              }}
+            >
               <Stack direction="column">
-                <Radio paddingY={"5px"} value="1">
+                <Radio {...register("projectType")} paddingY={"5px"} value="1">
                   Coursework
                 </Radio>
-                <Radio paddingY={"5px"} value="2">
+                <Radio {...register("projectType")} paddingY={"5px"} value="2">
                   Competition
                 </Radio>
-                <Radio paddingY={"5px"} value="3">
+                <Radio {...register("projectType")} paddingY={"5px"} value="3">
                   Hobby
                 </Radio>
-                <Radio paddingY={"5px"} value="4">
+                <Radio {...register("projectType")} paddingY={"5px"} value="4">
                   Other
                 </Radio>
               </Stack>
             </RadioGroup>
-            {errors.type && (
+            {errors.projectType && (
               <Text fontSize="xs" color="red">
-                {errors.type.message}
+                {errors.projectType.message}
               </Text>
             )}
           </GridItem>
@@ -413,20 +449,21 @@ const FormSection2 = ({ onSubmit }: Props) => {
             requirements of the purchasing equipment.
           </Text>
           <Text color={"#FA3939"}>
-            Note: Applications submitted without this information cannot be
-            considered for funding.
+            {fileNotSelected &&
+              "Note: Applications submitted without this information cannot be considered for funding."}
           </Text>
           <Text paddingTop={4} color={"#828282"}>
             Attach the budget report in the .pdf format
           </Text>
 
           {/* <DragDrop></DragDrop> */}
-          {/* <input
+          <input
             // {...register("pdfFile")}
             type="file"
             id="fileInput"
-            accept="application/pdf"
-          /> */}
+            accept=".pdf"
+            onChange={handleFileChange}
+          />
 
           {/* {errors.pdfFile && (
             <Text fontSize="xs" color="red">
@@ -467,6 +504,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
             //   //   position: "top"
             //   // });
             // }
+
             console.log("is valid: " + isValid);
           }}
           className="submit-btn"
