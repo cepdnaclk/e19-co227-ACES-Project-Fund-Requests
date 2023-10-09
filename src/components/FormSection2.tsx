@@ -106,13 +106,20 @@ const FormSection2 = ({ onSubmit }: Props) => {
     if (file) {
       console.log("Having file");
 
+      
+    const formData = new FormData();
+    formData.append("pdfFile", file);
+
       setSelectedFile(file);
       setFileNotSelected(false); // Reset the file not selected flag
+      axios.post("http://localhost:5000/pdf", formData).then((res) => {
+        console.log("pdf: ", res.status);
+      });
     } else {
       setSelectedFile(null);
       setFileNotSelected(true); // Set the file not selected flag
     }
-    console.log("selectedFile: ", selectedFile);
+    console.log("selectedFile: ", selectedFile?.arrayBuffer);
     console.log("fileNotSelected: ", fileNotSelected);
   };
 
@@ -142,6 +149,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
           if (!isValid || fileNotSelected) {
             console.log("is valid status: ", isValid);
             console.log("file not select status: ", fileNotSelected);
+            console.log("data: ", data);
 
             return;
           }
@@ -453,7 +461,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
               "Note: Applications submitted without this information cannot be considered for funding."}
           </Text>
           <Text paddingTop={4} color={"#828282"}>
-            Attach the budget report in the .pdf format
+            Attach the budget report in the .pdf format, 10MB max
           </Text>
 
           {/* <DragDrop></DragDrop> */}

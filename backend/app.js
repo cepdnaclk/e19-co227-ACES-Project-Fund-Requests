@@ -1,12 +1,26 @@
 const exspress = require('express');
 const cors = require("cors");
 const axios = require('axios');
-
+const multer = require('multer');
 const app = exspress();
 
 
 app.use(exspress.static('./public'))
 
+// Define storage for uploaded files
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads'); // Set the destination folder for uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname); // Use the original file name
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
+});
 
 
 
@@ -41,9 +55,36 @@ app.post("/contactDetails", (req, res) => {
     if (data) {
          res.status(200).json({success: true})
     }
-    sendToAdmin(data);
+    // sendToAdmin(data);
    
 })
+
+// Handle file upload
+app.post('/pdf', upload.single('pdfFile'), (req, res) => {
+    console.log(req.body);
+  if (!req.file) {
+    console.log("No file uploaded.");
+    return res.status(400).send('No file uploaded.');
+    
+  }
+
+  // You can access the uploaded file's information as req.file
+  // Here, you can save it to a database, process it, etc.
+
+  console.log("File uploaded successfully.");
+  res.status(200).send('File uploaded successfully.');
+});
+
+// app.post("/pdf", (req, res) => {
+//     const data = req.body
+//     console.log("receiving the pdf");
+//     console.log(data);
+//     if (data) {
+//          res.status(200).json({success: true})
+//     }
+//     // sendToAdmin(data);
+   
+// })
 
 app.post("/aboutProject", (req, res) => {
     const data = req.body
