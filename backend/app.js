@@ -4,8 +4,19 @@ const axios = require('axios');
 const multer = require('multer');
 const app = exspress();
 
+const mongoose = require("mongoose");
 
 app.use(exspress.static('./public'))
+
+// Set up mongoose connection
+mongoose.set("strictQuery", false);
+const mongoDB = "mongodb+srv://e19210:IsotkvutF3XHtIyh@cluster0.tthbjjk.mongodb.net/local_library?retryWrites=true&w=majority";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 
 // Define storage for uploaded files
 const storage = multer.diskStorage({
