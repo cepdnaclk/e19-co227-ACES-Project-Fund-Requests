@@ -33,7 +33,9 @@ function App() {
 
   let formElements = [
     <FormSection1
-      onSetRequestObject = {(requestobj: FundRequest) => {setRequestObject(requestobj)}}
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
       requestObject={requestObject}
       submitStatus={isSubmitted}
       onSubmit={(status) => {
@@ -41,6 +43,10 @@ function App() {
       }}
     ></FormSection1>,
     <FormSection2
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
+      requestObject={requestObject}
       onSubmit={(status) => {
         setIsSubmitted2(status);
       }}

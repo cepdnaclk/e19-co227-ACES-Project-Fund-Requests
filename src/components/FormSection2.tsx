@@ -18,11 +18,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
+import FundRequest from "../classes/fund_request";
 
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
 interface Props {
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
 }
 
@@ -92,7 +95,7 @@ const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
 
-const FormSection2 = ({ onSubmit }: Props) => {
+const FormSection2 = ({ requestObject, onSetRequestObject }: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();
 
@@ -106,9 +109,8 @@ const FormSection2 = ({ onSubmit }: Props) => {
     if (file) {
       console.log("Having file");
 
-      
-    const formData = new FormData();
-    formData.append("pdfFile", file);
+      const formData = new FormData();
+      formData.append("pdfFile", file);
 
       setSelectedFile(file);
       setFileNotSelected(false); // Reset the file not selected flag
@@ -154,27 +156,42 @@ const FormSection2 = ({ onSubmit }: Props) => {
             return;
           }
 
-          axios
-            .post("http://localhost:5000/aboutProject", data)
-            .then((res) => {
-              if (res.status == 200) {
-                toast({
-                  title: "About the Project",
-                  description:
-                    "You've successfully submitted the details about the project",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              }
+          if (requestObject != null) {
+            requestObject = {
+              ...requestObject,
+              projectTitle: data.title,
+              projectDescription: data.description,
+              goals: data.goals,
+              risks: data.risks,
+              startingDate: data.startingDate,
+              endingDate: data.endingDate,
+              agreement: data.isChecked ? "checked" : "notChecked",
+            };
 
-              onSubmit(res.status == 200);
-              console.log(res.status);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            console.log("Formsection2: ", requestObject);
+          }
+
+          // axios
+          //   .post("http://localhost:5000/aboutProject", data)
+          //   .then((res) => {
+          //     if (res.status == 200) {
+          //       toast({
+          //         title: "About the Project",
+          //         description:
+          //           "You've successfully submitted the details about the project",
+          //         status: "success",
+          //         duration: 3000,
+          //         isClosable: true,
+          //         position: "top",
+          //       });
+          //     }
+
+          //     onSubmit(res.status == 200);
+          //     console.log(res.status);
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
           console.log(data);
         })}
         action=""
