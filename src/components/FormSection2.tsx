@@ -161,6 +161,7 @@ const FormSection2 = ({ requestObject, onSetRequestObject }: Props) => {
               ...requestObject,
               projectTitle: data.title,
               projectDescription: data.description,
+              projectType: data.projectType,
               goals: data.goals,
               risks: data.risks,
               startingDate: data.startingDate,
