@@ -27,6 +27,7 @@ interface Props {
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
+  
 }
 
 const schema = z.object({
@@ -99,6 +100,7 @@ const FormSection2 = ({
   requestObject,
   onSetRequestObject,
   onSubmit,
+
 }: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();

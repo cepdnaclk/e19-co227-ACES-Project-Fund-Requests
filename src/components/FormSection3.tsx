@@ -6,6 +6,7 @@ import * as z from "zod";
 
 import { useToast } from "@chakra-ui/react";
 import FundRequest from "../classes/fund_request";
+import { useState } from "react";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -16,6 +17,7 @@ interface Props {
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
+  onFinish: (finioshed: boolean) => void;
 }
 
 const schema = z.object({
@@ -34,8 +36,10 @@ const FormSection3 = ({
   onSubmit,
   requestObject,
   onSetRequestObject,
+  onFinish,
 }: Props) => {
   const toast = useToast();
+  const [isFinished, setIsFinished] = useState(false);
 
   const {
     register,
@@ -75,6 +79,7 @@ const FormSection3 = ({
                 };
 
                 console.log("section 3: ", requestObject);
+                setIsFinished(true);
 
                 toast({
                   title: "Completed the Request",
@@ -189,16 +194,20 @@ const FormSection3 = ({
               )}
             </GridItem>
           </Grid>
-          <button
-            onClick={() => {
-              // event?.preventDefault();
-              onSubmit(isValid);
-            }}
-            className="submit-btn"
-            type="submit"
-          >
-            Submit
-          </button>
+          {isFinished ? (
+            <Text color="green">Submitted Successfully</Text>
+          ) : (
+            <button
+              onClick={() => {
+                // event?.preventDefault();
+                onSubmit(isValid);
+              }}
+              className="submit-btn"
+              type="submit"
+            >
+              Submit
+            </button>
+          )}
         </form>
         {/* <Box textAlign={"end"}>
           <Button

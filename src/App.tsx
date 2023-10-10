@@ -30,6 +30,7 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitted2, setIsSubmitted2] = useState(false);
   const [isSubmitted3, setIsSubmitted3] = useState(false);
+  const [finish, setFinish] = useState(false);
 
   let formElements = [
     <FormSection1
@@ -59,7 +60,11 @@ function App() {
       onSubmit={(status) => {
         setIsSubmitted3(status);
       }}
+      onFinish={(finishingStatus) => {
+        setFinish(finishingStatus);
+      }}
     ></FormSection3>,
+
     <FormSection4></FormSection4>,
   ];
 
