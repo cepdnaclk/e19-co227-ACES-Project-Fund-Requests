@@ -102,6 +102,7 @@ const FormSection1 = ({
             console.log(newRequestObject);
             if (!(newRequestObject == null)) {
               onSetRequestObject(newRequestObject);
+              onSubmit(true);
               toast({
                 title: "Contact Information",
                 description:
