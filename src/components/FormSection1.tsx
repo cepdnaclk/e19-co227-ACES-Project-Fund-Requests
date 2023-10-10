@@ -21,6 +21,7 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  // setRequestObject: (requestObject: object) => void;
   submitStatus: boolean;
   onSubmit: (status: boolean) => void;
 }
@@ -75,29 +76,34 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
           if (!isValid) {
             return;
           }
-          axios
-            .post("http://localhost:5000/contactDetails", data)
-            .then((res) => {
-              setFormSentStatus(Number(res.status));
-              console.log("REady to display the toast");
 
-              if (res.status == 200) {
-                toast({
-                  title: "Contact Information",
-                  description:
-                    "You've successfully submitted contact information",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              }
-              onSubmit(res.status == 200);
-              console.log(res.status);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+
+
+          // Sending data 1 to backend
+
+          // axios
+          //   .post("http://localhost:5000/contactDetails", data)
+          //   .then((res) => {
+          //     setFormSentStatus(Number(res.status));
+          //     console.log("REady to display the toast");
+
+          //     if (res.status == 200) {
+          //       toast({
+          //         title: "Contact Information",
+          //         description:
+          //           "You've successfully submitted contact information",
+          //         status: "success",
+          //         duration: 3000,
+          //         isClosable: true,
+          //         position: "top",
+          //       });
+          //     }
+          //     onSubmit(res.status == 200);
+          //     console.log(res.status);
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
           console.log(data);
         })}
         action="POST"
