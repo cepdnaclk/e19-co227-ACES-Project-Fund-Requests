@@ -17,15 +17,10 @@ import FooterSection from "./components/FooterSection";
 import DeniedSection from "./components/DeniedSection";
 import FundRequest from "./classes/fund_request";
 
-
-
 function App() {
   // const [count, setCount] = useState(0);
 
-  // const [requestObject, setRequestObject] = useState<FundRequest>({
-  //  ApplicantsNames: {member1: null, member2: null, member3: null, member4: null, member5: null}
-
-  // })
+  const [requestObject, setRequestObject] = useState<FundRequest | null>(null);
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
@@ -38,7 +33,7 @@ function App() {
 
   let formElements = [
     <FormSection1
-    // onsetRequestObject = {(requestobj: object) => {setRequestObject(requestobj)}}
+      // onsetRequestObject = {(requestobj: object) => {setRequestObject(requestobj)}}
       submitStatus={isSubmitted}
       onSubmit={(status) => {
         setIsSubmitted(status);
