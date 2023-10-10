@@ -173,6 +173,8 @@ const FormSection2 = ({
               agreement: data.isChecked ? "checked" : "notChecked",
             };
 
+            onSetRequestObject(requestObject);
+
             onSubmit(true);
 
             toast({
