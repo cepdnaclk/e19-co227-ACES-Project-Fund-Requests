@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { useToast } from "@chakra-ui/react";
+import FundRequest from "../classes/fund_request";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -12,6 +13,8 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
 }
 
@@ -27,7 +30,11 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const FormSection3 = ({ onSubmit }: Props) => {
+const FormSection3 = ({
+  onSubmit,
+  requestObject,
+  onSetRequestObject,
+}: Props) => {
   const toast = useToast();
 
   const {
@@ -59,6 +66,27 @@ const FormSection3 = ({ onSubmit }: Props) => {
 
         <form
           onSubmit={handleSubmit((data) => {
+            if (isValid) {
+              if (requestObject != null) {
+                requestObject = {
+                  ...requestObject,
+                  lecturerName: data.lecturerName,
+                  lecturerEmail: data.lectureremail,
+                };
+
+                console.log("section 3: ", requestObject);
+
+                toast({
+                  title: "Completed the Request",
+                  description: "You've successfully Completed the request",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                  position: "top",
+                });
+              }
+            }
+
             console.log(data);
           })}
           action=""
@@ -165,17 +193,6 @@ const FormSection3 = ({ onSubmit }: Props) => {
             onClick={() => {
               // event?.preventDefault();
               onSubmit(isValid);
-              if (isValid)
-                toast({
-                  title: "Completed the Request",
-                  description: "You've successfully Completed the request",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              {
-              }
             }}
             className="submit-btn"
             type="submit"

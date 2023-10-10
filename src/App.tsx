@@ -52,6 +52,10 @@ function App() {
       }}
     ></FormSection2>,
     <FormSection3
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
+      requestObject={requestObject}
       onSubmit={(status) => {
         setIsSubmitted3(status);
       }}

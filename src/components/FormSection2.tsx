@@ -173,6 +173,8 @@ const FormSection2 = ({
               agreement: data.isChecked ? "checked" : "notChecked",
             };
 
+            console.log("Formsection2: ", requestObject);
+
             onSetRequestObject(requestObject);
 
             onSubmit(true);
@@ -186,8 +188,6 @@ const FormSection2 = ({
               isClosable: true,
               position: "top",
             });
-
-            console.log("Formsection2: ", requestObject);
           }
 
           // axios

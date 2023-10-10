@@ -17,6 +17,8 @@ class FundRequest {
   "startingDate": string | null;
   "endingDate": string | null;
   "agreement": string | null;
+  "lecturerName": string | null;
+  "lecturerEmail": string | null;
 }
 
 export default FundRequest;
