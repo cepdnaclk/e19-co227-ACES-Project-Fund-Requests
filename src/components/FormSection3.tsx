@@ -7,6 +7,7 @@ import * as z from "zod";
 import { useToast } from "@chakra-ui/react";
 import FundRequest from "../classes/fund_request";
 import { useState } from "react";
+import axios from "axios";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -79,16 +80,34 @@ const FormSection3 = ({
                 };
 
                 console.log("section 3: ", requestObject);
-                setIsFinished(true);
 
-                toast({
-                  title: "Completed the Request",
-                  description: "You've successfully Completed the request",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
+                axios
+                  .post("http://localhost:5000/fundRequest", requestObject)
+                  .then((res) => {
+                   setIsFinished(true);
+
+                    console.log("REady to display the toast");
+
+                    if (res.status == 200) {
+                      toast({
+                        title: "Completed the Request",
+                        description:
+                          "You've successfully Completed the request",
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                        position: "top",
+                      });
+                    }
+                    onSubmit(res.status == 200);
+                    console.log(res.status);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+
+               
+               
               }
             }
 

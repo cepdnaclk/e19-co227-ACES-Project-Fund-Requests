@@ -69,17 +69,28 @@ app.get("/", (req, res) => {
 //     }
 // });
 
-app.post("/contactDetails", async (req, res) => {
+app.post("/fundRequest", async (req, res) => {
 
     const data = req.body
     console.log("receiving data");
     console.log(data);
     if (data) {
       const newRequest = new Request({
-        leaders_name: data.name,
-        other_name: data.regname, 
+        applicants_names: data.ApplicantsNames,
+        leader_name: data.leadersName,
         email: data.email,
         contact_no: data.contactNo,
+        project_title: data.projectTitle,
+        project_description: data.projectDescription,
+        goals: data.goals,
+        risks: data.risks,
+        project_type: data.projectType,
+        starting_date: data.startingDate,
+        ending_date: data.endingDate,
+        agreement: data.agreement,
+        lecturer_name: data.lecturerName,
+        lecturer_email: data.lecturerEmail
+
       });
 
 
