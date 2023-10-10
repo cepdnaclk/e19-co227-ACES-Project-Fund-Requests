@@ -6,6 +6,8 @@ const app = exspress();
 
 const mongoose = require("mongoose");
 
+const Request = require("./models/fundrequest")
+
 app.use(exspress.static('./public'))
 
 // Set up mongoose connection
@@ -14,8 +16,16 @@ const mongoDB = "mongodb+srv://e19210:IsotkvutF3XHtIyh@cluster0.tthbjjk.mongodb.
 
 main().catch((err) => console.log(err));
 async function main() {
+  
   await mongoose.connect(mongoDB);
+  console.log("Database connected");
+
+
 }
+
+app.get("/admin", (req, res)=>{
+  res.send('Hi there')
+})
 
 
 // Define storage for uploaded files
@@ -59,16 +69,42 @@ app.get("/", (req, res) => {
 //     }
 // });
 
-app.post("/contactDetails", (req, res) => {
+app.post("/contactDetails", async (req, res) => {
+
     const data = req.body
     console.log("receiving data");
     console.log(data);
     if (data) {
-         res.status(200).json({success: true})
+      const newRequest = new Request({
+        leaders_name: data.name,
+        other_name: data.regname, 
+        email: data.email,
+        contact_no: data.contactNo,
+      });
+
+
+     try {
+      // Save the instance to the database
+      const savedRequest = await newRequest.save();
+      console.log('Request saved successfully:', savedRequest);
+
+      // Respond with a success JSON response
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error('Error saving request:', error);
+      // Handle the error and respond with an error JSON response
+      res.status(500).json({ success: false, error: 'Internal server error' });
     }
+  } else {
+    // If no data is provided in the request, respond with an error JSON response
+    res.status(400).json({ success: false, error: 'Bad request' });
+  }
+        
+    } 
+);
     // sendToAdmin(data);
    
-})
+
 
 // Handle file upload
 app.post('/pdf', upload.single('pdfFile'), (req, res) => {
