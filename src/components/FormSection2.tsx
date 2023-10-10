@@ -169,6 +169,16 @@ const FormSection2 = ({ requestObject, onSetRequestObject }: Props) => {
               agreement: data.isChecked ? "checked" : "notChecked",
             };
 
+            toast({
+              title: "About the Project",
+              description:
+                "You've successfully submitted the details about the project",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              position: "top",
+            });
+
             console.log("Formsection2: ", requestObject);
           }
 
