@@ -95,7 +95,11 @@ const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
 
-const FormSection2 = ({ requestObject, onSetRequestObject }: Props) => {
+const FormSection2 = ({
+  requestObject,
+  onSetRequestObject,
+  onSubmit,
+}: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();
 
@@ -168,6 +172,8 @@ const FormSection2 = ({ requestObject, onSetRequestObject }: Props) => {
               endingDate: data.endingDate,
               agreement: data.isChecked ? "checked" : "notChecked",
             };
+
+            onSubmit(true);
 
             toast({
               title: "About the Project",
