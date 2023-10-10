@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
 import { useState } from "react";
+import FundRequest from "../classes/fund_request";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -21,7 +22,8 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
-  // setRequestObject: (requestObject: object) => void;
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   submitStatus: boolean;
   onSubmit: (status: boolean) => void;
 }
@@ -42,7 +44,12 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
+const FormSection1 = ({
+  submitStatus,
+  onSubmit,
+  requestObject,
+  onSetRequestObject,
+}: Props) => {
   const [formSentStatus, setFormSentStatus] = useState(0);
   const toast = useToast();
   const {
@@ -77,7 +84,20 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
             return;
           }
 
+          if (requestObject == null) {
+            var newRequestObject = new FundRequest();
 
+            newRequestObject = {
+              ...newRequestObject,
+              ApplicantsNames: {
+                ...newRequestObject.ApplicantsNames,
+                member1: data.name,
+              },
+              leadersName: data.regname,
+              email: data.email,
+              contactNo: data.contactNo,
+            };
+          }
 
           // Sending data 1 to backend
 
