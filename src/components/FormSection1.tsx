@@ -100,6 +100,18 @@ const FormSection1 = ({
             console.log("Printing the object");
 
             console.log(newRequestObject);
+            if (!(newRequestObject == null)) {
+              toast({
+                title: "Contact Information",
+                description:
+                  "You've successfully submitted contact information",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position: "top",
+              });
+            }
+            console.log(newRequestObject == null);
           }
 
           // Sending data 1 to backend
