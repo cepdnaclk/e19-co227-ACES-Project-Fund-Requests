@@ -97,6 +97,9 @@ const FormSection1 = ({
               email: data.email,
               contactNo: data.contactNo,
             };
+            console.log("Printing the object");
+
+            console.log(newRequestObject);
           }
 
           // Sending data 1 to backend
