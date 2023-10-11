@@ -363,7 +363,7 @@ const FormSection1 = ({
           className="submit-btn"
           type="submit"
         >
-          Submit
+          SUBMIT
         </button>
       </form>
     </Box>
