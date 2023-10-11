@@ -27,7 +27,6 @@ interface Props {
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
-  
 }
 
 const schema = z.object({
@@ -100,13 +99,18 @@ const FormSection2 = ({
   requestObject,
   onSetRequestObject,
   onSubmit,
-
 }: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileNotSelected, setFileNotSelected] = useState(true);
+  // const [bufferedFile, setBufferedFile] = useState<string | ArrayBuffer | null>(
+  //   null
+  // );
+
+  const [sectionrequestObject, setSectionRequestObject] =
+    useState<FundRequest | null>(requestObject);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -131,6 +135,15 @@ const FormSection2 = ({
     console.log("fileNotSelected: ", fileNotSelected);
   };
 
+  function arrayBufferToBase64(arrayBuffer: ArrayBuffer) {
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = "";
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  }
+
   const {
     register,
     handleSubmit,
@@ -151,10 +164,14 @@ const FormSection2 = ({
       </Text>
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(errors.title);
+          console.log("Handling the submission");
+
+          // console.log(errors.title);
           console.log("file not select status: ", fileNotSelected);
 
           if (!isValid || fileNotSelected) {
+            console.log("inside if");
+
             console.log("is valid status: ", isValid);
             console.log("file not select status: ", fileNotSelected);
             console.log("data: ", data);
@@ -162,24 +179,63 @@ const FormSection2 = ({
             return;
           }
 
-          if (requestObject != null) {
-            requestObject = {
-              ...requestObject,
-              projectTitle: data.title,
-              projectDescription: data.description,
-              projectType: data.projectType,
-              goals: data.goals,
-              risks: data.risks,
-              startingDate: data.startingDate,
-              endingDate: data.endingDate,
-              agreement: data.isChecked ? "checked" : "notChecked",
-            };
+          const fileReader = new FileReader();
 
-            console.log("Formsection2: ", requestObject);
+          fileReader.onload = (event) => {
+            console.log("Running on load");
 
-            onSetRequestObject(requestObject);
+            const arrayBuffer = event.target!.result as ArrayBuffer; // This is an ArrayBuffer
 
+            console.log("array buffered");
+            console.log("buffered: ", arrayBuffer);
+            // setBufferedFile(arrayBuffer);
+
+            const base64String = arrayBufferToBase64(arrayBuffer);
+
+            if (requestObject != null) {
+              requestObject = {
+                ...requestObject,
+                projectTitle: data.title,
+                projectDescription: data.description,
+                projectType: data.projectType,
+                projectExpenses: base64String,
+                goals: data.goals,
+                risks: data.risks,
+                startingDate: data.startingDate,
+                endingDate: data.endingDate,
+                agreement: data.isChecked ? "checked" : "notChecked",
+              };
+
+              console.log("Formsection2: ", requestObject);
+              // setSectionRequestObject((requestObject: FundRequest | null) => ({
+              //   ...requestObject!,
+              //   projectExpenses: arrayBuffer,
+              // }));
+              // requestObject = sectionrequestObject;
+
+              // requestObject = { ...requestObject, projectExpenses: arrayBuffer };
+
+              // Now, you have 'buffer' as a Node.js Buffer-like object that you can use or send to the backend if needed.
+            }
+
+            console.log(data);
+
+            onSetRequestObject(requestObject!);
             onSubmit(true);
+
+            // setSectionRequestObject((requestObject) => ({
+            //   ...requestObject!,
+            //   projectTitle: data.title,
+            //   projectDescription: data.description,
+            //   projectType: data.projectType,
+            //   goals: data.goals,
+            //   risks: data.risks,
+            //   startingDate: data.startingDate,
+            //   endingDate: data.endingDate,
+            //   agreement: data.isChecked ? "checked" : "notChecked",
+            // }));
+
+            // console.log("");
 
             toast({
               title: "About the Project",
@@ -190,7 +246,15 @@ const FormSection2 = ({
               isClosable: true,
               position: "top",
             });
-          }
+          };
+
+          fileReader.onerror = (error) => {
+            console.error("Error reading file:", error);
+          };
+
+          console.log("readAsArrayBuffer");
+
+          fileReader.readAsArrayBuffer(selectedFile!);
 
           // axios
           //   .post("http://localhost:5000/aboutProject", data)
@@ -213,7 +277,6 @@ const FormSection2 = ({
           //   .catch((err) => {
           //     console.log(err);
           //   });
-          console.log(data);
         })}
         action=""
       >
@@ -537,7 +600,6 @@ const FormSection2 = ({
         <button
           onClick={() => {
             // event?.preventDefault();
-
             // onSubmit(isValid);
             // if (isValid) {
             //   // toast({
@@ -550,8 +612,7 @@ const FormSection2 = ({
             //   //   position: "top"
             //   // });
             // }
-
-            console.log("is valid: " + isValid);
+            // console.log("is valid: " + isValid);
           }}
           className="submit-btn"
           type="submit"

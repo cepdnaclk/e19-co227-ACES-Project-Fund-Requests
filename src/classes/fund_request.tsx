@@ -14,6 +14,7 @@ class FundRequest {
   "goals": string | null;
   "risks": string | null;
   "projectType": string | null;
+  "projectExpenses": string | null;
   "startingDate": string | null;
   "endingDate": string | null;
   "agreement": string | null;

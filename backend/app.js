@@ -1,14 +1,23 @@
-const exspress = require('express');
+const express = require('express');
 const cors = require("cors");
 const axios = require('axios');
 const multer = require('multer');
-const app = exspress();
+const fs = require('fs');
+const app = express();
+
+const bodyParser = require('body-parser');
+
+
 
 const mongoose = require("mongoose");
 
 const Request = require("./models/fundrequest")
 
-app.use(exspress.static('./public'))
+app.use(express.static('./public'))
+
+// Increase the request size limit to 50MB (or set it to your desired limit)
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
@@ -43,12 +52,29 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
 });
 
+// const convertFileToBuffer = (file) => {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+    
+//     reader.onload = (event) => {
+//       const buffer = Buffer.from(event.target.result);
+//       resolve(buffer);
+//     };
+
+//     reader.onerror = (event) => {
+//       reject(event.error);
+//     };
+
+//     reader.readAsArrayBuffer(file);
+//   });
+// };
+
 
 
 const countriesMiddleware = require('./routes/countries')
 
-app.use(exspress.urlencoded({extended: false})) // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
-app.use(exspress.json()); // Handle the data in the type "application/json"
+app.use(express.urlencoded({extended: false})) // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
+app.use(express.json()); // Handle the data in the type "application/json"
 
 app.use("/change/",countriesMiddleware);
 app.use(cors())
@@ -56,6 +82,18 @@ app.use(cors())
 app.get("/", (req, res) => {
     res.status(200).json({success:true})
 })
+
+function base64ToArrayBuffer(base64) {
+  const binaryString = atob(base64);
+  const length = binaryString.length;
+  const bytes = new Uint8Array(length);
+  for (let i = 0; i < length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+
 
 // POST
 
@@ -75,6 +113,16 @@ app.post("/fundRequest", async (req, res) => {
     console.log("receiving data");
     console.log(data);
     if (data) {
+      // const selectedFile = data.projectExpenses;
+      // const fileBuffer = await convertFileToBuffer(selectedFile);
+
+      const arrayBuffer = base64ToArrayBuffer(data.projectExpenses);
+
+      console.log(arrayBuffer);
+
+      const buffer = Buffer.from(arrayBuffer);
+      console.log(buffer);
+      
       const newRequest = new Request({
         applicants_names: data.ApplicantsNames,
         leader_name: data.leadersName,
@@ -85,6 +133,7 @@ app.post("/fundRequest", async (req, res) => {
         goals: data.goals,
         risks: data.risks,
         project_type: data.projectType,
+        Project_expenses: buffer,
         starting_date: data.startingDate,
         ending_date: data.endingDate,
         agreement: data.agreement,

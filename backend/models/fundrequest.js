@@ -9,6 +9,7 @@ const RequestSchema = new Schema({
   contact_no: { type: String, required: true, maxLength: 100 },
   project_title: { type: String, required: true, maxLength: 100 },
   project_description: { type: String, required: true, maxLength: 100 },
+  Project_expenses: {type: Buffer, required: true},
   goals: { type: String, required: true, maxLength: 100 },
   risks: { type: String, required: true, maxLength: 100 },
   project_type: { type: String, required: true, maxLength: 100 },
