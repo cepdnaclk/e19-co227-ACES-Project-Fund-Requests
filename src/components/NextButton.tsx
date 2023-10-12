@@ -30,14 +30,14 @@ const NextButton = ({ onStepperChange, currrentStep }: Props) => {
         height={"49px"}
         bgGradient={"linear(to-b  , #5588A3, #092636)"}
         color={"white"}
-        fontWeight={"700"}
+        fontWeight={"600"}
         fontSize={"18"}
       >
         {currrentStep == 2 ? "SUBMIT" : "NEXT"}
       </Button>
       <Text color={"#5588A3"} fontSize={"sm"}>
         {" "}
-        Once you "NEXT" you can't come back!
+        Once you click "NEXT" you can't come back!
       </Text>
     </HStack>
   );

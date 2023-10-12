@@ -320,7 +320,7 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
           className="submit-btn"
           type="submit"
         >
-          Submit
+          SUBMIT
         </button>
       </form>
     </Box>
