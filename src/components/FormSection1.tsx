@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
 import { useState } from "react";
+import FundRequest from "../classes/fund_request";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -21,6 +22,8 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   submitStatus: boolean;
   onSubmit: (status: boolean) => void;
 }
@@ -41,7 +44,12 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
+const FormSection1 = ({
+  submitStatus,
+  onSubmit,
+  requestObject,
+  onSetRequestObject,
+}: Props) => {
   const [formSentStatus, setFormSentStatus] = useState(0);
   const toast = useToast();
   const {
@@ -75,29 +83,64 @@ const FormSection1 = ({ submitStatus, onSubmit }: Props) => {
           if (!isValid) {
             return;
           }
-          axios
-            .post("http://localhost:5000/contactDetails", data)
-            .then((res) => {
-              setFormSentStatus(Number(res.status));
-              console.log("REady to display the toast");
 
-              if (res.status == 200) {
-                toast({
-                  title: "Contact Information",
-                  description:
-                    "You've successfully submitted contact information",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              }
-              onSubmit(res.status == 200);
-              console.log(res.status);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          if (requestObject == null) {
+            var newRequestObject = new FundRequest();
+
+            newRequestObject = {
+              ...newRequestObject,
+              ApplicantsNames: {
+                ...newRequestObject.ApplicantsNames,
+                member1: data.name,
+              },
+              leadersName: data.regname,
+              email: data.email,
+              contactNo: data.contactNo,
+            };
+            console.log("Printing the object");
+
+            console.log(newRequestObject);
+            if (!(newRequestObject == null)) {
+              onSetRequestObject(newRequestObject);
+              onSubmit(true);
+              toast({
+                title: "Contact Information",
+                description:
+                  "You've successfully submitted contact information",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position: "top",
+              });
+            }
+            console.log(newRequestObject == null);
+          }
+
+          // Sending data 1 to backend
+
+          // axios
+          //   .post("http://localhost:5000/contactDetails", data)
+          //   .then((res) => {
+          //     setFormSentStatus(Number(res.status));
+          //     console.log("REady to display the toast");
+
+          //     if (res.status == 200) {
+          //       toast({
+          //         title: "Contact Information",
+          //         description:
+          //           "You've successfully submitted contact information",
+          //         status: "success",
+          //         duration: 3000,
+          //         isClosable: true,
+          //         position: "top",
+          //       });
+          //     }
+          //     onSubmit(res.status == 200);
+          //     console.log(res.status);
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
           console.log(data);
         })}
         action="POST"

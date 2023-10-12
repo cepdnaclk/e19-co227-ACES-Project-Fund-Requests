@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { useToast } from "@chakra-ui/react";
+import FundRequest from "../classes/fund_request";
+import { useState } from "react";
+import axios from "axios";
 
 const inputBorderColor = "#97bfd4";
 const gridBackgrougndColor = "#F5F5F5";
@@ -12,7 +15,10 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
+  onFinish: (finioshed: boolean) => void;
 }
 
 const schema = z.object({
@@ -27,8 +33,14 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const FormSection3 = ({ onSubmit }: Props) => {
+const FormSection3 = ({
+  onSubmit,
+  requestObject,
+  onSetRequestObject,
+  onFinish,
+}: Props) => {
   const toast = useToast();
+  const [isFinished, setIsFinished] = useState(false);
 
   const {
     register,
@@ -59,6 +71,46 @@ const FormSection3 = ({ onSubmit }: Props) => {
 
         <form
           onSubmit={handleSubmit((data) => {
+            if (isValid) {
+              if (requestObject != null) {
+                requestObject = {
+                  ...requestObject,
+                  lecturerName: data.lecturerName,
+                  lecturerEmail: data.lectureremail,
+                };
+
+                console.log("section 3: ", requestObject);
+
+                axios
+                  .post("http://localhost:5000/fundRequest", requestObject)
+                  .then((res) => {
+                   setIsFinished(true);
+
+                    console.log("REady to display the toast");
+
+                    if (res.status == 200) {
+                      toast({
+                        title: "Completed the Request",
+                        description:
+                          "You've successfully Completed the request",
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                        position: "top",
+                      });
+                    }
+                    onSubmit(res.status == 200);
+                    console.log(res.status);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+
+               
+               
+              }
+            }
+
             console.log(data);
           })}
           action=""
@@ -161,27 +213,20 @@ const FormSection3 = ({ onSubmit }: Props) => {
               )}
             </GridItem>
           </Grid>
-          <button
-            onClick={() => {
-              // event?.preventDefault();
-              onSubmit(isValid);
-              if (isValid)
-                toast({
-                  title: "Completed the Request",
-                  description: "You've successfully Completed the request",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              {
-              }
-            }}
-            className="submit-btn"
-            type="submit"
-          >
-            Submit
-          </button>
+          {isFinished ? (
+            <Text color="green">Submitted Successfully</Text>
+          ) : (
+            <button
+              onClick={() => {
+                // event?.preventDefault();
+                onSubmit(isValid);
+              }}
+              className="submit-btn"
+              type="submit"
+            >
+              Submit
+            </button>
+          )}
         </form>
         {/* <Box textAlign={"end"}>
           <Button

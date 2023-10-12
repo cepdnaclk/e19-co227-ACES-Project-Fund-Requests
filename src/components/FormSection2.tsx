@@ -18,11 +18,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
+import FundRequest from "../classes/fund_request";
 
 const ACCEPTED_FILE_TYPES = ["application/pdf"];
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
 interface Props {
+  onSetRequestObject: (requestobj: FundRequest) => void;
+  requestObject: FundRequest | null;
   onSubmit: (status: boolean) => void;
 }
 
@@ -92,12 +95,22 @@ const gridBackgrougndColor = "#F5F5F5";
 const inputFieldTextColor = "black";
 const labelColor = "black";
 
-const FormSection2 = ({ onSubmit }: Props) => {
+const FormSection2 = ({
+  requestObject,
+  onSetRequestObject,
+  onSubmit,
+}: Props) => {
   const [value, setValue] = useState("1");
   const toast = useToast();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileNotSelected, setFileNotSelected] = useState(true);
+  // const [bufferedFile, setBufferedFile] = useState<string | ArrayBuffer | null>(
+  //   null
+  // );
+
+  const [sectionrequestObject, setSectionRequestObject] =
+    useState<FundRequest | null>(requestObject);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -106,15 +119,30 @@ const FormSection2 = ({ onSubmit }: Props) => {
     if (file) {
       console.log("Having file");
 
+      const formData = new FormData();
+      formData.append("pdfFile", file);
+
       setSelectedFile(file);
       setFileNotSelected(false); // Reset the file not selected flag
+      axios.post("http://localhost:5000/pdf", formData).then((res) => {
+        console.log("pdf: ", res.status);
+      });
     } else {
       setSelectedFile(null);
       setFileNotSelected(true); // Set the file not selected flag
     }
-    console.log("selectedFile: ", selectedFile);
+    console.log("selectedFile: ", selectedFile?.arrayBuffer);
     console.log("fileNotSelected: ", fileNotSelected);
   };
+
+  function arrayBufferToBase64(arrayBuffer: ArrayBuffer) {
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = "";
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  }
 
   const {
     register,
@@ -136,38 +164,119 @@ const FormSection2 = ({ onSubmit }: Props) => {
       </Text>
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(errors.title);
+          console.log("Handling the submission");
+
+          // console.log(errors.title);
           console.log("file not select status: ", fileNotSelected);
 
           if (!isValid || fileNotSelected) {
+            console.log("inside if");
+
             console.log("is valid status: ", isValid);
             console.log("file not select status: ", fileNotSelected);
+            console.log("data: ", data);
 
             return;
           }
 
-          axios
-            .post("http://localhost:5000/aboutProject", data)
-            .then((res) => {
-              if (res.status == 200) {
-                toast({
-                  title: "About the Project",
-                  description:
-                    "You've successfully submitted the details about the project",
-                  status: "success",
-                  duration: 3000,
-                  isClosable: true,
-                  position: "top",
-                });
-              }
+          const fileReader = new FileReader();
 
-              onSubmit(res.status == 200);
-              console.log(res.status);
-            })
-            .catch((err) => {
-              console.log(err);
+          fileReader.onload = (event) => {
+            console.log("Running on load");
+
+            const arrayBuffer = event.target!.result as ArrayBuffer; // This is an ArrayBuffer
+
+            console.log("array buffered");
+            console.log("buffered: ", arrayBuffer);
+            // setBufferedFile(arrayBuffer);
+
+            const base64String = arrayBufferToBase64(arrayBuffer);
+
+            if (requestObject != null) {
+              requestObject = {
+                ...requestObject,
+                projectTitle: data.title,
+                projectDescription: data.description,
+                projectType: data.projectType,
+                projectExpenses: base64String,
+                goals: data.goals,
+                risks: data.risks,
+                startingDate: data.startingDate,
+                endingDate: data.endingDate,
+                agreement: data.isChecked ? "checked" : "notChecked",
+              };
+
+              console.log("Formsection2: ", requestObject);
+              // setSectionRequestObject((requestObject: FundRequest | null) => ({
+              //   ...requestObject!,
+              //   projectExpenses: arrayBuffer,
+              // }));
+              // requestObject = sectionrequestObject;
+
+              // requestObject = { ...requestObject, projectExpenses: arrayBuffer };
+
+              // Now, you have 'buffer' as a Node.js Buffer-like object that you can use or send to the backend if needed.
+            }
+
+            console.log(data);
+
+            onSetRequestObject(requestObject!);
+            onSubmit(true);
+
+            // setSectionRequestObject((requestObject) => ({
+            //   ...requestObject!,
+            //   projectTitle: data.title,
+            //   projectDescription: data.description,
+            //   projectType: data.projectType,
+            //   goals: data.goals,
+            //   risks: data.risks,
+            //   startingDate: data.startingDate,
+            //   endingDate: data.endingDate,
+            //   agreement: data.isChecked ? "checked" : "notChecked",
+            // }));
+
+            // console.log("");
+
+            toast({
+              title: "About the Project",
+              description:
+                "You've successfully submitted the details about the project",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+              position: "top",
             });
-          console.log(data);
+          };
+
+          fileReader.onerror = (error) => {
+            console.error("Error reading file:", error);
+          };
+
+          console.log("readAsArrayBuffer");
+
+          fileReader.readAsArrayBuffer(selectedFile!);
+
+          // axios
+          //   .post("http://localhost:5000/aboutProject", data)
+          //   .then((res) => {
+          //     if (res.status == 200) {
+          //       toast({
+          //         title: "About the Project",
+          //         description:
+          //           "You've successfully submitted the details about the project",
+          //         status: "success",
+          //         duration: 3000,
+          //         isClosable: true,
+          //         position: "top",
+          //       });
+          //     }
+
+          //     onSubmit(res.status == 200);
+          //     console.log(res.status);
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
         })}
         action=""
       >
@@ -453,7 +562,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
               "Note: Applications submitted without this information cannot be considered for funding."}
           </Text>
           <Text paddingTop={4} color={"#828282"}>
-            Attach the budget report in the .pdf format
+            Attach the budget report in the .pdf format, 10MB max
           </Text>
 
           {/* <DragDrop></DragDrop> */}
@@ -491,7 +600,6 @@ const FormSection2 = ({ onSubmit }: Props) => {
         <button
           onClick={() => {
             // event?.preventDefault();
-
             // onSubmit(isValid);
             // if (isValid) {
             //   // toast({
@@ -504,8 +612,7 @@ const FormSection2 = ({ onSubmit }: Props) => {
             //   //   position: "top"
             //   // });
             // }
-
-            console.log("is valid: " + isValid);
+            // console.log("is valid: " + isValid);
           }}
           className="submit-btn"
           type="submit"

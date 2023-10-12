@@ -15,9 +15,12 @@ import ReviewSection from "./components/ReviewSection";
 import QualifiedSection from "./components/QualifiedSection";
 import FooterSection from "./components/FooterSection";
 import DeniedSection from "./components/DeniedSection";
+import FundRequest from "./classes/fund_request";
 
 function App() {
   // const [count, setCount] = useState(0);
+
+  const [requestObject, setRequestObject] = useState<FundRequest | null>(null);
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
@@ -27,24 +30,41 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitted2, setIsSubmitted2] = useState(false);
   const [isSubmitted3, setIsSubmitted3] = useState(false);
+  const [finish, setFinish] = useState(false);
 
   let formElements = [
     <FormSection1
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
+      requestObject={requestObject}
       submitStatus={isSubmitted}
       onSubmit={(status) => {
         setIsSubmitted(status);
       }}
     ></FormSection1>,
     <FormSection2
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
+      requestObject={requestObject}
       onSubmit={(status) => {
         setIsSubmitted2(status);
       }}
     ></FormSection2>,
     <FormSection3
+      onSetRequestObject={(requestobj: FundRequest) => {
+        setRequestObject(requestobj);
+      }}
+      requestObject={requestObject}
       onSubmit={(status) => {
         setIsSubmitted3(status);
       }}
+      onFinish={(finishingStatus) => {
+        setFinish(finishingStatus);
+      }}
     ></FormSection3>,
+
     <FormSection4></FormSection4>,
   ];
 
