@@ -4,7 +4,7 @@ import {
   GridItem,
   Input,
   Box,
-  FormControl,
+
 } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
@@ -12,7 +12,7 @@ import { useToast } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import axios from "axios";
+
 import { useState } from "react";
 import FundRequest from "../classes/fund_request";
 
@@ -54,7 +54,7 @@ const FormSection1 = ({
   requestObject,
   onSetRequestObject,
 }: Props) => {
-  const [formSentStatus, setFormSentStatus] = useState(0);
+  // const [formSentStatus, setFormSentStatus] = useState(0);
   const toast = useToast();
   const {
     register,
