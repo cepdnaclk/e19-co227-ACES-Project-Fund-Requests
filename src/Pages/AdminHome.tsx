@@ -59,6 +59,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -96,6 +97,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -131,6 +133,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -166,6 +169,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -207,6 +211,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -242,6 +247,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
@@ -277,6 +283,7 @@ const AdminHome = () => {
           <GridItem 
             area={"answer"}
             bg={gridBackgrougndColor}
+            borderRadius={7}
             colSpan={1}
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
