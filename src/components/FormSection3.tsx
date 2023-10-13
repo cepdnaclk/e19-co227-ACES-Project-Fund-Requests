@@ -214,9 +214,9 @@ const FormSection3 = ({
               )}
             </GridItem>
           </Grid>
-          {isFinished ? (
+          {isFinished == true && isLoading == false ? (
             <Text color="green">Request Submitted Successfully</Text>
-          ) : (
+          ) : isFinished == false && isLoading == false ? (
             <button
               onClick={() => {
                 // event?.preventDefault();
@@ -227,6 +227,8 @@ const FormSection3 = ({
             >
               Submit
             </button>
+          ) : (
+            <Text color="black">waiting...</Text>
           )}
         </form>
         {/* <Box textAlign={"end"}>
