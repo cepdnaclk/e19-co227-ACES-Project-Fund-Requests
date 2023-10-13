@@ -14,7 +14,7 @@ const gridBackgrougndColor = "#F5F5F5";
 // const inputFieldTextColor = "black";
 const labelColor = "black";
 
-const AdminHome = () => {
+const AdminHome1 = () => {
   return (
     <>
       <Header></Header>
@@ -35,6 +35,7 @@ const AdminHome = () => {
         Project “Secure Network Infrastructure Enhancement Project”
       </Text>
       </Box>
+      
       <form>
 
       {/* Project Type */}
@@ -298,4 +299,4 @@ const AdminHome = () => {
   );
 };
 
-export default AdminHome;
+export default AdminHome1;
