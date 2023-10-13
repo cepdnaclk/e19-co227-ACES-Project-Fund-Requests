@@ -17,7 +17,7 @@ const labelColor = "black";
 interface Props {
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
-  onSubmit: (status: boolean) => void;
+  onFinalSubmit: (status: boolean) => void;
   onFinish: (finioshed: boolean) => void;
 }
 
@@ -34,7 +34,7 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection3 = ({
-  onSubmit,
+  onFinalSubmit,
   requestObject,
   onSetRequestObject,
   onFinish,
@@ -101,7 +101,7 @@ const FormSection3 = ({
                         position: "top",
                       });
                     }
-                    onSubmit(res.status == 200);
+                    onFinalSubmit(res.status == 200);
                     console.log(res.status);
                     setIsLoading(false);
                   })
@@ -220,7 +220,7 @@ const FormSection3 = ({
             <button
               onClick={() => {
                 // event?.preventDefault();
-                onSubmit(isValid);
+                // onFinalSubmit(isValid);
               }}
               className="submit-btn"
               type="submit"
