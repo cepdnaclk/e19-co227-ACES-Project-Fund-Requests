@@ -73,12 +73,12 @@ const upload = multer({
 
 
 
-const countriesMiddleware = require('./routes/countries')
+// const countriesMiddleware = require('./routes/countries')
 
 app.use(express.urlencoded({extended: false})) // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
 app.use(express.json()); // Handle the data in the type "application/json"
 
-app.use("/change/",countriesMiddleware);
+// app.use("/change/",countriesMiddleware);
 app.use(cors())
 
 app.get("/", (req, res) => {
@@ -151,7 +151,7 @@ app.post("/fundRequest", async (req, res) => {
       console.log('Request saved successfully:', savedRequest);
 
      emailService.sendEmail('csdmntest@gmail.com', "A New Fund Request",
-      "You have a new request to review. Please wisit this link: (the link)"
+      "You have a new request to review. Please visit this link: (the link)"
       )
 
       // Respond with a success JSON response

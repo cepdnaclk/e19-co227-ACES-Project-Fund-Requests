@@ -41,6 +41,7 @@ const FormSection3 = ({
 }: Props) => {
   const toast = useToast();
   const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -80,6 +81,7 @@ const FormSection3 = ({
                 };
 
                 console.log("section 3: ", requestObject);
+                setIsLoading(true);
 
                 axios
                   .post("http://localhost:5000/fundRequest", requestObject)
@@ -101,9 +103,11 @@ const FormSection3 = ({
                     }
                     onSubmit(res.status == 200);
                     console.log(res.status);
+                    setIsLoading(false);
                   })
                   .catch((err) => {
                     console.log(err);
+                    setIsLoading(false);
                   });
               }
             }
