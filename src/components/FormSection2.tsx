@@ -124,9 +124,9 @@ const FormSection2 = ({
 
       setSelectedFile(file);
       setFileNotSelected(false); // Reset the file not selected flag
-      axios.post("http://localhost:5000/pdf", formData).then((res) => {
-        console.log("pdf: ", res.status);
-      });
+      // axios.post("http://localhost:5000/pdf", formData).then((res) => {
+      //   console.log("pdf: ", res.status);
+      // });
     } else {
       setSelectedFile(null);
       setFileNotSelected(true); // Set the file not selected flag
