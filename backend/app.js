@@ -150,7 +150,9 @@ app.post("/fundRequest", async (req, res) => {
       const savedRequest = await newRequest.save();
       console.log('Request saved successfully:', savedRequest);
 
-     
+     emailService.sendEmail('csdmntest@gmail.com', "A New Fund Request",
+      "You have a new request to review. Please wisit this link: (the link)"
+      )
 
       // Respond with a success JSON response
       res.status(200).json({ success: true });
