@@ -335,7 +335,7 @@ const FormSection2 = ({
         >
           <GridItem area={"title"}>
             <Text whiteSpace={"nowrap"} color={labelColor}>
-              Project Description
+              Project Description 
             </Text>
           </GridItem>
           <GridItem area={"inputArea"}>
@@ -344,7 +344,7 @@ const FormSection2 = ({
               variant={"Outline"}
               borderRadius={0}
               size={"md"}
-              textDecoration={"underline"}
+              
               color={inputFieldTextColor}
               marginBottom={2}
               border={
@@ -385,7 +385,7 @@ const FormSection2 = ({
               variant={"Outline"}
               borderRadius={0}
               size={"md"}
-              textDecoration={"underline"}
+              
               color={inputFieldTextColor}
               marginBottom={2}
               border={
@@ -424,7 +424,7 @@ const FormSection2 = ({
               {...register("risks")}
               height={"150px"}
               variant={"Outline"}
-              textDecoration={"underline"}
+              
               size={"md"}
               borderRadius={0}
               color={inputFieldTextColor}

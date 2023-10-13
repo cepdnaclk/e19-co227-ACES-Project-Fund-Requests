@@ -4,7 +4,7 @@ import {
   GridItem,
   Input,
   Box,
-  FormControl,
+
 } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
@@ -12,7 +12,7 @@ import { useToast } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import axios from "axios";
+
 import { useState } from "react";
 import FundRequest from "../classes/fund_request";
 
@@ -40,6 +40,10 @@ const schema = z.object({
   contactNo: z.string().min(10, {
     message: "The contact number should be 10 characters long",
   }),
+  otherName1: z.string().optional(),
+  otherName2: z.string().optional(),
+  otherName3: z.string().optional(),
+  otherName4: z.string().optional(),
 });
 
 type formData = z.infer<typeof schema>;
@@ -50,7 +54,7 @@ const FormSection1 = ({
   requestObject,
   onSetRequestObject,
 }: Props) => {
-  const [formSentStatus, setFormSentStatus] = useState(0);
+  // const [formSentStatus, setFormSentStatus] = useState(0);
   const toast = useToast();
   const {
     register,
@@ -92,6 +96,10 @@ const FormSection1 = ({
               ApplicantsNames: {
                 ...newRequestObject.ApplicantsNames,
                 member1: data.name,
+                member2: data.otherName1 != null ? data.otherName1 : null,
+                member3: data.otherName2 != null ? data.otherName2 : null,
+                member4: data.otherName3 != null ? data.otherName3 : null,
+                member5: data.otherName4 != null ? data.otherName4 : null,
               },
               leadersName: data.regname,
               email: data.email,
@@ -185,6 +193,7 @@ const FormSection1 = ({
             )}
 
             <Input
+              {...register("otherName1")}
               size="sm"
               variant={"Outline"}
               borderRadius={0}
@@ -194,6 +203,7 @@ const FormSection1 = ({
             ></Input>
 
             <Input
+              {...register("otherName2")}
               size="sm"
               variant={"Outline"}
               borderRadius={0}
@@ -202,6 +212,7 @@ const FormSection1 = ({
               border={`1px solid ${inputBorderColor}`}
             ></Input>
             <Input
+              {...register("otherName3")}
               size="sm"
               variant={"Outline"}
               borderRadius={0}
@@ -210,6 +221,7 @@ const FormSection1 = ({
               border={`1px solid ${inputBorderColor}`}
             ></Input>
             <Input
+              {...register("otherName4")}
               size="sm"
               variant={"Outline"}
               borderRadius={0}

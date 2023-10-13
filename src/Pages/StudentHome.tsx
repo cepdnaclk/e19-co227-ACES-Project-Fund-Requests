@@ -57,7 +57,7 @@ function StudentHome() {
         setRequestObject(requestobj);
       }}
       requestObject={requestObject}
-      onSubmit={(status) => {
+      onFinalSubmit={(status) => {
         setIsSubmitted3(status);
       }}
       onFinish={(finishingStatus) => {

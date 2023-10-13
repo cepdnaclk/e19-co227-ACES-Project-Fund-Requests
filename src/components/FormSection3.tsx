@@ -17,7 +17,7 @@ const labelColor = "black";
 interface Props {
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
-  onSubmit: (status: boolean) => void;
+  onFinalSubmit: (status: boolean) => void;
   onFinish: (finioshed: boolean) => void;
 }
 
@@ -34,13 +34,14 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection3 = ({
-  onSubmit,
+  onFinalSubmit,
   requestObject,
   onSetRequestObject,
   onFinish,
 }: Props) => {
   const toast = useToast();
   const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -80,11 +81,12 @@ const FormSection3 = ({
                 };
 
                 console.log("section 3: ", requestObject);
+                setIsLoading(true);
 
                 axios
                   .post("http://localhost:5000/fundRequest", requestObject)
                   .then((res) => {
-                   setIsFinished(true);
+                    setIsFinished(true);
 
                     console.log("REady to display the toast");
 
@@ -99,15 +101,14 @@ const FormSection3 = ({
                         position: "top",
                       });
                     }
-                    onSubmit(res.status == 200);
+                    onFinalSubmit(res.status == 200);
                     console.log(res.status);
+                    setIsLoading(false);
                   })
                   .catch((err) => {
                     console.log(err);
+                    setIsLoading(false);
                   });
-
-               
-               
               }
             }
 
@@ -213,19 +214,21 @@ const FormSection3 = ({
               )}
             </GridItem>
           </Grid>
-          {isFinished ? (
-            <Text color="green">Submitted Successfully</Text>
-          ) : (
+          {isFinished == true && isLoading == false ? (
+            <Text color="green">Request Submitted Successfully</Text>
+          ) : isFinished == false && isLoading == false ? (
             <button
               onClick={() => {
                 // event?.preventDefault();
-                onSubmit(isValid);
+                // onFinalSubmit(isValid);
               }}
               className="submit-btn"
               type="submit"
             >
               Submit
             </button>
+          ) : (
+            <Text color="black">waiting...</Text>
           )}
         </form>
         {/* <Box textAlign={"end"}>
