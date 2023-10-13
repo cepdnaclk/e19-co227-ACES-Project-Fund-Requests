@@ -1,10 +1,10 @@
-import FooterAdmin from "./FooterAdmin";
+import FooterSection from "../components/FooterSection";
 
 const AdminHome = () => {
   return (
     <>
       <div>AdminHome</div>
-      <FooterAdmin></FooterAdmin>
+      <FooterSection></FooterSection>
     </>
   );
 };
