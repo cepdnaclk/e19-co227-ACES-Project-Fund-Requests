@@ -173,20 +173,20 @@ app.post("/fundRequest", async (req, res) => {
 
 
 // Handle file upload
-app.post('/pdf', upload.single('pdfFile'), (req, res) => {
-    console.log(req.body);
-  if (!req.file) {
-    console.log("No file uploaded.");
-    return res.status(400).send('No file uploaded.');
+// app.post('/pdf', upload.single('pdfFile'), (req, res) => {
+//     console.log(req.body);
+//   if (!req.file) {
+//     console.log("No file uploaded.");
+//     return res.status(400).send('No file uploaded.');
     
-  }
+//   }
 
   // You can access the uploaded file's information as req.file
   // Here, you can save it to a database, process it, etc.
 
-  console.log("File uploaded successfully.");
-  res.status(200).send('File uploaded successfully.');
-});
+//   console.log("File uploaded successfully.");
+//   res.status(200).send('File uploaded successfully.');
+// });
 
 // app.post("/pdf", (req, res) => {
 //     const data = req.body

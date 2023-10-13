@@ -1,13 +1,13 @@
-import React from 'react'
-import FooterAdmin from './FooterAdmin'
+import FooterSection from "../components/FooterSection";
+
 
 const AdminHome = () => {
   return (
     <>
-    <div>AdminHome</div>
-    <FooterAdmin></FooterAdmin>
+      <div>AdminHome</div>
+      <FooterSection></FooterSection>
     </>
-  )
-}
+  );
+};
 
-export default AdminHome
+export default AdminHome;
