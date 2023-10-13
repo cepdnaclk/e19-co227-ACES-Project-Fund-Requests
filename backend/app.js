@@ -7,6 +7,8 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
+const emailService = require('./Services/emailService');
+
 
 
 const mongoose = require("mongoose");
@@ -147,6 +149,8 @@ app.post("/fundRequest", async (req, res) => {
       // Save the instance to the database
       const savedRequest = await newRequest.save();
       console.log('Request saved successfully:', savedRequest);
+
+     
 
       // Respond with a success JSON response
       res.status(200).json({ success: true });
