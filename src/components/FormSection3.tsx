@@ -84,7 +84,7 @@ const FormSection3 = ({
                 axios
                   .post("http://localhost:5000/fundRequest", requestObject)
                   .then((res) => {
-                   setIsFinished(true);
+                    setIsFinished(true);
 
                     console.log("REady to display the toast");
 
@@ -105,9 +105,6 @@ const FormSection3 = ({
                   .catch((err) => {
                     console.log(err);
                   });
-
-               
-               
               }
             }
 
@@ -214,7 +211,7 @@ const FormSection3 = ({
             </GridItem>
           </Grid>
           {isFinished ? (
-            <Text color="green">Submitted Successfully</Text>
+            <Text color="green">Request Submitted Successfully</Text>
           ) : (
             <button
               onClick={() => {
