@@ -225,7 +225,7 @@ const FormSection3 = ({
               className="submit-btn"
               type="submit"
             >
-              Submit
+              SUBMIT
             </button>
           ) : (
             <Text color="black">waiting...</Text>
