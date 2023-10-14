@@ -12,7 +12,7 @@ function App() {
         <Route index element={<StudentHome />} />
         <Route path="/admin1" element={<AdminHome1 />} />
         <Route path="/admin2" element={<AdminHome2 />} />
-        {/* <Route path="/admin3" element={<AdminHome2 />} /> */}
+        <Route path="/admin3" element={<AdminHome2 />} />
       </Routes>
     </BrowserRouter>
   );
