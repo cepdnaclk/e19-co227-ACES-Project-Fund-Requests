@@ -96,7 +96,7 @@ const AdminHome3 = () => {
         </Grid>
       </Box>
 
-      
+      {/* Approval states */}
     </>
   );
 };
