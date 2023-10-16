@@ -19,7 +19,7 @@ const NextButtonAdmin = ({ onStepperChange, currrentStep }: Props) => {
           }
 
           onStepperChange(currrentStep);
-          window.scrollTo({ top: 200 });
+          window.scrollTo({ top: 50 });
         }}
         style={{
           fontFamily: "'Outfit', sans-serif", // Use the custom font
