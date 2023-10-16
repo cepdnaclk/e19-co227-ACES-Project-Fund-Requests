@@ -2,6 +2,7 @@ import { SetStateAction, useState } from "react";
 import FooterSection from "../components/FooterSection";
 import Header from "../components/Header";
 import NextButtonAdmin from "./NextButtonAdmin";
+import { Link } from 'react-router-dom'; 
 
 import {
   Text,
@@ -200,12 +201,11 @@ const AdminHome2 = () => {
         paddingX={{ base: "20px", md: "10%" }}
         paddingY={{ base: "10px", md: "1%" }}
         >
-        <Stack>
-          <NextButtonAdmin 
-            currrentStep={currentStep} 
-            onStepperChange={handleStepperChange} 
-          />
-        </Stack>
+        <Link to="/admin3">
+          <NextButtonAdmin currrentStep={0} onStepperChange={function (index: number): void {
+            throw new Error("Function not implemented.");
+          } } />
+        </Link>
         </Grid>
 
         </form>
