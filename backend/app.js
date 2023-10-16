@@ -181,7 +181,7 @@ app.get("/find/:id", async (req, res)=>{
 
   if (foundRequest != null){
     // You can do whatever you need in this section with the found request
-        res.status(200).json({success: true})
+        res.status(200).json(foundRequest)
   }else{
         res.status(404).json({success: false})
 
