@@ -164,49 +164,7 @@ app.post("/fundRequest", async (req, res) => {
     } 
 );
     // sendToAdmin(data);
-   
 
-app.post("/aboutProject", (req, res) => {
-    const data = req.body
-    console.log("receiving data");
-    console.log(data);
-    if (data) {
-         res.status(200).json({success: true})
-    }
-   
-})
-
-app.post("/contact", (req, res)=>{
-    const {names, leadsName, email, phoneNo} = req.body;
-    if (names && leadsName && email && phoneNo) {
-        console.log(names);
-        console.log(leadsName);
-        console.log(email);
-        console.log(phoneNo);
-        res.status(200).json({success: true})
-    }
-})
-
-app.post("/about", (req, res)=>{
-    const {title, description, goals, risks, prType, startDate, endDate} = req.body;
-    if (title && description && goals && risks && prType && startDate && endDate) {
-        console.log(title);
-        console.log(description);
-        console.log(goals);
-        console.log(risks);
-        console.log(prType);
-        console.log(startDate);
-        console.log(endDate);
-        res.status(200).json({success: true})
-
-    }
-})
-
-app.listen(5000, ()=>{
-    console.log("Server started and running on port 5000");
-})
-
-//Function to send data to admin
 
 // GEt data from the database
 
@@ -226,11 +184,17 @@ app.get("/find/:id", async (req, res)=>{
 
   }
   
-  
-
-  
-
 })
+  
+
+
+
+app.listen(5000, ()=>{
+    console.log("Server started and running on port 5000");
+})
+
+//Function to send data to admin
+
 
 async function sendToAdmin(data){
     try {
