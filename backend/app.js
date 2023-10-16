@@ -104,6 +104,8 @@ async function getRequestDataByID(id) {
 //     }
 // });
 
+
+// Take the fund request details and save them in the databse
 app.post("/fundRequest", async (req, res) => {
 
     const data = req.body
@@ -167,7 +169,6 @@ app.post("/fundRequest", async (req, res) => {
 
 
 // GEt data from the database
-
 app.get("/find/:id", async (req, res)=>{
   console.log(
     "finding"
