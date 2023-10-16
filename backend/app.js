@@ -138,7 +138,10 @@ app.post("/fundRequest", async (req, res) => {
         ending_date: data.endingDate,
         agreement: data.agreement,
         lecturer_name: data.lecturerName,
-        lecturer_email: data.lecturerEmail
+        lecturer_email: data.lecturerEmail,
+        lecturer_response: false,
+        hod_response: false,
+        aces_response: false
 
       });
 
