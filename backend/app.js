@@ -77,6 +77,7 @@ function base64ToArrayBuffer(base64) {
   return bytes.buffer;
 }
 
+// Function to get data from the database based on the ID
 async function getRequestDataByID(id) {
 
   try {
@@ -179,6 +180,7 @@ app.get("/find/:id", async (req, res)=>{
   const foundRequest = await getRequestDataByID(id);
 
   if (foundRequest != null){
+    // You can do whatever you need in this section with the found request
         res.status(200).json({success: true})
   }else{
         res.status(404).json({success: false})
