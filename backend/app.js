@@ -54,24 +54,6 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
 });
 
-// const convertFileToBuffer = (file) => {
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-    
-//     reader.onload = (event) => {
-//       const buffer = Buffer.from(event.target.result);
-//       resolve(buffer);
-//     };
-
-//     reader.onerror = (event) => {
-//       reject(event.error);
-//     };
-
-//     reader.readAsArrayBuffer(file);
-//   });
-// };
-
-
 
 // const countriesMiddleware = require('./routes/countries')
 
@@ -183,34 +165,6 @@ app.post("/fundRequest", async (req, res) => {
 );
     // sendToAdmin(data);
    
-
-
-// Handle file upload
-// app.post('/pdf', upload.single('pdfFile'), (req, res) => {
-//     console.log(req.body);
-//   if (!req.file) {
-//     console.log("No file uploaded.");
-//     return res.status(400).send('No file uploaded.');
-    
-//   }
-
-  // You can access the uploaded file's information as req.file
-  // Here, you can save it to a database, process it, etc.
-
-//   console.log("File uploaded successfully.");
-//   res.status(200).send('File uploaded successfully.');
-// });
-
-// app.post("/pdf", (req, res) => {
-//     const data = req.body
-//     console.log("receiving the pdf");
-//     console.log(data);
-//     if (data) {
-//          res.status(200).json({success: true})
-//     }
-//     // sendToAdmin(data);
-   
-// })
 
 app.post("/aboutProject", (req, res) => {
     const data = req.body
