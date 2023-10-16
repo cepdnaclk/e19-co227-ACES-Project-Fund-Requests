@@ -95,6 +95,19 @@ function base64ToArrayBuffer(base64) {
   return bytes.buffer;
 }
 
+async function getRequestDataByID(id) {
+
+  try {
+    const neededRequest = await Request.findById(id);
+    console.log(neededRequest);
+    return neededRequest;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return null;
+  }
+  
+}
+
 
 
 // POST
@@ -240,6 +253,30 @@ app.listen(5000, ()=>{
 })
 
 //Function to send data to admin
+
+// GEt data from the database
+
+app.get("/find/:id", async (req, res)=>{
+  console.log(
+    "finding"
+  );
+  const id = req.params.id;
+  console.log(id);
+
+  const foundRequest = await getRequestDataByID(id);
+
+  if (foundRequest != null){
+        res.status(200).json({success: true})
+  }else{
+        res.status(404).json({success: false})
+
+  }
+  
+  
+
+  
+
+})
 
 async function sendToAdmin(data){
     try {
