@@ -47,12 +47,27 @@ passport.use(
       clientSecret: "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",
       callbackURL: 'http://localhost:5000/auth/google/callback', // This should match your authorized redirect URI
     },
-    (accessToken, refreshToken, profile, done) => {
-      done(null, profile)
-      // Implement your logic to create or find the user in MongoDB here
-      // Typically, you would create or find a user based on the profile information
-      // and store the user's data in the database.
-      // Once done, call done(null, user) to authenticate the user.
+    async (accessToken, refreshToken, profile, done) => {
+      // Check if the user already exists in your database
+      const existingUser = await User.findOne({ googleId: profile.id });
+
+      if (existingUser) {
+        // User already exists, no need to create a new one
+        return done(null, existingUser);
+      }
+
+      // Create a new user based on the Google profile information
+      const newUser = new User({
+        googleId: profile.id,
+        displayName: profile.displayName,
+        email: profile.emails[0].value,
+        // You can add more fields as needed
+      });
+
+      // Save the new user to the database
+      await newUser.save();
+
+      done(null, newUser);
     }
   )
 );
@@ -102,6 +117,17 @@ app.get('/', (req, res) => {
   } else {
     // The user is not authenticated, show a modal or any other UI
     res.status(401).send('You are not logged in!'); // You can replace this with your modal logic
+  }
+});
+
+// Checking whether the user is logged in
+app.get('/check-auth-status', (req, res) => {
+  if (req.isAuthenticated()) {
+    // User is authenticated, send user information
+    res.json({ user: req.user });
+  } else {
+    // User is not authenticated, send null or an empty object
+    res.json({ user: null });
   }
 });
 
