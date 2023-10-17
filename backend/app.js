@@ -34,37 +34,6 @@ async function main() {
   console.log("Database connected");
 }
 
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: "252888321357-ft7hukbmlljdnf5nisjeienit9cdu216.apps.googleusercontent.com",
-//       clientSecret: "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",
-//       callbackURL: 'http://localhost:5000/auth/google/callback', // This should match your authorized redirect URI
-//     },
-//     async (accessToken, refreshToken, profile, done) => {
-//       // Check if the user already exists in your database
-//       const existingUser = await User.findOne({ googleId: profile.id });
-
-//       if (existingUser) {
-//         // User already exists, no need to create a new one
-//         return done(null, existingUser);
-//       }
-
-//       // Create a new user based on the Google profile information
-//       const newUser = new User({
-//         googleId: profile.id,
-//         displayName: profile.displayName,
-//         email: profile.emails[0].value,
-//         // You can add more fields as needed
-//       });
-
-//       // Save the new user to the database
-//       await newUser.save();
-
-//       done(null, newUser);
-//     }
-//   )
-// );
 
 // app.use(
 //   session({
