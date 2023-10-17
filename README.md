@@ -54,4 +54,4 @@ E - Express.Js
 R - React.Js
 N - Node.Js
 
-![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/assets/115539818/a30e22c0-9e5b-4e99-91b8-d7791b2aecdb)
+![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/assets/images/MERN_Stack.webp)
