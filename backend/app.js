@@ -70,7 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
 
 // passport.deserializeUser((id, done) => {
@@ -104,6 +104,11 @@ app.get('/', (req, res) => {
     res.status(401).send('You are not logged in!'); // You can replace this with your modal logic
   }
 });
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+})
 
 
 app.get("/admin", (req, res)=>{
