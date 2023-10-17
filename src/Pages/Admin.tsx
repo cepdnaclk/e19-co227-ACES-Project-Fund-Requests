@@ -22,6 +22,7 @@ import { Box,
 //import { Link } from 'react-router-dom';
 //import NextButtonAdmin from "./NextButtonAdmin";
 // import { FaWave } from 'react-icons/fa';
+import cardImage from "../assets/images/cardImage.webp"
 
 const Admin = () => {
     return(
@@ -87,12 +88,41 @@ const Admin = () => {
                             spaces, earthy toned spaces and for people who love a chic design with a
                             sprinkle of vintage design.
                         </Text>
+                        <Box
+                            as='button'
+                            height='24px'
+                            lineHeight='1.2'
+                            transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                            px='8px'
+                            fontSize='sm'
+                            fontFamily="Poppins, sans-serif"
+                            fontWeight='normal'
+                            color='blue'
+                            position="absolute"
+                            bottom="2"
+                            left="2"
+                            _hover={{ color: 'grey' }}
+                            _active={{
+                                bg: '#dddfe2',
+                                transform: 'scale(0.98)',
+                            }}
+                            >
+                            View More
+                        </Box>
+                        {/* <Button 
+                            variant='ghost' 
+                            colorScheme='blue'
+                            fontFamily="Poppins, sans-serif"
+                            fontSize="sm" 
+                            position="absolute"
+                            bottom="2"
+                            left="2">
+                            View More
+                        </Button> */}
                         {/* <Text color='blue.600' fontSize='2xl'>
                             $450
                         </Text> */}
-
-
-                        {/* </Stack>
+                        </Stack>
                     </CardBody>
                     {/* <Divider /> */}
                     <CardFooter>
