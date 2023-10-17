@@ -5,7 +5,7 @@ const multer = require("multer");
 const fs = require("fs");
 const app = express();
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 const emailService = require("./Services/emailService");
 
@@ -30,10 +30,9 @@ async function main() {
   console.log("Database connected");
 }
 
-app.get("/admin", (req, res)=>{
-  res.send('Hi there')
-})
-
+app.get("/admin", (req, res) => {
+  res.send("Hi there");
+});
 
 // Define storage for uploaded files
 const storage = multer.diskStorage({
