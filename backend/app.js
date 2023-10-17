@@ -1,46 +1,37 @@
-const express = require('express');
+const express = require("express");
 const cors = require("cors");
 const axios = require('axios');
 const multer = require('multer');
+const fs = require('fs');
 const app = express();
 
 const session = require('express-session');
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 const emailService = require('./Services/emailService');
 
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 
 const mongoose = require("mongoose");
 
-const Request = require("./models/fundrequest")
+const Request = require("./models/fundrequest");
 
-const User = require("./models/user")
-
-
-// app.use(express.static('./public'))
+app.use(express.static('./public'))
 
 // Increase the request size limit to 50MB (or set it to your desired limit)
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-// app.use(cors({ origin: 'http://127.0.0.1:5173' }));
-
-
-
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://e19210:IsotkvutF3XHtIyh@cluster0.tthbjjk.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB =
+  "mongodb+srv://e19210:IsotkvutF3XHtIyh@cluster0.tthbjjk.mongodb.net/local_library?retryWrites=true&w=majority";
 
 main().catch((err) => console.log(err));
 async function main() {
-  
   await mongoose.connect(mongoDB);
   console.log("Database connected");
-
-
 }
 
 // passport.use(
@@ -151,24 +142,37 @@ async function main() {
 // })
 
 
-app.get("/admin", (req, res)=>{
-  res.send('Hi there')
-})
+app.get("/admin", (req, res) => {
+  res.send("Hi there");
+});
 
+// Define storage for uploaded files
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads'); // Set the destination folder for uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname); // Use the original file name
+  },
+});
 
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
+});
 
 
 // const countriesMiddleware = require('./routes/countries')
 
-app.use(express.urlencoded({extended: false})) // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
+app.use(express.urlencoded({ extended: false })); // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
 app.use(express.json()); // Handle the data in the type "application/json"
 
 // app.use("/change/",countriesMiddleware);
-app.use(cors())
+app.use(cors());
 
-// app.get("/", (req, res) => {
-//     res.status(200).json({success:true})
-// })
+app.get("/", (req, res) => {
+    res.status(200).json({success:true})
+})
 
 function base64ToArrayBuffer(base64) {
   const binaryString = atob(base64);
@@ -182,19 +186,15 @@ function base64ToArrayBuffer(base64) {
 
 // Function to get data from the database based on the ID
 async function getRequestDataByID(id) {
-
   try {
     const neededRequest = await Request.findById(id);
     console.log(neededRequest);
     return neededRequest;
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error("Error fetching user:", error);
     return null;
   }
-  
 }
-
-
 
 // POST
 
@@ -208,92 +208,83 @@ async function getRequestDataByID(id) {
 //     }
 // });
 
-
 // Take the fund request details and save them in the databse
 app.post("/fundRequest", async (req, res) => {
+  const data = req.body;
+  console.log("receiving data");
+  console.log(data);
+  if (data) {
+    // const selectedFile = data.projectExpenses;
+    // const fileBuffer = await convertFileToBuffer(selectedFile);
 
-    const data = req.body
-    console.log("receiving data");
-    console.log(data);
-    if (data) {
-      // const selectedFile = data.projectExpenses;
-      // const fileBuffer = await convertFileToBuffer(selectedFile);
+    const arrayBuffer = base64ToArrayBuffer(data.projectExpenses);
 
-      const arrayBuffer = base64ToArrayBuffer(data.projectExpenses);
+    console.log(arrayBuffer);
 
-      console.log(arrayBuffer);
+    const buffer = Buffer.from(arrayBuffer);
+    console.log(buffer);
 
-      const buffer = Buffer.from(arrayBuffer);
-      console.log(buffer);
-      
-      const newRequest = new Request({
-        applicants_names: data.ApplicantsNames,
-        leader_name: data.leadersName,
-        email: data.email,
-        contact_no: data.contactNo,
-        project_title: data.projectTitle,
-        project_description: data.projectDescription,
-        goals: data.goals,
-        risks: data.risks,
-        project_type: data.projectType,
-        Project_expenses: buffer,
-        starting_date: data.startingDate,
-        ending_date: data.endingDate,
-        agreement: data.agreement,
-        lecturer_name: data.lecturerName,
-        lecturer_email: data.lecturerEmail,
-        lecturer_response: false,
-        hod_response: false,
-        aces_response: false
+    const newRequest = new Request({
+      applicants_names: data.ApplicantsNames,
+      leader_name: data.leadersName,
+      email: data.email,
+      contact_no: data.contactNo,
+      project_title: data.projectTitle,
+      project_description: data.projectDescription,
+      goals: data.goals,
+      risks: data.risks,
+      project_type: data.projectType,
+      Project_expenses: buffer,
+      starting_date: data.startingDate,
+      ending_date: data.endingDate,
+      agreement: data.agreement,
+      lecturer_name: data.lecturerName,
+      lecturer_email: data.lecturerEmail,
+      lecturer_response: false,
+      hod_response: false,
+      aces_response: false,
+    });
 
-      });
-
-
-     try {
+    try {
       // Save the instance to the database
       const savedRequest = await newRequest.save();
-      console.log('Request saved successfully:', savedRequest);
+      console.log("Request saved successfully:", savedRequest);
 
-     emailService.sendEmail('csdmntest@gmail.com', "A New Fund Request",
-      "You have a new request to review. Please visit this link: (the link)"
-      )
+      emailService.sendEmail(
+        "csdmntest@gmail.com",
+        "A New Fund Request",
+        "You have a new request to review. Please visit this link: (the link)"
+      );
 
       // Respond with a success JSON response
       res.status(200).json({ success: true });
     } catch (error) {
-      console.error('Error saving request:', error);
+      console.error("Error saving request:", error);
       // Handle the error and respond with an error JSON response
-      res.status(500).json({ success: false, error: 'Internal server error' });
+      res.status(500).json({ success: false, error: "Internal server error" });
     }
   } else {
     // If no data is provided in the request, respond with an error JSON response
-    res.status(400).json({ success: false, error: 'Bad request' });
+    res.status(400).json({ success: false, error: "Bad request" });
   }
-        
-    } 
-);
-    // sendToAdmin(data);
-
+});
+// sendToAdmin(data);
 
 // GEt data from the database
-app.get("/find/:id", async (req, res)=>{
-  console.log(
-    "finding"
-  );
+app.get("/find/:id", async (req, res) => {
+  console.log("finding");
   const id = req.params.id;
   console.log(id);
 
   const foundRequest = await getRequestDataByID(id);
 
-  if (foundRequest != null){
+  if (foundRequest != null) {
     // You can do whatever you need in this section with the found request
-        res.status(200).json(foundRequest)
-  }else{
-        res.status(404).json({success: false})
-
+    res.status(200).json(foundRequest);
+  } else {
+    res.status(404).json({ success: false });
   }
-  
-})
+});
 
 app.get("/admin/:id", async (req, res) => {
   const id = req.params.id;
@@ -311,11 +302,8 @@ app.get("/admin/:id", async (req, res) => {
     console.error("Error fetching data:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
-})
+});
 
-
-
-app.listen(5000, ()=>{
-    console.log("Server started and running on port 5000");
-})
-
+app.listen(5000, () => {
+  console.log("Server started and running on port 5000");
+});
