@@ -37,6 +37,7 @@ const AdminHome1 = () => {
       // boxShadow="base"
       paddingX={"10%"}
       display={"block"}
+      className="AdminUiTexts"
     >
       <Text
         color={"#00334E"}
@@ -48,7 +49,7 @@ const AdminHome1 = () => {
       </Text>
       </Box>
       
-      <form>
+      <form className="AdminUiTexts">
 
       {/* Project Type */}
       <Grid

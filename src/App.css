@@ -16,3 +16,14 @@
     background: #000000;
     text-decoration: none;
 }
+
+@font-face {
+    font-family: poppins;
+    src: url(../public/Poppins/Poppins-Regular.ttf);
+}
+.AdminUiTexts {
+    font-family: poppins;
+}
+.nextButton {
+    font-family: poppins;
+}

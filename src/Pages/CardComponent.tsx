@@ -14,7 +14,7 @@ interface CardComponentProps {
 const CardComponent: React.FC<CardComponentProps> = ({ cardImage, bgColor, title, description, requestDate }) => {
   return (
     
-      <Card maxW='lg' bg={bgColor} marginBottom={"5%"} _hover={{ boxShadow: 'xl' }}>
+      <Card maxW='lg' bg={bgColor} marginBottom={"5%"} _hover={{ boxShadow: 'xl' }} >
         <CardBody>
           <Image
             src={cardImage}

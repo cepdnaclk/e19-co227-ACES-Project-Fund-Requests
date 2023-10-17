@@ -27,6 +27,7 @@ const AdminHome3 = () => {
       // boxShadow="base"
       paddingX={"10%"}
       display={"block"}
+      className="AdminUiTexts"
     >
       <Text
         color={"#00334E"}
@@ -41,6 +42,7 @@ const AdminHome3 = () => {
       <Box
       //bg={gridBackgrougndColor}
       paddingX={{base: "15%" , md: "20%"}}
+      className="AdminUiTexts"
       >
         <Text
           fontWeight={"bold"} >

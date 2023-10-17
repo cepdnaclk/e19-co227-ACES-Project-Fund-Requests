@@ -30,7 +30,7 @@ const Admin = () => {
     return(
         <>
             <Header></Header>
-            <form action="">
+            <form className="AdminUiTexts">
             <Box
                 paddingTop={"7%"}
                 paddingBottom={"2%"}
@@ -79,7 +79,7 @@ const Admin = () => {
                     <CardComponent 
                     cardImage={cardImage} 
                     bgColor= '#BFD8F8' 
-                    title="Ttile" 
+                    title="Titile" 
                     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
                     requestDate="17/10/2023"/>
                 </GridItem>

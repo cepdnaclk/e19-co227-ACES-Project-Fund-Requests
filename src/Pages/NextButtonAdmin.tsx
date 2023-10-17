@@ -9,6 +9,7 @@ const NextButtonAdmin = ({ onStepperChange, currrentStep }: Props) => {
   return (
     <HStack>
       <Button
+      className="nextButton"
         marginTop={"10px"}
         _hover={{ 
             bgColor: "#000000",
