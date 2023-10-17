@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 import NextButtonAdmin from "./NextButtonAdmin";
 // import { FaWave } from 'react-icons/fa';
 import cardImage from "../assets/images/cardImage.webp"
+import ViewMoreButton from "./ViewMoreButton";
 
 const Admin = () => {
     return(
@@ -85,7 +86,12 @@ const Admin = () => {
                         <Text>
                             Description
                         </Text>
-                        <Box
+                        <Text>
+                            <ViewMoreButton />
+                        </Text>
+
+
+                        {/* <Box
                             as='button'
                             height='24px'
                             lineHeight='1.2'
@@ -105,7 +111,7 @@ const Admin = () => {
                             }}
                             >
                             View More
-                        </Box>
+                        </Box> */}
                         {/* <Button 
                             variant='ghost' 
                             colorScheme='blue'
@@ -119,6 +125,8 @@ const Admin = () => {
                         {/* <Text color='blue.600' fontSize='2xl'>
                             $450
                         </Text> */}
+
+
                         </Stack>
                     </CardBody>
                     {/* <Divider /> */}
