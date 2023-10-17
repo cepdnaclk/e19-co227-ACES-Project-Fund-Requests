@@ -1,20 +1,20 @@
-import FooterSection from "../components/FooterSection";
+//import FooterSection from "../components/FooterSection";
 import Header from "../components/Header";
-import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
+import { Input, Button } from "@chakra-ui/react";
 
 import {
   Text,
   Grid,
   GridItem,
-  Textarea,
+  //Textarea,
   Box,
 
 } from "@chakra-ui/react";
 
-const inputBorderColor = "#97bfd4";
-const gridBackgrougndColor = "#F5F5F5";
+//const inputBorderColor = "#97bfd4";
+//const gridBackgrougndColor = "#F5F5F5";
 // const inputFieldTextColor = "black";
-const labelColor = "black";
+//const labelColor = "black";
 
 const AdminHome3 = () => {
   return (
