@@ -19,11 +19,14 @@ const Request = require("./models/fundrequest")
 
 const User = require("./models/user")
 
+
 // app.use(express.static('./public'))
 
 // Increase the request size limit to 50MB (or set it to your desired limit)
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+// app.use(cors({ origin: 'http://127.0.0.1:5173' }));
 
 
 
@@ -105,28 +108,39 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     // Successful authentication, redirect to the React app
-    res.redirect('/');
+    res.redirect('http://127.0.0.1:5173/');
   }
 );
 
 // Add a route for checking if the user is authenticated
-app.get('/', (req, res) => {
+app.get('http://127.0.0.1:5173/', (req, res) => {
+
+  // res.render(StudentHome)
   if (req.isAuthenticated()) {
     // The user is authenticated, serve your React page here
-    res.status(200).send('You are logged in!');
+    console.log("backend user: ", req.user);
+
+    res.status(200).json({ user: req.user });
   } else {
     // The user is not authenticated, show a modal or any other UI
-    res.status(401).send('You are not logged in!'); // You can replace this with your modal logic
+    console.log("backend user not auth: ", req.user);
+
+    res.status(200).json({ user: null }); // You can replace this with your modal logic
   }
 });
 
 // Checking whether the user is logged in
 app.get('/check-auth-status', (req, res) => {
   if (req.isAuthenticated()) {
+    console.log("API authenticated");
+ 
     // User is authenticated, send user information
     res.json({ user: req.user });
   } else {
     // User is not authenticated, send null or an empty object
+    console.log("API not authenticated");
+
+
     res.json({ user: null });
   }
 });

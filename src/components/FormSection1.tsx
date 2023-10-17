@@ -3,7 +3,7 @@ import { Text, Grid, GridItem, Input, Box } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form"
 import * as z from "zod";
 
 import { useState } from "react";

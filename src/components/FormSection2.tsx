@@ -5,12 +5,16 @@ import {
   Input,
   Box,
   Textarea,
-  Checkbox,
+
   RadioGroup,
   Stack,
   Radio,
 } from "@chakra-ui/react";
+
+
 import { useToast } from "@chakra-ui/react";
+
+import {Checkbox} from "@chakra-ui/react"
 
 import React, { useState } from "react";
 
@@ -462,7 +466,7 @@ const FormSection2 = ({
           <GridItem area={"inputArea"}>
             <RadioGroup
               value={value}
-              onChange={(val) => {
+              onChange={(val: React.SetStateAction<string>) => {
                 console.log(val);
 
                 setValue(val);
