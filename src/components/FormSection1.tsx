@@ -4,6 +4,7 @@ import { useToast } from "@chakra-ui/react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form"
+
 import * as z from "zod";
 
 import { useState } from "react";
@@ -76,7 +77,7 @@ const FormSection1 = ({
       </Text>
 
       <form
-        onSubmit={handleSubmit((data) => {
+        onSubmit={handleSubmit((data: any) => {
           if (!isValid) {
             return;
           }

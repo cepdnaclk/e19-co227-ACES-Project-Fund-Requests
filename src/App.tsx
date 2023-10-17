@@ -44,11 +44,14 @@ function App() {
           index
           element={
             <>
-              <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} size="sm" isCentered>
-                <ModalOverlay 
-                  bg='blackAlpha.300'
-                 backdropFilter='blur(3px) '
-                />
+              <Modal
+                closeOnOverlayClick={false}
+                isOpen={isOpen}
+                onClose={onClose}
+                size="sm"
+                isCentered
+              >
+                <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(3px) " />
                 <ModalContent>
                   <ModalHeader
                     display="flex"
