@@ -11,7 +11,7 @@ const NextButtonAdmin = ({ onStepperChange, currrentStep }: Props) => {
       <Button
         marginTop={"10px"}
         _hover={{ 
-            bgColor: "#5588A3",
+            bgColor: "#000000",
             color: "white" }}
         onClick={() => {
           if (currrentStep < 4) {
