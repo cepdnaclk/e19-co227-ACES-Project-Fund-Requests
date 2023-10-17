@@ -39,20 +39,6 @@ app.get("/admin", (req, res)=>{
 })
 
 
-// Define storage for uploaded files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads'); // Set the destination folder for uploaded files
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname); // Use the original file name
-  },
-});
-
-const upload = multer({
-  storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
-});
 
 
 // const countriesMiddleware = require('./routes/countries')

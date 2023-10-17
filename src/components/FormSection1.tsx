@@ -1,11 +1,4 @@
-import {
-  Text,
-  Grid,
-  GridItem,
-  Input,
-  Box,
-
-} from "@chakra-ui/react";
+import { Text, Grid, GridItem, Input, Box } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 
@@ -298,6 +291,7 @@ const FormSection1 = ({
               size={"sm"}
               color={inputFieldTextColor}
               marginTop={2}
+              placeholder="exxxxx@eng.pdn.ac.lk"
               border={
                 errors.email ? `1px solid red` : `1px solid ${inputBorderColor}`
               }
