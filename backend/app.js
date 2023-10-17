@@ -1,27 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const axios = require('axios');
-const multer = require('multer');
-const fs = require('fs');
+const axios = require("axios");
+const multer = require("multer");
+const fs = require("fs");
 const app = express();
 
-const session = require('express-session');
+const bodyParser = require('body-parser');
 
-const bodyParser = require("body-parser");
-
-const emailService = require('./Services/emailService');
-
-
+const emailService = require("./Services/emailService");
 
 const mongoose = require("mongoose");
 
 const Request = require("./models/fundrequest");
 
-app.use(express.static('./public'))
+app.use(express.static("./public"));
 
 // Increase the request size limit to 50MB (or set it to your desired limit)
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
@@ -34,17 +30,15 @@ async function main() {
   console.log("Database connected");
 }
 
+app.get("/admin", (req, res)=>{
+  res.send('Hi there')
+})
 
-
-
-app.get("/admin", (req, res) => {
-  res.send("Hi there");
-});
 
 // Define storage for uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads'); // Set the destination folder for uploaded files
+    cb(null, "./uploads"); // Set the destination folder for uploaded files
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname); // Use the original file name
@@ -56,7 +50,6 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
 });
 
-
 // const countriesMiddleware = require('./routes/countries')
 
 app.use(express.urlencoded({ extended: false })); // handle POST requests body. Handle data in the trype "application/x-www-form-urlencoded"
@@ -66,8 +59,8 @@ app.use(express.json()); // Handle the data in the type "application/json"
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.status(200).json({success:true})
-})
+  res.status(200).json({ success: true });
+});
 
 function base64ToArrayBuffer(base64) {
   const binaryString = atob(base64);
