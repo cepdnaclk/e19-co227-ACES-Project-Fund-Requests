@@ -191,32 +191,28 @@ app.get("/find/:id", async (req, res)=>{
   }
   
 })
-  
+
+app.get("/admin/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const foundRequest = await getRequestDataByID(id);
+
+    if (foundRequest !== null) {
+      // Can customize how the data is displayed here
+      res.status(200).json(foundRequest);
+    } else {
+      res.status(404).json({ success: false, message: "Data not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+})
 
 
 
 app.listen(5000, ()=>{
     console.log("Server started and running on port 5000");
 })
-
-//Function to send data to admin
-
-
-async function sendToAdmin(data){
-    try {
-        const adminEndpoint = 'Include_Admin_Endpoint_URL'; 
-    
-        const response = await axios.post(adminEndpoint, data);
-    
-        if (response.status === 200) {
-          console.log('Data sent to admin');
-        } else {
-          console.error('Failed to send data to admin');
-        }
-      } catch (error) {
-        console.error('Error sending data to admin:', error.message);
-      }
-}
-
-module.exports = { sendToAdmin };
 
