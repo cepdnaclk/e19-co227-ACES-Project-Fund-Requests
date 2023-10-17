@@ -35,11 +35,14 @@ function App() {
           index
           element={
             <>
-              <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} size="sm" isCentered>
-                <ModalOverlay 
-                  bg='blackAlpha.300'
-                 backdropFilter='blur(3px) '
-                />
+              <Modal
+                closeOnOverlayClick={false}
+                isOpen={isOpen}
+                onClose={onClose}
+                size="sm"
+                isCentered
+              >
+                <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(3px) " />
                 <ModalContent>
                   <ModalHeader>ACES Project Fund Requests</ModalHeader>
                   <ModalBody>
@@ -53,27 +56,29 @@ function App() {
             </>
           }
         />
-        <Route path="/admin" element={
-      //   <>
-      //   <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} size="sm" isCentered>
-      //     <ModalOverlay 
-      //       bg='blackAlpha.300'
-      //       backdropFilter='blur(3px) '
-      //     />
-      //     <ModalContent>
-      //       <ModalHeader>Modal Title</ModalHeader>
-      //       <ModalBody>
-      //         {/* Insert your Google login button or authentication component here */}
-      //         {/* You can use an external authentication library for Google OAuth */}
-      //         <Button colorScheme="blue">Login with Google</Button>
-      //       </ModalBody>
-      //     </ModalContent>
-      //   </Modal>
-        
-      // </>
-      <Admin />    
-    } 
-      />
+        <Route
+          path="/admin"
+          element={
+            //   <>
+            //   <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} size="sm" isCentered>
+            //     <ModalOverlay
+            //       bg='blackAlpha.300'
+            //       backdropFilter='blur(3px) '
+            //     />
+            //     <ModalContent>
+            //       <ModalHeader>Modal Title</ModalHeader>
+            //       <ModalBody>
+            //         {/* Insert your Google login button or authentication component here */}
+            //         {/* You can use an external authentication library for Google OAuth */}
+            //         <Button colorScheme="blue">Login with Google</Button>
+            //       </ModalBody>
+            //     </ModalContent>
+            //   </Modal>
+
+            // </>
+            <Admin />
+          }
+        />
         <Route path="/admin1" element={<AdminHome1 />} />
         <Route path="/admin2" element={<AdminHome2 />} />
         <Route path="/admin3" element={<AdminHome3 />} />

@@ -1,19 +1,22 @@
-const express = require('express');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const session = require('express-session');
-const mongoose = require('mongoose');
-const User = require('./models/user'); // Replace with your user model
+const express = require("express");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const session = require("express-session");
+const mongoose = require("mongoose");
+const User = require("./models/user"); // Replace with your user model
 const app = express();
 
 // MongoDB connection setup
-mongoose.connect('mongodb://localhost/your-db-name', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useCreateIndex', true);
+mongoose.connect("mongodb://localhost/your-db-name", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.set("useCreateIndex", true);
 
 // Express session middleware
 app.use(
   session({
-    secret: 'your-secret-key',
+    secret: "your-secret-key",
     resave: true,
     saveUninitialized: true,
   })
@@ -27,9 +30,9 @@ app.use(passport.session());
 passport.use(
   new GoogleStrategy(
     {
-      clientID: 'YOUR_CLIENT_ID',
-      clientSecret: 'YOUR_CLIENT_SECRET',
-      callbackURL: 'http://localhost:3000/auth/google/callback', // Update with your callback URL
+      clientID: "YOUR_CLIENT_ID",
+      clientSecret: "YOUR_CLIENT_SECRET",
+      callbackURL: "http://localhost:3000/auth/google/callback", // Update with your callback URL
     },
     async (accessToken, refreshToken, profile, done) => {
       // Check if the user already exists in your database
@@ -64,23 +67,23 @@ passport.deserializeUser((id, done) => {
 
 // Routes
 app.get(
-  '/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
   })
 );
 
 app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     // Successful authentication, redirect or respond as needed
-    res.redirect('/');
+    res.redirect("/");
   }
 );
 
 // Add your other routes and server setup here
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log("Server is running on port 3000");
 });
