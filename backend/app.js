@@ -43,112 +43,112 @@ async function main() {
 
 }
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: "252888321357-ft7hukbmlljdnf5nisjeienit9cdu216.apps.googleusercontent.com",
-      clientSecret: "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",
-      callbackURL: 'http://localhost:5000/auth/google/callback', // This should match your authorized redirect URI
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      // Check if the user already exists in your database
-      const existingUser = await User.findOne({ googleId: profile.id });
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: "252888321357-ft7hukbmlljdnf5nisjeienit9cdu216.apps.googleusercontent.com",
+//       clientSecret: "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",
+//       callbackURL: 'http://localhost:5000/auth/google/callback', // This should match your authorized redirect URI
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       // Check if the user already exists in your database
+//       const existingUser = await User.findOne({ googleId: profile.id });
 
-      if (existingUser) {
-        // User already exists, no need to create a new one
-        return done(null, existingUser);
-      }
+//       if (existingUser) {
+//         // User already exists, no need to create a new one
+//         return done(null, existingUser);
+//       }
 
-      // Create a new user based on the Google profile information
-      const newUser = new User({
-        googleId: profile.id,
-        displayName: profile.displayName,
-        email: profile.emails[0].value,
-        // You can add more fields as needed
-      });
+//       // Create a new user based on the Google profile information
+//       const newUser = new User({
+//         googleId: profile.id,
+//         displayName: profile.displayName,
+//         email: profile.emails[0].value,
+//         // You can add more fields as needed
+//       });
 
-      // Save the new user to the database
-      await newUser.save();
+//       // Save the new user to the database
+//       await newUser.save();
 
-      done(null, newUser);
-    }
-  )
-);
+//       done(null, newUser);
+//     }
+//   )
+// );
 
-app.use(
-  session({
-    secret: 'someSecretKey', // Replace with a strong, random secret key
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: 'someSecretKey', // Replace with a strong, random secret key
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
 
-// Initialize Passport
-app.use(passport.initialize());
-app.use(passport.session());
+// // Initialize Passport
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user);
+// });
 
 // passport.deserializeUser((id, done) => {
 //   User.findById(id, (err, user) => {
 //     done(err, user);
 //   });
 // });
-passport.deserializeUser((user, done) => {
-  done(null, user)
-});
+// passport.deserializeUser((user, done) => {
+//   done(null, user)
+// });
 
-// Define routes for authentication
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// // Define routes for authentication
+// app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    // Successful authentication, redirect to the React app
-    res.redirect('http://127.0.0.1:5173/');
-  }
-);
+// app.get(
+//   '/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/' }),
+//   (req, res) => {
+//     // Successful authentication, redirect to the React app
+//     res.redirect('http://127.0.0.1:5173/');
+//   }
+// );
 
-// Add a route for checking if the user is authenticated
-app.get('http://127.0.0.1:5173/', (req, res) => {
+// // Add a route for checking if the user is authenticated
+// app.get('http://127.0.0.1:5173/', (req, res) => {
 
-  // res.render(StudentHome)
-  if (req.isAuthenticated()) {
-    // The user is authenticated, serve your React page here
-    console.log("backend user: ", req.user);
+//   // res.render(StudentHome)
+//   if (req.isAuthenticated()) {
+//     // The user is authenticated, serve your React page here
+//     console.log("backend user: ", req.user);
 
-    res.status(200).json({ user: req.user });
-  } else {
-    // The user is not authenticated, show a modal or any other UI
-    console.log("backend user not auth: ", req.user);
+//     res.status(200).json({ user: req.user });
+//   } else {
+//     // The user is not authenticated, show a modal or any other UI
+//     console.log("backend user not auth: ", req.user);
 
-    res.status(200).json({ user: null }); // You can replace this with your modal logic
-  }
-});
+//     res.status(200).json({ user: null }); // You can replace this with your modal logic
+//   }
+// });
 
-// Checking whether the user is logged in
-app.get('/check-auth-status', (req, res) => {
-  if (req.isAuthenticated()) {
-    console.log("API authenticated");
+// // Checking whether the user is logged in
+// app.get('/check-auth-status', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     console.log("API authenticated");
  
-    // User is authenticated, send user information
-    res.json({ user: req.user });
-  } else {
-    // User is not authenticated, send null or an empty object
-    console.log("API not authenticated");
+//     // User is authenticated, send user information
+//     res.json({ user: req.user });
+//   } else {
+//     // User is not authenticated, send null or an empty object
+//     console.log("API not authenticated");
 
 
-    res.json({ user: null });
-  }
-});
+//     res.json({ user: null });
+//   }
+// });
 
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
-})
+// app.get('/logout', (req, res) => {
+//   req.session.destroy();
+//   res.redirect("/");
+// })
 
 
 app.get("/admin", (req, res)=>{
