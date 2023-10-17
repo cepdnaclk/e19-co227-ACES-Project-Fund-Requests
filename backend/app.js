@@ -4,21 +4,28 @@ const axios = require('axios');
 const multer = require('multer');
 const app = express();
 
+const session = require('express-session');
+
 const bodyParser = require('body-parser');
 
 const emailService = require('./Services/emailService');
 
-
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const mongoose = require("mongoose");
 
 const Request = require("./models/fundrequest")
 
-app.use(express.static('./public'))
+const User = require("./models/user")
+
+// app.use(express.static('./public'))
 
 // Increase the request size limit to 50MB (or set it to your desired limit)
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+
 
 // Set up mongoose connection
 mongoose.set("strictQuery", false);
@@ -32,6 +39,72 @@ async function main() {
 
 
 }
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: "252888321357-ft7hukbmlljdnf5nisjeienit9cdu216.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: 'http://localhost:5000/auth/google/callback', // This should match your authorized redirect URI
+    },
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile)
+      // Implement your logic to create or find the user in MongoDB here
+      // Typically, you would create or find a user based on the profile information
+      // and store the user's data in the database.
+      // Once done, call done(null, user) to authenticate the user.
+    }
+  )
+);
+
+app.use(
+  session({
+    secret: 'someSecretKey', // Replace with a strong, random secret key
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// passport.deserializeUser((id, done) => {
+//   User.findById(id, (err, user) => {
+//     done(err, user);
+//   });
+// });
+passport.deserializeUser((user, done) => {
+  done(null, user)
+});
+
+// Define routes for authentication
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    // Successful authentication, redirect to the React app
+    res.redirect('/');
+  }
+);
+
+// Add a route for checking if the user is authenticated
+app.get('/', (req, res) => {
+  if (req.isAuthenticated()) {
+    // The user is authenticated, serve your React page here
+    res.status(200).send('You are logged in!');
+  } else {
+    // The user is not authenticated, show a modal or any other UI
+    res.status(401).send('You are not logged in!'); // You can replace this with your modal logic
+  }
+});
+
 
 app.get("/admin", (req, res)=>{
   res.send('Hi there')
@@ -48,9 +121,9 @@ app.use(express.json()); // Handle the data in the type "application/json"
 // app.use("/change/",countriesMiddleware);
 app.use(cors())
 
-app.get("/", (req, res) => {
-    res.status(200).json({success:true})
-})
+// app.get("/", (req, res) => {
+//     res.status(200).json({success:true})
+// })
 
 function base64ToArrayBuffer(base64) {
   const binaryString = atob(base64);
