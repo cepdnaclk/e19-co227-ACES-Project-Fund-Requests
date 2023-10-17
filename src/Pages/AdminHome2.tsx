@@ -34,6 +34,7 @@ const AdminHome2 = () => {
       // boxShadow="base"
       paddingX={"10%"}
       display={"block"}
+      className="AdminUiTexts"
     >
       <Text
         color={"#00334E"}
@@ -45,7 +46,7 @@ const AdminHome2 = () => {
       </Text>
         </Box>
 
-        <form>
+        <form className="AdminUiTexts">
             {/* Applicants */}
             <Grid
             paddingX={{ base: "20px", md: "10%" }}
