@@ -2,7 +2,8 @@ import FooterSection from "../components/FooterSection";
 import Header from "../components/Header";
 //import NextButton from "../components/NextButton";
 import NextButtonAdmin from "./NextButtonAdmin";
-import { SetStateAction, useState } from "react";
+//import { SetStateAction, useState } from "react";
+import { Link } from 'react-router-dom'; 
 
 import {
   Text,
@@ -11,7 +12,7 @@ import {
   //Button,
   // Textarea,
   Box,
-  Stack,
+  //Stack,
 
 } from "@chakra-ui/react";
 
@@ -21,10 +22,10 @@ const gridBackgrougndColor = "#F5F5F5";
 const labelColor = "black";
 
 const AdminHome1 = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const handleStepperChange = (step: SetStateAction<number>) => {
-    setCurrentStep(step);
-  };
+  // const [currentStep, setCurrentStep] = useState(1);
+  // const handleStepperChange = (step: SetStateAction<number>) => {
+  //   setCurrentStep(step);
+  // };
   return (
     <>
       <Header></Header>
@@ -309,13 +310,18 @@ const AdminHome1 = () => {
         paddingX={{ base: "20px", md: "10%" }}
         paddingY={{ base: "10px", md: "1%" }}
         >
-        <Stack>
-          <NextButtonAdmin 
-            currrentStep={currentStep} 
-            onStepperChange={handleStepperChange} 
-          />
-        </Stack>
+        <Link to="/admin2">
+          <NextButtonAdmin currrentStep={0} onStepperChange={function (): void {
+            throw new Error("Function not implemented.");
+          } } />
+        </Link>
         </Grid>
+
+        {/* <Link to="/admin2">
+          <NextButtonAdmin currrentStep={0} onStepperChange={function (index: number): void {
+            throw new Error("Function not implemented.");
+          } } />
+        </Link> */}
         
       </form>
       <FooterSection></FooterSection>

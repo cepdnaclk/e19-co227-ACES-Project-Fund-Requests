@@ -15,6 +15,12 @@ import StudentHome from "./Pages/StudentHome";
 import AdminHome1 from "./Pages/AdminHome1";
 import AdminHome2 from "./Pages/AdminHome2";
 import AdminHome3 from "./Pages/AdminHome3";
+<<<<<<< HEAD
+=======
+import Admin from "./Pages/Admin";
+// //import AdminHome3
+
+>>>>>>> 93cab690cf31ae898b8dabd174be5e13dead6869
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,6 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+<<<<<<< HEAD
         <Route
           index
           element={
@@ -73,6 +80,11 @@ function App() {
       <AdminHome1 />    
     } 
       />
+=======
+        <Route index element={<StudentHome />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin1" element={<AdminHome1 />} />
+>>>>>>> 93cab690cf31ae898b8dabd174be5e13dead6869
         <Route path="/admin2" element={<AdminHome2 />} />
         <Route path="/admin3" element={<AdminHome3 />} />
       </Routes>

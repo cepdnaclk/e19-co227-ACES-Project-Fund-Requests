@@ -18,6 +18,9 @@ const RequestSchema = new Schema({
   agreement: { type: String, required: true, maxLength: 100 },
   lecturer_name: { type: String, required: true, maxLength: 100 },
   lecturer_email: { type: String, required: true, maxLength: 100 },
+  lecturer_response: {type: Boolean},
+  hod_response: {type: Boolean},
+  aces_response: {type: Boolean},
   
 });
 

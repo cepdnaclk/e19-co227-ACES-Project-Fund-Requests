@@ -1,4 +1,4 @@
-import { Button, HStack, Text } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 
 interface Props {
   currrentStep: number;
@@ -11,7 +11,7 @@ const NextButtonAdmin = ({ onStepperChange, currrentStep }: Props) => {
       <Button
         marginTop={"10px"}
         _hover={{ 
-            bgColor: "#5588A3",
+            bgColor: "#000000",
             color: "white" }}
         onClick={() => {
           if (currrentStep < 4) {
@@ -19,7 +19,7 @@ const NextButtonAdmin = ({ onStepperChange, currrentStep }: Props) => {
           }
 
           onStepperChange(currrentStep);
-          window.scrollTo({ top: 200 });
+          window.scrollTo({ top: 50 });
         }}
         style={{
           fontFamily: "'Outfit', sans-serif", // Use the custom font

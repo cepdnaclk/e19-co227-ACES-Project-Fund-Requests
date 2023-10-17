@@ -54,24 +54,6 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // Set the file size limit to 10 MB (adjust as needed)
 });
 
-// const convertFileToBuffer = (file) => {
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-    
-//     reader.onload = (event) => {
-//       const buffer = Buffer.from(event.target.result);
-//       resolve(buffer);
-//     };
-
-//     reader.onerror = (event) => {
-//       reject(event.error);
-//     };
-
-//     reader.readAsArrayBuffer(file);
-//   });
-// };
-
-
 
 // const countriesMiddleware = require('./routes/countries')
 
@@ -95,6 +77,20 @@ function base64ToArrayBuffer(base64) {
   return bytes.buffer;
 }
 
+// Function to get data from the database based on the ID
+async function getRequestDataByID(id) {
+
+  try {
+    const neededRequest = await Request.findById(id);
+    console.log(neededRequest);
+    return neededRequest;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return null;
+  }
+  
+}
+
 
 
 // POST
@@ -109,6 +105,8 @@ function base64ToArrayBuffer(base64) {
 //     }
 // });
 
+
+// Take the fund request details and save them in the databse
 app.post("/fundRequest", async (req, res) => {
 
     const data = req.body
@@ -140,7 +138,10 @@ app.post("/fundRequest", async (req, res) => {
         ending_date: data.endingDate,
         agreement: data.agreement,
         lecturer_name: data.lecturerName,
-        lecturer_email: data.lecturerEmail
+        lecturer_email: data.lecturerEmail,
+        lecturer_response: false,
+        hod_response: false,
+        aces_response: false
 
       });
 
@@ -169,93 +170,49 @@ app.post("/fundRequest", async (req, res) => {
     } 
 );
     // sendToAdmin(data);
-   
 
 
-// Handle file upload
-// app.post('/pdf', upload.single('pdfFile'), (req, res) => {
-//     console.log(req.body);
-//   if (!req.file) {
-//     console.log("No file uploaded.");
-//     return res.status(400).send('No file uploaded.');
-    
-//   }
+// GEt data from the database
+app.get("/find/:id", async (req, res)=>{
+  console.log(
+    "finding"
+  );
+  const id = req.params.id;
+  console.log(id);
 
-  // You can access the uploaded file's information as req.file
-  // Here, you can save it to a database, process it, etc.
+  const foundRequest = await getRequestDataByID(id);
 
-//   console.log("File uploaded successfully.");
-//   res.status(200).send('File uploaded successfully.');
-// });
+  if (foundRequest != null){
+    // You can do whatever you need in this section with the found request
+        res.status(200).json(foundRequest)
+  }else{
+        res.status(404).json({success: false})
 
-// app.post("/pdf", (req, res) => {
-//     const data = req.body
-//     console.log("receiving the pdf");
-//     console.log(data);
-//     if (data) {
-//          res.status(200).json({success: true})
-//     }
-//     // sendToAdmin(data);
-   
-// })
-
-app.post("/aboutProject", (req, res) => {
-    const data = req.body
-    console.log("receiving data");
-    console.log(data);
-    if (data) {
-         res.status(200).json({success: true})
-    }
-   
+  }
+  
 })
 
-app.post("/contact", (req, res)=>{
-    const {names, leadsName, email, phoneNo} = req.body;
-    if (names && leadsName && email && phoneNo) {
-        console.log(names);
-        console.log(leadsName);
-        console.log(email);
-        console.log(phoneNo);
-        res.status(200).json({success: true})
+app.get("/admin/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const foundRequest = await getRequestDataByID(id);
+
+    if (foundRequest !== null) {
+      // Can customize how the data is displayed here
+      res.status(200).json(foundRequest);
+    } else {
+      res.status(404).json({ success: false, message: "Data not found" });
     }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 })
 
-app.post("/about", (req, res)=>{
-    const {title, description, goals, risks, prType, startDate, endDate} = req.body;
-    if (title && description && goals && risks && prType && startDate && endDate) {
-        console.log(title);
-        console.log(description);
-        console.log(goals);
-        console.log(risks);
-        console.log(prType);
-        console.log(startDate);
-        console.log(endDate);
-        res.status(200).json({success: true})
 
-    }
-})
 
 app.listen(5000, ()=>{
     console.log("Server started and running on port 5000");
 })
-
-//Function to send data to admin
-
-async function sendToAdmin(data){
-    try {
-        const adminEndpoint = 'Include_Admin_Endpoint_URL'; 
-    
-        const response = await axios.post(adminEndpoint, data);
-    
-        if (response.status === 200) {
-          console.log('Data sent to admin');
-        } else {
-          console.error('Failed to send data to admin');
-        }
-      } catch (error) {
-        console.error('Error sending data to admin:', error.message);
-      }
-}
-
-module.exports = { sendToAdmin };
 
