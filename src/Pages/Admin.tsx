@@ -4,13 +4,12 @@
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import { Box,
+        Button,
+        ButtonGroup,
+        Card,
+        CardBody,
+        CardFooter,
         Divider,
-        // Button,
-        // ButtonGroup,
-        // Card,
-        // CardBody,
-        // CardFooter,
-        // Divider,
         Grid,
         GridItem,
         // Heading,
@@ -23,6 +22,7 @@ import { Box,
 //import NextButtonAdmin from "./NextButtonAdmin";
 // import { FaWave } from 'react-icons/fa';
 import cardImage from "../assets/images/cardImage.webp"
+import ViewMoreButton from "./ViewMoreButton";
 
 const Admin = () => {
     return(
@@ -70,11 +70,12 @@ const Admin = () => {
                 //   gridTemplateColumns={{ md: "80% 80%" }}
                   gap={4}
                   marginBottom={5}
+                  fontFamily="Poppins, sans-serif" 
                 >  
                 {/* {{ base: "10px", md: "1%" }} */}
                 <GridItem area={"card1"} colSpan={1} alignItems="center">
-                <Card maxW='lg'>
-                    <CardBody>
+                <Card maxW='lg'bg={"#BFD8F8"}>
+                    <CardBody >
                         <Image
                         //src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
                         src={cardImage}
@@ -122,115 +123,26 @@ const Admin = () => {
                         {/* <Text color='blue.600' fontSize='2xl'>
                             $450
                         </Text> */}
+
+
                         </Stack>
                     </CardBody>
                     {/* <Divider /> */}
-                    <CardFooter>
+                    <CardFooter fontFamily="Poppins, sans-serif" >
                         {/* <ButtonGroup spacing='2'>
                         <Button variant='solid' colorScheme='blue'>
                             Buy now
                         </Button> */}
-                        <Button variant='ghost' colorScheme='blue'>
-                            Add to cart
-                        </Button>
+                        <Text color="grey" position="absolute" bottom="2" right="2" fontSize="xs">
+                            Request made on ~Date~
+                        </Text>
                         {/* </ButtonGroup> */}
-                    {/* </CardFooter>
-                </Card> */} 
-                
+                    </CardFooter>
+                </Card>
+                </GridItem>
 
                 <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent 
-                    cardImage={cardImage} 
-                    bgColor= '#BFD8F8' 
-                    title="Titile" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
-                    requestDate="17/10/2023"/>
-                </GridItem>
-            </Grid>
-
-            <Divider my={4} />
-            
-            <Box
-            paddingTop={"4%"}
-            paddingBottom={"3%"}
-            // marginX={"10px"}
-            // boxShadow="base"
-            paddingX={"10%"}
-            display={"block"}
-            >
-            <Text
-                    color={"#00334E"}
-                    fontSize={"20px"}
-                    fontWeight={"small"}
-                    paddingBottom={"10px"}
-                    fontFamily={"Poppins, sans-serif"}
-                >
-                    Older Requests
-            </Text>     
-            </Box>   
-            <Grid
-                paddingX = {{base: "10%", md: "10%"}}
-                paddingBottom = {{ base: "10px"}}
-
-                templateAreas={{
-                    base: `"card1"
-                    "card2"`,
-                    md: `"card1 card2"`,
-                  }}
-                  gap={4}
-                  marginBottom={5}
-                  fontFamily="Poppins, sans-serif"   
-            >
-                <GridItem area={"card1"} colSpan={1} alignItems="center" >
-                <CardComponent 
-                    cardImage={cardImage} 
-                    bgColor= '#CDCDCD' 
-                    title="Ttile" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
-                    requestDate="17/10/2023"/>
-                </GridItem>
-                <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent 
-                    cardImage={cardImage} 
-                    bgColor= '#CDCDCD' 
-                    title="Ttile" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
-                    requestDate="17/10/2023"/>
-                </GridItem>
-            </Grid>
-
-            <Grid
-                paddingX = {{base: "10%", md: "10%"}}
-                paddingBottom = {{ base: "10px"}}
-
-                templateAreas={{
-                    base: `"card1"
-                    "card2"`,
-                    md: `"card1 card2"`,
-                  }}
-                  gap={4}
-                  marginBottom={5}
-                  fontFamily="Poppins, sans-serif"   
-            >
-                <GridItem area={"card1"} colSpan={1} alignItems="center" >
-                <CardComponent 
-                    cardImage={cardImage} 
-                    bgColor= '#CDCDCD' 
-                    title="Ttile" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
-                    requestDate="17/10/2023"/>
-                </GridItem>
-                <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent 
-                    cardImage={cardImage} 
-                    bgColor= '#CDCDCD' 
-                    title="Ttile" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
-                    requestDate="17/10/2023"/>
-                </GridItem>
-            </Grid>
-
-                {/* <Card maxW='lg'>
+                <Card maxW='lg'>
                     <CardBody>
                         <Image
                         src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
