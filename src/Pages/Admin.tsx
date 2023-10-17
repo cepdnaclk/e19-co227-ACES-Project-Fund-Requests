@@ -4,6 +4,7 @@
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import { Box,
+        Divider,
         // Button,
         // ButtonGroup,
         // Card,
@@ -42,11 +43,12 @@ const Admin = () => {
                     color={"#00334E"}
                     fontSize={"30px"}
                     fontWeight={"bold"}
-                    paddingBottom={"40px"}
+                    paddingBottom={"4px"}
                     fontFamily={"Poppins, sans-serif"}
                 >
                     Welcome To Project Fund Requests👋
                 </Text>
+                <Divider my={10} />
                 <Text
                     color={"#00334E"}
                     fontSize={"20px"}
@@ -74,7 +76,12 @@ const Admin = () => {
                 >  
                 {/* {{ base: "10px", md: "1%" }} */}
                 <GridItem area={"card1"} colSpan={1} alignItems="center" >
-                    <CardComponent cardImage={cardImage} bgColor= '#BFD8F8' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                    <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#BFD8F8' 
+                    title="Ttile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
 
 
@@ -149,10 +156,17 @@ const Admin = () => {
                 
 
                 <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent cardImage={cardImage} bgColor= '#BFD8F8' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#BFD8F8' 
+                    title="Titile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
             </Grid>
-                
+
+            <Divider my={4} />
+            
             <Box
             paddingTop={"4%"}
             paddingBottom={"3%"}
@@ -185,10 +199,20 @@ const Admin = () => {
                   fontFamily="Poppins, sans-serif"   
             >
                 <GridItem area={"card1"} colSpan={1} alignItems="center" >
-                <CardComponent cardImage={cardImage} bgColor= '#CDCDCD' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#CDCDCD' 
+                    title="Ttile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
                 <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent cardImage={cardImage} bgColor= '#CDCDCD' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#CDCDCD' 
+                    title="Ttile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
             </Grid>
 
@@ -206,10 +230,20 @@ const Admin = () => {
                   fontFamily="Poppins, sans-serif"   
             >
                 <GridItem area={"card1"} colSpan={1} alignItems="center" >
-                <CardComponent cardImage={cardImage} bgColor= '#CDCDCD' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#CDCDCD' 
+                    title="Ttile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
                 <GridItem area={"card2"} colSpan={1} alignItems="center">
-                <CardComponent cardImage={cardImage} bgColor= '#CDCDCD' title="Ttile" description="Description" requestDate="17/10/2023"/>
+                <CardComponent 
+                    cardImage={cardImage} 
+                    bgColor= '#CDCDCD' 
+                    title="Ttile" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" 
+                    requestDate="17/10/2023"/>
                 </GridItem>
             </Grid>
 
