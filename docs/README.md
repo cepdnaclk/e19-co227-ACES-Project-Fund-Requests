@@ -30,7 +30,7 @@ title: ACES-Project-Fund-Requests
 
 ## Problem Overview
 
- ### Current Fund Management Challenges:
+### Current Fund Management Challenges:
  
  * Tedious Manual Process
  * Misplacement Risks
@@ -40,11 +40,11 @@ title: ACES-Project-Fund-Requests
 
 ## Proposed Solution
 
- ### The eFund Approach:
+### The eFund Approach:
 
  Our solution, eFund Management, is a streamlined and user-friendly web application designed to automate and simplify the project fund request and approval process. It empowers students, supervisors, and department heads with a seamless digital platform for efficient fund management.
 
- ### Why eFund Management?
+### Why eFund Management?
  * Efficiency and Time Savings
  * Reduced Errors and Clarity
  * Enhanced Organization
