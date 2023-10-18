@@ -27,9 +27,12 @@ import axios from "axios";
 
 import { DUserTokenInterface } from "./models/TokenMoodel";
 
+
+
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userToken, setUserToken] = useState<DUserTokenInterface | null>(null);
+  const [previousRequest, setPreviousRequest] = useState(null)
 
   useEffect(() => {
     if (userToken == null) {
@@ -41,6 +44,7 @@ function App() {
       axios
         .get(`http://localhost:5000/findrequest/${userToken.email}`)
         .then((response) => {
+          setPreviousRequest(response)
           console.log(response);
         });
     }
