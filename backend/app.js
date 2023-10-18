@@ -128,9 +128,9 @@ app.post("/fundRequest", async (req, res) => {
       lecturer_name: data.lecturerName,
       lecturer_email: data.lecturerEmail,
       requester: data.requester,
-      lecturer_response: false,
-      hod_response: false,
-      aces_response: false,
+      lecturer_response: "pending",
+      hod_response: "pending",
+      aces_response: "pending",
     });
 
     try {
