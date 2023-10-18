@@ -17,7 +17,13 @@ import FooterSection from "../components/FooterSection";
 import DeniedSection from "../components/DeniedSection";
 import FundRequest from "../classes/fund_request";
 
-function StudentHome() {
+import { DUserTokenInterface } from "../models/TokenMoodel";
+
+interface Props {
+userToken: DUserTokenInterface | null
+}
+
+function StudentHome({userToken}: Props) {
   // const [count, setCount] = useState(0);
 
   const [requestObject, setRequestObject] = useState<FundRequest | null>(null);
@@ -34,6 +40,7 @@ function StudentHome() {
 
   let formElements = [
     <FormSection1
+    userToken = {userToken}
       onSetRequestObject={(requestobj: FundRequest) => {
         setRequestObject(requestobj);
       }}

@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const RequestSchema = new Schema({
    applicants_names: { type: Array, required: true, maxLength: 100 },
   leader_name: { type: String, required: true, maxLength: 100 },
+  requester: { type: String, required: true, maxLength: 100 },
   email: { type: String, required: true, maxLength: 100 },
   contact_no: { type: String, required: true, maxLength: 100 },
   project_title: { type: String, required: true, maxLength: 100 },

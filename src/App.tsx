@@ -25,12 +25,14 @@ import AdminHome2 from "./Pages/AdminHome2";
 import AdminHome3 from "./Pages/AdminHome3";
 import axios from "axios";
 
+import { DUserTokenInterface } from "./models/TokenMoodel";
+
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [user, setUser] = useState(null);
+  const [userToken, setUserToken] = useState<DUserTokenInterface | null>(null);
 
   useEffect(() => {
-    if (user == null) {
+    if (userToken == null) {
       onOpen();
     } else {
       onClose();
@@ -74,11 +76,13 @@ function App() {
                       onSuccess={(credentialResponse) => {
                         console.log(credentialResponse);
 
-                        var userToken = jwt_decode(
+                        var decodedUserToken: DUserTokenInterface = jwt_decode(
                           credentialResponse.credential!
                         );
 
-                        console.log(userToken);
+                        setUserToken(decodedUserToken);
+
+                        console.log(decodedUserToken);
 
                         onClose();
                       }}
@@ -90,7 +94,7 @@ function App() {
                   </ModalBody>
                 </ModalContent>
               </Modal>
-              <StudentHome />
+              <StudentHome userToken={userToken} />
             </>
           }
         />

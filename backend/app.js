@@ -127,6 +127,7 @@ app.post("/fundRequest", async (req, res) => {
       agreement: data.agreement,
       lecturer_name: data.lecturerName,
       lecturer_email: data.lecturerEmail,
+      requester: data.requester,
       lecturer_response: false,
       hod_response: false,
       aces_response: false,

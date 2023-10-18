@@ -3,11 +3,13 @@ import { Text, Grid, GridItem, Input, Box } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 import * as z from "zod";
 
 import { useState } from "react";
+
+import { DUserTokenInterface } from "../models/TokenMoodel";
 import FundRequest from "../classes/fund_request";
 
 const inputBorderColor = "#97bfd4";
@@ -16,6 +18,7 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  userToken: DUserTokenInterface | null;
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
   submitStatus: boolean;
@@ -43,6 +46,7 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection1 = ({
+  userToken,
   submitStatus,
   onSubmit,
   requestObject,
@@ -98,6 +102,7 @@ const FormSection1 = ({
               leadersName: data.regname,
               email: data.email,
               contactNo: data.contactNo,
+              requester: userToken!.email as string,
             };
             console.log("Printing the object");
 
@@ -292,7 +297,9 @@ const FormSection1 = ({
               size={"sm"}
               color={inputFieldTextColor}
               marginTop={2}
-              placeholder="exxxxx@eng.pdn.ac.lk"
+              placeholder={
+                userToken ? (userToken.email as string) : "Enter your email"
+              }
               border={
                 errors.email ? `1px solid red` : `1px solid ${inputBorderColor}`
               }
