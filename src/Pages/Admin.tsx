@@ -95,7 +95,7 @@ import cardImage from "../assets/images/cardImage.webp"
           ))}
         </Grid> */}
 
-        <Divider my={4} />
+        
 
         <Grid
           paddingX={{ base: "10%", md: "10%" }}
@@ -127,6 +127,7 @@ import cardImage from "../assets/images/cardImage.webp"
             />
             </GridItem> */}
             </Grid>
+            <Divider my={4} />
             <Box
           paddingTop={"4%"}
           paddingBottom={"3%"}
