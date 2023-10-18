@@ -18,9 +18,12 @@ import DeniedSection from "../components/DeniedSection";
 import FundRequest from "../classes/fund_request";
 
 import { DUserTokenInterface } from "../models/TokenMoodel";
+import { PreviousRequest } from "../models/PreviousRequest";
+
 
 interface Props {
-userToken: DUserTokenInterface | null
+  previousRequest: PreviousRequest | null;
+  userToken: DUserTokenInterface | null;
 }
 
 function StudentHome({userToken}: Props) {

@@ -27,12 +27,13 @@ import axios from "axios";
 
 import { DUserTokenInterface } from "./models/TokenMoodel";
 
-
+import { PreviousRequest } from "./models/PreviousRequest";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userToken, setUserToken] = useState<DUserTokenInterface | null>(null);
-  const [previousRequest, setPreviousRequest] = useState(null)
+  const [previousRequest, setPreviousRequest] =
+    useState<PreviousRequest | null>(null);
 
   useEffect(() => {
     if (userToken == null) {
@@ -44,8 +45,8 @@ function App() {
       axios
         .get(`http://localhost:5000/findrequest/${userToken.email}`)
         .then((response) => {
-          setPreviousRequest(response)
-          console.log(response);
+          setPreviousRequest(response.data);
+          console.log(response.data);
         });
     }
   }, [userToken]);
@@ -105,7 +106,7 @@ function App() {
                   </ModalBody>
                 </ModalContent>
               </Modal>
-              <StudentHome userToken={userToken} />
+              <StudentHome previousRequest={previousRequest} userToken={userToken} />
             </>
           }
         />

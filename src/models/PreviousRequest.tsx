@@ -1,12 +1,13 @@
-interface PreviousRequest {
-  applicants_names:string;
-  leader_name:string;
+export interface PreviousRequest {
+  applicants_names: string;
+  _id: string;
+  leader_name: string;
   requester: string;
   email: string;
   contact_no: string;
   project_title: string;
   project_description: string;
-//   Project_expenses: { type: Buffer; required: true };
+  //   Project_expenses: { type: Buffer; required: true };
   goals: string;
   risks: string;
   project_type: string;
