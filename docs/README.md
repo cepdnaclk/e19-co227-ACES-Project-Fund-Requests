@@ -65,7 +65,7 @@ E - Express.Js
 R - React.Js
 N - Node.Js
 
-![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/blob/main/src/assets/images/Top-10-Reasons-To-Choose-MERN-Stack-Development-For-Your-Next-Project_-1280x720px%402x.png)
+![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/blob/main/src/assets/images/Top-10-Reasons-To-Choose-MERN-Stack-Development-For-Your-Next-Project_-1280x720px%402x)
 
 ## Links
 
