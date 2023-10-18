@@ -238,12 +238,12 @@ const ReviewSection = ({
       {previousRequest?.lecturer_response == "approved" &&
         previousRequest?.hod_response == "approved" &&
         previousRequest?.aces_response == "approved" && (
-          <QualifiedSection></QualifiedSection>
+          <QualifiedSection userToken={userToken}></QualifiedSection>
         )}
       {(previousRequest?.lecturer_response == "denied" ||
         previousRequest?.hod_response == "denied" ||
         previousRequest?.aces_response == "denied") && (
-        <DeniedSection ></DeniedSection>
+        <DeniedSection userToken={userToken}></DeniedSection>
       )}
     </>
   );
