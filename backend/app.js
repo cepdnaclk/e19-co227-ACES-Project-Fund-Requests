@@ -175,7 +175,7 @@ app.get("/find/:id", async (req, res) => {
 
 app.get("/admin/:id", async (req, res) => {
   const id = req.params.id;
-
+  console.log(id)
   try {
     const foundRequest = await getRequestDataByID(id);
 
