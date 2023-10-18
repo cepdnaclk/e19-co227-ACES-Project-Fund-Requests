@@ -36,8 +36,15 @@ function App() {
       onOpen();
     } else {
       onClose();
+      console.log("Closed the modal");
+
+      axios
+        .get(`http://localhost:5000/findrequest/${userToken.email}`)
+        .then((response) => {
+          console.log(response);
+        });
     }
-  }, []);
+  }, [userToken]);
 
   return (
     <BrowserRouter>

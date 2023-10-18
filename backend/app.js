@@ -174,6 +174,35 @@ app.get("/find/:id", async (req, res) => {
   }
 });
 
+async function searchRequestByRequester(requesterEmail) {
+  try {
+    const request = await Request.findOne({ requester: requesterEmail }).exec();
+    if (request) {
+      // Request with the specified requester name was found
+      console.log('Request found:', request);
+      return request;
+    } else {
+      // Request with the specified requester name was not found
+      console.log('Request not found.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error searching for request:', error);
+    throw error;
+  }
+}
+
+app.get("/findrequest/:requesterEmail", async (req, res) => {
+  requesterEmail = req.params.requesterEmail;
+  console.log(requesterEmail);
+
+  const previousRequest = await searchRequestByRequester(requesterEmail)
+
+
+
+  res.status(200).json(previousRequest)
+})
+
 app.get("/admin/:id", async (req, res) => {
   const id = req.params.id;
 
