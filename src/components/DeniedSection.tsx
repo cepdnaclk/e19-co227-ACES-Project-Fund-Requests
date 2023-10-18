@@ -1,5 +1,7 @@
 import { Box, Image, Link, Text } from "@chakra-ui/react";
 import denied from "../assets/images/denied.png";
+import { PreviousRequest } from "../models/PreviousRequest";
+
 
 const DeniedSection = () => {
   return (
@@ -19,7 +21,11 @@ const DeniedSection = () => {
       <Text marginTop={"30px"} fontWeight={"semibold"} color={"#1B8F27"}>
         Good Luck with your Project !!
       </Text>
-      <Link color={"#273BEE"} textDecoration={"underline"}>
+      <Link onClick={()=> {
+        console.log("Link clicked");
+
+        
+      }} href="/" color={"#273BEE"} textDecoration={"underline"}>
         Re-Apply
       </Link>
     </Box>

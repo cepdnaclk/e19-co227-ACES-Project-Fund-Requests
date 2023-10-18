@@ -158,6 +158,35 @@ app.post("/fundRequest", async (req, res) => {
 });
 // sendToAdmin(data);
 
+async function deleteRequestByRequester(requesterName) {
+  try {
+    const deletedRequest = await Request.findOneAndDelete({ requester: requesterName }).exec();
+    if (deletedRequest) {
+      // Request with the specified requester name was found and deleted
+      console.log('Request deleted:', deletedRequest);
+      return deletedRequest;
+    } else {
+      // Request with the specified requester name was not found
+      console.log('Request not found.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error deleting request:', error);
+    throw error;
+  }
+}
+
+app.get("/delete/:requesterEmail", async (req, res) => {
+
+   requesterEmail = req.params.requesterEmail;
+  console.log(requesterEmail);
+
+  const deletedRequest = await deleteRequestByRequester(requesterEmail)
+
+  res.status(200).json({deletedRequest})
+ 
+})
+
 // GEt data from the database
 app.get("/find/:id", async (req, res) => {
   console.log("finding");
