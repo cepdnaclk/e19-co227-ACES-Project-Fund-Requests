@@ -4,7 +4,6 @@
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import { Box,
-<<<<<<< HEAD
         Divider,
         // Button,
         // ButtonGroup,
@@ -12,15 +11,6 @@ import { Box,
         // CardBody,
         // CardFooter,
         // Divider,
-=======
-        Divider,
-        // Button,
-        // ButtonGroup,
-        // Card,
-        // CardBody,
-        // CardFooter,
-        // Divider,
->>>>>>> 73e1e37 (New fonts)
         Grid,
         GridItem,
         // Heading,
@@ -35,7 +25,7 @@ import { Box,
 import cardImage from "../assets/images/cardImage.webp"
 // import ViewMoreButton from "./ViewMoreButton";
 import CardComponent from "./CardComponent";
-import cardImage from "../assets/images/cardImage.webp"
+
 import ViewMoreButton from "./ViewMoreButton";
 
 const Admin = () => {
@@ -85,7 +75,7 @@ const Admin = () => {
                   gap={4}
                   marginBottom={0}
                   fontFamily="Poppins, sans-serif" 
-                  fontFamily="Poppins, sans-serif" 
+                  
                 >  
                 {/* {{ base: "10px", md: "1%" }} */}
                 <GridItem area={"card1"} colSpan={1} alignItems="center" >
@@ -287,7 +277,7 @@ const Admin = () => {
                     requestDate="17/10/2023"/>
                 </GridItem>
                 <GridItem area={"card2"} colSpan={1} alignItems="center">
-<<<<<<< HEAD
+
                 <CardComponent 
                     cardImage={cardImage} 
                     bgColor= '#CDCDCD' 
@@ -298,7 +288,7 @@ const Admin = () => {
             </Grid>
 
                 {/* <Card maxW='lg'>
-=======
+
                 <CardComponent 
                     cardImage={cardImage} 
                     bgColor= '#BFD8F8' 
