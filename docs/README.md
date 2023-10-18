@@ -60,12 +60,17 @@ title: ACES-Project-Fund-Requests
 
 ## Technology Stack
 
-![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/assets/115539818/a30e22c0-9e5b-4e99-91b8-d7791b2aecdb)
+M - MongoDB
+E - Express.Js
+R - React.Js
+N - Node.Js
+
+![CO227 Project Proposal](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests/blob/main/src/assets/images/Top-10-Reasons-To-Choose-MERN-Stack-Development-For-Your-Next-Project_-1280x720px%402x.png)
 
 ## Links
 
-- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="_blank"}
-- [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="_blank"}
+- [Project Repository](https://github.com/cepdnaclk/e19-co227-ACES-Project-Fund-Requests)
+- [Project Page](https://cepdnaclk.github.io/e19-co227-ACES-Project-Fund-Requests/)
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
