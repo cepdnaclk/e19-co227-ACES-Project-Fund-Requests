@@ -106,7 +106,10 @@ function App() {
                   </ModalBody>
                 </ModalContent>
               </Modal>
-              <StudentHome previousRequest={previousRequest} userToken={userToken} />
+              <StudentHome
+                previousRequest={previousRequest}
+                userToken={userToken}
+              />
             </>
           }
         />

@@ -32,7 +32,7 @@ function StudentHome({ previousRequest, userToken }: Props) {
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
-    count: 4,
+    count: 3,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -74,7 +74,7 @@ function StudentHome({ previousRequest, userToken }: Props) {
       }}
     ></FormSection3>,
 
-    <FormSection4></FormSection4>,
+    // <FormSection4></FormSection4>,
   ];
 
   function updateFormSection(index: number) {
@@ -115,7 +115,7 @@ function StudentHome({ previousRequest, userToken }: Props) {
       ) : null}
       {isSubmitted3 && activeStep == 2 ? (
         <ReviewSection
-        requestObject= {requestObject}
+          requestObject={requestObject}
           previousRequest={previousRequest}
           userToken={userToken}
         ></ReviewSection>

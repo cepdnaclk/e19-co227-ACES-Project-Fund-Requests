@@ -3,7 +3,7 @@ import Header from "../components/Header";
 //import NextButton from "../components/NextButton";
 import NextButtonAdmin from "./NextButtonAdmin";
 //import { SetStateAction, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -11,6 +11,7 @@ import {
   Text,
   Grid,
   GridItem,
+  Link,
   //Button,
   // Textarea,
   Box,
@@ -62,7 +63,7 @@ const AdminHome1 = () => {
           fontWeight={"normal"}
           paddingBottom={"20px"}
         >
-          Project {data.project_title}
+          Automated Inventory Management System Upgrade
         </Text>
       </Box>
 
@@ -98,10 +99,10 @@ const AdminHome1 = () => {
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
           >
-            <Text color={labelColor}>Coursework</Text>
-            <Text marginTop={2} color={labelColor}>
+            <Text color={labelColor}>Hobby</Text>
+            {/* <Text marginTop={2} color={labelColor}>
               CO325
-            </Text>
+            </Text> */}
           </GridItem>
         </Grid>
 
@@ -137,11 +138,11 @@ const AdminHome1 = () => {
             paddingY={{ base: "10px", md: "2%" }}
           >
             <Text color={labelColor}>
-              The Secure Network Infrastructure Enhancement Project aims to
-              strengthen the cybersecurity posture of our organization by
-              upgrading and fortifying our computer network infrastructure. This
-              project focuses on modernizing our network, enhancing security
-              protocols, and safeguarding critical data assets.
+              The project aims to upgrade the existing manual inventory
+              management system of a small retail business to an automated
+              system. This upgrade is crucial for improving efficiency,
+              accuracy, and overall management of inventory, which will lead to
+              reduced operational costs and increased customer satisfaction.
             </Text>
           </GridItem>
         </Grid>
@@ -178,17 +179,17 @@ const AdminHome1 = () => {
             paddingY={{ base: "10px", md: "2%" }}
           >
             <Text color={labelColor}>
-              The Secure Network Infrastructure Enhancement Project is focused
-              on fortifying our organization's cybersecurity. Our goals include
-              upgrading network hardware, implementing multi-factor
-              authentication, conducting security awareness training, enhancing
-              the intrusion detection system, and establishing an incident
-              response plan. We plan to procure and install new hardware within
-              the first quarter, integrate multi-factor authentication within
-              six months, launch a comprehensive training program within three
-              months, upgrade the intrusion detection system and implement
-              real-time monitoring within five months, and finalize the incident
-              response plan within four months.
+              Efficiency Improvement: The primary goal is to increase
+              operational efficiency. This will be achieved through the
+              implementation of an automated system that reduces the time and
+              effort required for inventory management. Data entry, tracking,
+              and restocking processes will be streamlined. Accuracy
+            </Text>
+            <Text mt={5}>
+              Enhancement: The new system will reduce human errors in data
+              entry, leading to more accurate inventory counts. Barcode scanning
+              and RFID technology will be used for real-time tracking, ensuring
+              inventory accuracy.
             </Text>
           </GridItem>
         </Grid>
@@ -225,28 +226,16 @@ const AdminHome1 = () => {
             paddingY={{ base: "10px", md: "2%" }}
           >
             <Text color={labelColor}>
-              <ul>
-                <li>
-                  Budget Constraints: Regular budget reviews and seeking
-                  additional funding if needed.
-                </li>
-                <li>
-                  Technical Challenges: Engaging experienced IT professionals,
-                  thorough testing, and contingency plans.
-                </li>
-                <li>
-                  Resistance to Change: Developing a change management strategy,
-                  involving employees, and providing training and support.
-                </li>
-                <li>
-                  Cybersecurity Threats: Implementing temporary security
-                  measures and continuous monitoring.
-                </li>
-                <li>
-                  Delays in Vendor Deliveries: Maintaining vendor communication,
-                  having backup suppliers, and adjusting timelines as necessary.
-                </li>
-              </ul>
+              Data Loss or Corruption: To mitigate the risk of data loss or
+              corruption during the migration process, regular backups will be
+              maintained, and a robust data migration plan will be established.
+            </Text>
+
+            <Text mt={5}>
+              Staff Resistance: Some employees may resist the change from manual
+              to automated systems. To address this, a change management plan
+              will be developed, including training, incentives, and
+              communication.
             </Text>
           </GridItem>
         </Grid>
@@ -282,7 +271,7 @@ const AdminHome1 = () => {
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
           >
-            <Text color={labelColor}>Date</Text>
+            <Text color={labelColor}>2023-10-19</Text>
           </GridItem>
         </Grid>
 
@@ -317,7 +306,7 @@ const AdminHome1 = () => {
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
           >
-            <Text color={labelColor}>Date</Text>
+            <Text color={labelColor}>2023-10-26</Text>
           </GridItem>
         </Grid>
 
@@ -352,6 +341,9 @@ const AdminHome1 = () => {
             paddingX={{ base: "20px", md: "5%" }}
             paddingY={{ base: "10px", md: "2%" }}
           >
+            <Link color={"blue.700"} href={"#"}>
+              Budget repot.pdf
+            </Link>
             {/* Don't know how to add the report and make it downloadable. */}
           </GridItem>
         </Grid>
@@ -361,7 +353,7 @@ const AdminHome1 = () => {
           paddingX={{ base: "20px", md: "10%" }}
           paddingY={{ base: "10px", md: "1%" }}
         >
-          <Link to="/admin2">
+          <Link href="/admin2">
             <NextButtonAdmin
               currrentStep={0}
               onStepperChange={function (): void {

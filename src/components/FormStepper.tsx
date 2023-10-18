@@ -20,7 +20,7 @@ const steps = [
   { title: "Contact", description: "Contact Information" },
   { title: "Project", description: "About the Project" },
   { title: "Approval", description: "Approval of the Project" },
-  { title: "Provision", description: "Provision of Funds" },
+  // { title: "Provision", description: "Provision of Funds" },
 ];
 
 const FormStepper = ({ currentStep }: Props) => {

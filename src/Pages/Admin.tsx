@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Divider,
-  Grid,
-  GridItem,
-  Text,
-} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import CardComponent from "./CardComponent";
-import cardImage from "../assets/images/cardImage.webp"
+import cardImage from "../assets/images/cardImage.webp";
 //import axios from "axios";
 
 // interface RequestData {
@@ -19,26 +13,26 @@ import cardImage from "../assets/images/cardImage.webp"
 //     hod_response: boolean;
 //     // Add other properties as needed
 //   }
-  
-  const Admin = () => {
-    // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
-    // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
-  
-    // useEffect(() => {
-    //   // Fetch the requests from your backend API
-    //   axios.get("/admin/")
-    //     .then((response) => {
-    //       // Categorize requests based on HOD_response
-    //       const latest = response.data.filter((request: RequestData) => request.hod_response === false);
-    //       const previous = response.data.filter((request: RequestData) => request.hod_response === true);
-  
-    //       setLatestRequests(latest);
-    //       setPreviousRequests(previous);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error fetching requests:", error);
-    //     });
-    // }, []);
+
+const Admin = () => {
+  // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
+  // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
+
+  // useEffect(() => {
+  //   // Fetch the requests from your backend API
+  //   axios.get("/admin/")
+  //     .then((response) => {
+  //       // Categorize requests based on HOD_response
+  //       const latest = response.data.filter((request: RequestData) => request.hod_response === false);
+  //       const previous = response.data.filter((request: RequestData) => request.hod_response === true);
+
+  //       setLatestRequests(latest);
+  //       setPreviousRequests(previous);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching requests:", error);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -95,8 +89,6 @@ import cardImage from "../assets/images/cardImage.webp"
           ))}
         </Grid> */}
 
-        
-
         <Grid
           paddingX={{ base: "10%", md: "10%" }}
           paddingBottom={{ base: "10px" }}
@@ -108,16 +100,16 @@ import cardImage from "../assets/images/cardImage.webp"
           marginBottom={5}
           fontFamily="Poppins, sans-serif"
         >
-            <GridItem area={`card1`} colSpan={1} alignItems="center">
+          <GridItem area={`card1`} colSpan={1} alignItems="center">
             <CardComponent
-                cardImage={cardImage}
-                bgColor="#BFD8F8"
-                title="First Card"
-                description="Description for the first card."
-                requestDate="2023-10-17"
+              cardImage={cardImage}
+              bgColor="#BFD8F8"
+              title="Automated Inventory Management..."
+              description="The project aims to upgrade the existing manual inventory management system of a small retail business to an automated system. This upgrade is crucial..."
+              requestDate="2023-10-18"
             />
-            </GridItem>
-            {/* <GridItem area={`card2`} colSpan={1} alignItems="center">
+          </GridItem>
+          {/* <GridItem area={`card2`} colSpan={1} alignItems="center">
             <CardComponent
                 cardImage={cardImage}
                 bgColor="#BFD8F8"
@@ -126,9 +118,9 @@ import cardImage from "../assets/images/cardImage.webp"
                 requestDate="2023-10-17"
             />
             </GridItem> */}
-            </Grid>
-            <Divider my={4} />
-            <Box
+        </Grid>
+        <Divider my={4} />
+        <Box
           paddingTop={"4%"}
           paddingBottom={"3%"}
           paddingX={"10%"}
@@ -144,7 +136,7 @@ import cardImage from "../assets/images/cardImage.webp"
             Older Requests
           </Text>
         </Box>
-        
+
         <Grid
           paddingX={{ base: "10%", md: "10%" }}
           paddingBottom={{ base: "10px" }}
@@ -156,28 +148,27 @@ import cardImage from "../assets/images/cardImage.webp"
           marginBottom={5}
           fontFamily="Poppins, sans-serif"
         >
-            <GridItem area={`card1`} colSpan={1} alignItems="center">
+          <GridItem area={`card1`} colSpan={1} alignItems="center">
             <CardComponent
-                cardImage={cardImage}
-                bgColor="#CDCDCD"
-                title="First Card"
-                description="Description for the first card."
-                requestDate="2023-10-17"
+              cardImage={cardImage}
+              bgColor="#CDCDCD"
+              title="First Card"
+              description="Description for the first card."
+              requestDate="2023-10-17"
             />
-            </GridItem>
-            <GridItem area={`card2`} colSpan={1} alignItems="center">
+          </GridItem>
+          <GridItem area={`card2`} colSpan={1} alignItems="center">
             <CardComponent
-                cardImage={cardImage}
-                bgColor="#CDCDCD"
-                title="First Card"
-                description="Description for the first card."
-                requestDate="2023-10-17"
+              cardImage={cardImage}
+              bgColor="#CDCDCD"
+              title="First Card"
+              description="Description for the first card."
+              requestDate="2023-10-17"
             />
-            </GridItem>
-            </Grid>
-        
+          </GridItem>
+        </Grid>
 
-          {/* {previousRequests.map((request, index) => (
+        {/* {previousRequests.map((request, index) => (
             <GridItem area={`card${index + 1}`} colSpan={1} alignItems="center" key={index}>
               <CardComponent
                 cardImage={cardImage}
@@ -188,7 +179,6 @@ import cardImage from "../assets/images/cardImage.webp"
               />
             </GridItem>
           ))} */}
-        
       </form>
       <FooterSection />
     </>
