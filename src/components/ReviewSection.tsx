@@ -19,6 +19,7 @@ const ReviewSection = ({ previousRequest, userToken }: Props) => {
       </Text>
 
       <Box paddingX={{ base: "10%", md: "20%" }}>
+        <Text>{previousRequest?.project_title}</Text>
         <Grid
           alignContent={"center"}
           alignItems={"center"}
@@ -39,7 +40,7 @@ const ReviewSection = ({ previousRequest, userToken }: Props) => {
           </GridItem>
           <GridItem>
             <Button marginTop={{ base: 2, md: 0 }} colorScheme="yellow">
-              Pending
+              {previousRequest?.lecturer_response}
             </Button>
           </GridItem>
         </Grid>
@@ -64,7 +65,9 @@ const ReviewSection = ({ previousRequest, userToken }: Props) => {
             </Text>
           </GridItem>
           <GridItem>
-            <Button colorScheme="yellow">Pending</Button>
+            <Button colorScheme="yellow">
+              {previousRequest?.hod_response}
+            </Button>
           </GridItem>
         </Grid>
         <Grid
@@ -92,7 +95,9 @@ const ReviewSection = ({ previousRequest, userToken }: Props) => {
             </Text>
           </GridItem>
           <GridItem>
-            <Button colorScheme="yellow">Pending</Button>
+            <Button colorScheme="yellow">
+              {previousRequest?.aces_response}
+            </Button>
           </GridItem>
         </Grid>
       </Box>
