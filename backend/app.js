@@ -198,8 +198,6 @@ app.get("/findrequest/:requesterEmail", async (req, res) => {
 
   const previousRequest = await searchRequestByRequester(requesterEmail)
 
-
-
   res.status(200).json(previousRequest)
 })
 

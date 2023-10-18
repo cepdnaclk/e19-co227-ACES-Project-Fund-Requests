@@ -1,7 +1,16 @@
 import { Box, Button, Grid, GridItem, Text } from "@chakra-ui/react";
-import React from "react";
 
-const ReviewSection = () => {
+import { PreviousRequest } from "../models/PreviousRequest";
+import { DUserTokenInterface } from "../models/TokenMoodel";
+
+interface Props {
+  previousRequest: PreviousRequest | null;
+  userToken: DUserTokenInterface | null;
+}
+
+const ReviewSection = ({ previousRequest, userToken }: Props) => {
+  console.log("The previous Request: ", previousRequest);
+
   return (
     <Box marginBottom={"30px"} paddingX={"10%"}>
       <Text paddingY={5} color={"#033595"}>
@@ -25,7 +34,7 @@ const ReviewSection = () => {
           <GridItem>
             <Text fontWeight={"bold"}>Approval by the Lecturer In-charge</Text>
             <Text fontSize={"14px"} color={"#757070"}>
-              Dr. Isuru Nawinne
+              {previousRequest?.lecturer_name}
             </Text>
           </GridItem>
           <GridItem>

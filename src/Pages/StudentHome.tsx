@@ -20,13 +20,12 @@ import FundRequest from "../classes/fund_request";
 import { DUserTokenInterface } from "../models/TokenMoodel";
 import { PreviousRequest } from "../models/PreviousRequest";
 
-
 interface Props {
   previousRequest: PreviousRequest | null;
   userToken: DUserTokenInterface | null;
 }
 
-function StudentHome({userToken}: Props) {
+function StudentHome({ previousRequest, userToken }: Props) {
   // const [count, setCount] = useState(0);
 
   const [requestObject, setRequestObject] = useState<FundRequest | null>(null);
@@ -43,7 +42,7 @@ function StudentHome({userToken}: Props) {
 
   let formElements = [
     <FormSection1
-    userToken = {userToken}
+      userToken={userToken}
       onSetRequestObject={(requestobj: FundRequest) => {
         setRequestObject(requestobj);
       }}
@@ -83,6 +82,19 @@ function StudentHome({userToken}: Props) {
     return formElements[index];
   }
 
+  if (previousRequest != null) {
+    return (
+      <>
+        {" "}
+        <Header></Header>
+        <ReviewSection
+          previousRequest={previousRequest}
+          userToken={userToken}
+        ></ReviewSection>
+      </>
+    );
+  }
+
   return (
     <>
       <Header></Header>
@@ -100,7 +112,12 @@ function StudentHome({userToken}: Props) {
           }}
         ></NextButton>
       ) : null}
-      {isSubmitted3 && activeStep == 2 ? <ReviewSection></ReviewSection> : null}
+      {isSubmitted3 && activeStep == 2 ? (
+        <ReviewSection
+          previousRequest={previousRequest}
+          userToken={userToken}
+        ></ReviewSection>
+      ) : null}
       {/* {activeStep == 2 ? <QualifiedSection></QualifiedSection> : null} */}
       {/* {activeStep == 2 ? <DeniedSection></DeniedSection> : null} */}
       <FooterSection></FooterSection>
