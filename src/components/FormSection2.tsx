@@ -37,15 +37,27 @@ const schema = z.object({
   title: z.string().trim().min(3, {
     message: "The title should be atleast 3 characters long!",
   }),
-  description: z.string().trim().min(10, {
-    message: "The description should be atleast 10 characters long!",
-  }),
-  goals: z.string().trim().min(10, {
-    message: "This explanation should be atleast 10 characters long!",
-  }),
-  risks: z.string().trim().min(10, {
-    message: "This explanation should be atleast 10 characters long!",
-  }),
+  description: z
+    .string()
+    .trim()
+    .min(10, {
+      message: "The description should be atleast 10 characters long!",
+    })
+    .max(1000, { message: "Description should be less than 1000 characters" }),
+  goals: z
+    .string()
+    .trim()
+    .min(10, {
+      message: "This explanation should be atleast 10 characters long!",
+    })
+    .max(1000, { message: "Goals should be less than 1000 characters" }),
+  risks: z
+    .string()
+    .trim()
+    .min(10, {
+      message: "This explanation should be atleast 10 characters long!",
+    })
+    .max(1000, { message: "Risks should be less than 1000 characters" }),
 
   // type: z.string({ invalid_type_error: "Please select a project type!" }),
   projectType: z.enum(["1", "2", "3", "4"]),

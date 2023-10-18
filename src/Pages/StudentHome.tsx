@@ -88,6 +88,7 @@ function StudentHome({ previousRequest, userToken }: Props) {
         {" "}
         <Header></Header>
         <ReviewSection
+          requestObject={requestObject}
           previousRequest={previousRequest}
           userToken={userToken}
         ></ReviewSection>
@@ -114,6 +115,7 @@ function StudentHome({ previousRequest, userToken }: Props) {
       ) : null}
       {isSubmitted3 && activeStep == 2 ? (
         <ReviewSection
+        requestObject= {requestObject}
           previousRequest={previousRequest}
           userToken={userToken}
         ></ReviewSection>

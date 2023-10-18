@@ -34,8 +34,8 @@ const schema = z.object({
   }),
 
   email: z.string().email({ message: "Please enter a valid email address" }),
-  contactNo: z.string().min(10, {
-    message: "The contact number should be 10 characters long",
+  contactNo: z.string().length(10, {
+    message: "The contact number should be exactly 10 characters",
   }),
   otherName1: z.string().optional(),
   otherName2: z.string().optional(),

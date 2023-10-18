@@ -145,7 +145,7 @@ app.post("/fundRequest", async (req, res) => {
       );
 
       // Respond with a success JSON response
-      res.status(200).json({ success: true });
+      res.status(200).json({ data });
     } catch (error) {
       console.error("Error saving request:", error);
       // Handle the error and respond with an error JSON response

@@ -42,7 +42,7 @@ const FormSection3 = ({
   const toast = useToast();
   const [isFinished, setIsFinished] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isError, setIsError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -89,6 +89,11 @@ const FormSection3 = ({
                     setIsFinished(true);
 
                     console.log("REady to display the toast");
+                    console.log(res.data.data.lecturerName);
+
+                    // requestObject!["lecturerName"] = res.data.data.lecturerName;
+                    // requestObject!["lecturerEmail"] =
+                    //   res.data.data.lecturerEmail;
 
                     if (res.status == 200) {
                       toast({
@@ -107,6 +112,7 @@ const FormSection3 = ({
                   })
                   .catch((err) => {
                     console.log(err);
+                    setIsError(true);
                     setIsLoading(false);
                   });
               }
@@ -229,6 +235,11 @@ const FormSection3 = ({
             </button>
           ) : (
             <Text color="black">waiting...</Text>
+          )}
+          {isError && (
+            <Text color={"red.500"}>
+              Error Occurred. Please try again later!
+            </Text>
           )}
         </form>
         {/* <Box textAlign={"end"}>
