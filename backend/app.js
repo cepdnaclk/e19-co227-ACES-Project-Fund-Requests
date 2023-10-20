@@ -15,6 +15,9 @@ const Request = require("./models/fundrequest");
 
 app.use(express.static("./public"));
 
+app.use(cors());
+
+
 // Increase the request size limit to 50MB (or set it to your desired limit)
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
@@ -29,6 +32,24 @@ async function main() {
   await mongoose.connect(mongoDB);
   console.log("Database connected");
 }
+
+app.get("/getall", async (req, res) =>{
+
+  console.log("Getting all documents");
+
+  alldocs = await Request.find({});
+
+  if (alldocs) {
+    console.log("all: ", alldocs);
+    res.status(200).json({docs: alldocs})
+  }else {
+    console.log("Error occured");
+  }
+
+  
+  
+
+})
 
 app.get("/admin", (req, res) => {
   res.send("Hi there");
@@ -55,7 +76,6 @@ app.use(express.urlencoded({ extended: false })); // handle POST requests body. 
 app.use(express.json()); // Handle the data in the type "application/json"
 
 // app.use("/change/",countriesMiddleware);
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.status(200).json({ success: true });

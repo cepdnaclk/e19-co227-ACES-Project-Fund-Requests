@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import CardComponent from "./CardComponent";
 import cardImage from "../assets/images/cardImage.webp";
+import axios from "axios";
 //import axios from "axios";
 
 // interface RequestData {
@@ -18,21 +19,17 @@ const Admin = () => {
   // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
   // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
 
-  // useEffect(() => {
-  //   // Fetch the requests from your backend API
-  //   axios.get("/admin/")
-  //     .then((response) => {
-  //       // Categorize requests based on HOD_response
-  //       const latest = response.data.filter((request: RequestData) => request.hod_response === false);
-  //       const previous = response.data.filter((request: RequestData) => request.hod_response === true);
-
-  //       setLatestRequests(latest);
-  //       setPreviousRequests(previous);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching requests:", error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    // Fetch the requests from your backend API
+    axios
+      .get("http://localhost:5000/getall")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching requests:", error);
+      });
+  }, []);
 
   return (
     <>
