@@ -18,20 +18,25 @@ import { PreviousRequest } from "../models/PreviousRequest";
 
 const Admin = () => {
   const [allRequests, setAllReusts] = useState<PreviousRequest[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
   // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
 
   useEffect(() => {
     // Fetch the requests from your backend API
+    setIsLoading(true);
     axios
       .get("http://localhost:5000/getall")
       .then((response) => {
         console.log(response.data.docs[0]);
 
         setAllReusts(response.data.docs);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching requests:", error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -102,18 +107,22 @@ const Admin = () => {
           fontFamily="Poppins, sans-serif"
         >
           <GridItem area={`card1`} colSpan={1} alignItems="center">
-            {allRequests.map((eachRequest) => {
-              return (
-                <CardComponent
-                  key={eachRequest._id}
-                  cardImage={cardImage}
-                  bgColor="#BFD8F8"
-                  title={eachRequest.project_title}
-                  description={eachRequest.project_description}
-                  requestDate="2023-10-18"
-                />
-              );
-            })}
+            {isLoading ? (
+              <Text>Loading data...</Text>
+            ) : (
+              allRequests.map((eachRequest) => {
+                return (
+                  <CardComponent
+                    key={eachRequest._id}
+                    cardImage={cardImage}
+                    bgColor="#BFD8F8"
+                    title={eachRequest.project_title}
+                    description={eachRequest.project_description}
+                    requestDate="2023-10-18"
+                  />
+                );
+              })
+            )}
             {/* <CardComponent
               cardImage={cardImage}
               bgColor="#BFD8F8"
