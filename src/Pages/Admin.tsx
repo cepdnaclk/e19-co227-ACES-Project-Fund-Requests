@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Grid,
+  GridItem,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import CardComponent from "./CardComponent";
@@ -26,6 +36,8 @@ const Admin = () => {
   useEffect(() => {
     // Fetch the requests from your backend API
     setIsLoading(true);
+    console.log("Start sending");
+
     axios
       .get("http://localhost:5000/getall")
       .then((response) => {
@@ -108,7 +120,10 @@ const Admin = () => {
         >
           <GridItem area={`card1`} colSpan={1} alignItems="center">
             {isLoading ? (
-              <Text>Loading data...</Text>
+              <Stack>
+                <SkeletonText></SkeletonText>
+                <SkeletonText></SkeletonText>
+              </Stack>
             ) : (
               allRequests.map((eachRequest) => {
                 return (

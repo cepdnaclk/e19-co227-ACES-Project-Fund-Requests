@@ -19,7 +19,8 @@
 
 @font-face {
     font-family: poppins;
-    src: url(../public/Poppins/Poppins-Regular.ttf);
+    src: url(../Poppins/Poppins-Regular.ttf);
+    /* src: url(../public/Poppins/Poppins-Regular.ttf); */
 }
 .AdminUiTexts {
     font-family: poppins;
