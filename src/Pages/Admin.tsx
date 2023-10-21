@@ -5,6 +5,7 @@ import FooterSection from "../components/FooterSection";
 import CardComponent from "./CardComponent";
 import cardImage from "../assets/images/cardImage.webp";
 import axios from "axios";
+import { PreviousRequest } from "../models/PreviousRequest";
 //import axios from "axios";
 
 // interface RequestData {
@@ -16,6 +17,7 @@ import axios from "axios";
 //   }
 
 const Admin = () => {
+  const [allRequests, setAllReusts] = useState<PreviousRequest[]>([]);
   // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
   // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
 
@@ -24,7 +26,9 @@ const Admin = () => {
     axios
       .get("http://localhost:5000/getall")
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.docs[0]);
+
+        setAllReusts(response.data.docs);
       })
       .catch((error) => {
         console.error("Error fetching requests:", error);
@@ -98,13 +102,25 @@ const Admin = () => {
           fontFamily="Poppins, sans-serif"
         >
           <GridItem area={`card1`} colSpan={1} alignItems="center">
-            <CardComponent
+            {allRequests.map((eachRequest) => {
+              return (
+                <CardComponent
+                  key={eachRequest._id}
+                  cardImage={cardImage}
+                  bgColor="#BFD8F8"
+                  title={eachRequest.project_title}
+                  description={eachRequest.project_description}
+                  requestDate="2023-10-18"
+                />
+              );
+            })}
+            {/* <CardComponent
               cardImage={cardImage}
               bgColor="#BFD8F8"
               title="Automated Inventory Management..."
               description="The project aims to upgrade the existing manual inventory management system of a small retail business to an automated system. This upgrade is crucial..."
               requestDate="2023-10-18"
-            />
+            /> */}
           </GridItem>
           {/* <GridItem area={`card2`} colSpan={1} alignItems="center">
             <CardComponent
@@ -146,13 +162,13 @@ const Admin = () => {
           fontFamily="Poppins, sans-serif"
         >
           <GridItem area={`card1`} colSpan={1} alignItems="center">
-            <CardComponent
+            {/* <CardComponent
               cardImage={cardImage}
               bgColor="#CDCDCD"
               title="First Card"
               description="Description for the first card."
               requestDate="2023-10-17"
-            />
+            /> */}
           </GridItem>
           <GridItem area={`card2`} colSpan={1} alignItems="center">
             <CardComponent
