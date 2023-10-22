@@ -4,18 +4,29 @@ import {
   Divider,
   Grid,
   GridItem,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
+
+import jwt_decode from "jwt-decode";
+
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import CardComponent from "./CardComponent";
 import cardImage from "../assets/images/cardImage.webp";
 import axios from "axios";
 import { PreviousRequest } from "../models/PreviousRequest";
+import { DUserTokenInterface } from "../models/TokenMoodel";
+import { GoogleLogin } from "@react-oauth/google";
 //import axios from "axios";
 
 // interface RequestData {
@@ -30,30 +41,105 @@ const Admin = () => {
   const [allRequests, setAllReusts] = useState<PreviousRequest[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [userToken, setUserToken] = useState<DUserTokenInterface | null>(null);
+
   // const [latestRequests, setLatestRequests] = useState<RequestData[]>([]);
   // const [previousRequests, setPreviousRequests] = useState<RequestData[]>([]);
 
   useEffect(() => {
-    // Fetch the requests from your backend API
-    setIsLoading(true);
-    console.log("Start sending");
+    if (userToken == null) {
+      onOpen();
+    } else {
+      onClose();
+      console.log("Closed the modal");
 
-    axios
-      .get("http://localhost:5000/getall")
-      .then((response) => {
-        console.log(response.data.docs[0]);
+      setIsLoading(true);
 
-        setAllReusts(response.data.docs);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching requests:", error);
-        setIsLoading(false);
-      });
-  }, []);
+      axios
+        .get("http://localhost:5000/getall")
+        .then((response) => {
+          console.log(response.data.docs[0]);
+
+          setAllReusts(response.data.docs);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching requests:", error);
+          setIsLoading(false);
+        });
+    }
+  }, [userToken]);
+
+  // useEffect(() => {
+  //   // Fetch the requests from your backend API
+  //   setIsLoading(true);
+  //   console.log("Start sending");
+
+  //   // axios
+  //   //   .get("http://localhost:5000/getall")
+  //   //   .then((response) => {
+  //   //     console.log(response.data.docs[0]);
+
+  //   //     setAllReusts(response.data.docs);
+  //   //     setIsLoading(false);
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.error("Error fetching requests:", error);
+  //   //     setIsLoading(false);
+  //   //   });
+  // }, []);
 
   return (
     <>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        size="sm"
+        isCentered
+      >
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(3px) " />
+        <ModalContent>
+          <ModalHeader
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            ACES Project Fund Requests
+          </ModalHeader>
+          <ModalBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text pb="3" fontSize="sm">
+              You need to login with your eng email
+            </Text>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+
+                var decodedUserToken: DUserTokenInterface = jwt_decode(
+                  credentialResponse.credential!
+                );
+
+                setUserToken(decodedUserToken);
+
+                console.log(decodedUserToken);
+
+                onClose();
+              }}
+              onError={() => {
+                onOpen();
+                console.log("Login Failed");
+              }}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
       <Header />
       <form className="AdminUiTexts">
         <Box
