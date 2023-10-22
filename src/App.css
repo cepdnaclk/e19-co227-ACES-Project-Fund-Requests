@@ -28,3 +28,7 @@
 .nextButton {
     font-family: poppins;
 }
+.grids {
+    max-width: 500px; 
+    min-width: 300px; 
+  }

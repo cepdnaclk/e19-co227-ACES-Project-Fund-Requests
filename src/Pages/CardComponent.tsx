@@ -9,7 +9,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import ViewMoreButton from "./ViewMoreButton";
+//import ViewMoreButton from "./ViewMoreButton";
 // import { Link } from "react-router-dom";
 //import cardImage from "../assets/images/cardImage.webp"
 
@@ -30,6 +30,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
 }) => {
   return (
     <Card
+      className="cards"
       maxW="lg"
       bg={bgColor}
       marginBottom={"5%"}
@@ -46,7 +47,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
           <Text>{description}</Text>
           <Link mt={5} color="blue.600" href={"/admin1"}>
             {/* <ViewMoreButton /> */}
-            view more
+            View more
           </Link>
         </Stack>
       </CardBody>

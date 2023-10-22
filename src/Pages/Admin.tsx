@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
+  Container,
   Divider,
   Grid,
   GridItem,
@@ -194,11 +195,13 @@ const Admin = () => {
         </Grid> */}
 
         <Grid
-          paddingX={{ base: "10%", md: "10%" }}
+          paddingX={{ base: "10%", md: "0%",lg: "%10" }}
           paddingBottom={{ base: "10px" }}
           templateAreas={{
-            base: `"card1" "card2"`,
-            md: `"card1 card2"`,
+            base: `"card1" "card2" "card3"`,
+              md: `"card1 card2" 
+              "card3"`,
+              lg: `"card1 card2 card3"`
           }}
           gap={4}
           marginBottom={5}
@@ -260,36 +263,49 @@ const Admin = () => {
           </Text>
         </Box>
 
-        <Grid
-          paddingX={{ base: "10%", md: "10%" }}
-          paddingBottom={{ base: "10px" }}
-          templateAreas={{
-            base: `"card1" "card2"`,
-            md: `"card1 card2"`,
-          }}
-          gap={4}
-          marginBottom={5}
-          fontFamily="Poppins, sans-serif"
-        >
-          <GridItem area={`card1`} colSpan={1} alignItems="center">
-            {/* <CardComponent
-              cardImage={cardImage}
-              bgColor="#CDCDCD"
-              title="First Card"
-              description="Description for the first card."
-              requestDate="2023-10-17"
-            /> */}
-          </GridItem>
-          <GridItem area={`card2`} colSpan={1} alignItems="center">
-            <CardComponent
-              cardImage={cardImage}
-              bgColor="#CDCDCD"
-              title="First Card"
-              description="Description for the first card."
-              requestDate="2023-10-17"
-            />
-          </GridItem>
-        </Grid>
+        
+          <Grid
+            paddingX={{ sm: "10%", md: "10%" }}
+            paddingBottom={{ base: "10px" }}
+            templateAreas={{
+              base: `"card1" "card2" "card3"`,
+              md: `"card1 card2" 
+              "card3"`,
+              lg: `"card1 card2 card3"`
+            }}
+            gap={4}
+            marginBottom={5}
+            fontFamily="Poppins, sans-serif"
+          >
+            <GridItem area={`card1`} colSpan={1} alignItems="center" className="grids">
+              <CardComponent
+                cardImage={cardImage}
+                bgColor="#CDCDCD"
+                title="1st Card"
+                description="Description for the 1st card."
+                requestDate="2023-10-17"
+              />
+            </GridItem>
+            <GridItem area={`card2`} colSpan={1} alignItems="center" className="grids">
+              <CardComponent
+                cardImage={cardImage}
+                bgColor="#CDCDCD"
+                title="2nd Card"
+                description="Description for the 2nd card."
+                requestDate="2023-10-17"
+              />
+            </GridItem>
+            <GridItem area={`card3`} colSpan={1} alignItems="center" className="grids">
+              <CardComponent
+                cardImage={cardImage}
+                bgColor="#CDCDCD"
+                title="3rd Card"
+                description="Description for the first card."
+                requestDate="2023-10-17"
+              />
+            </GridItem>
+          </Grid>
+        
 
         {/* {previousRequests.map((request, index) => (
             <GridItem area={`card${index + 1}`} colSpan={1} alignItems="center" key={index}>
