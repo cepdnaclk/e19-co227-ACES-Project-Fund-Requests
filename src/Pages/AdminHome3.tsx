@@ -1,6 +1,7 @@
 //import FooterSection from "../components/FooterSection";
 import Header from "../components/Header";
-import { Input, Button } from "@chakra-ui/react";
+import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import React, { useState } from 'react';
 
 import {
   Text,
@@ -17,6 +18,24 @@ import {
 //const labelColor = "black";
 
 const AdminHome3 = () => {
+  const [showDateInput, setShowDateInput] = useState(false);
+  const [showTextInput, setShowTextInput] = useState(false);
+
+  const handleGoButtonClick = () => {
+    // const inputElement = document.getElementById("decisionInput");
+    // const inputValue = inputElement.value;
+    const inputElement = document.getElementById("decisionInput") as HTMLInputElement;
+    if (inputElement) {
+      const inputValue = inputElement.value;
+      if (inputValue === "yes") {
+        setShowDateInput(true);
+        setShowTextInput(false);
+      } else if (inputValue === "no") {
+        setShowDateInput(false);
+        setShowTextInput(true);
+      }
+    }
+  };
   return (
     <>
       <Header></Header>
@@ -75,6 +94,7 @@ const AdminHome3 = () => {
         </GridItem>
         <GridItem area={"input"}>
         <Input
+          id="decisionInput"
           margin={{ base: "0% 0% 1%", md: "0% 0% 3%"}}
           width={{ base: "80%", md:"85%", lg: "90%"}}
           variant="outline" 
@@ -84,6 +104,7 @@ const AdminHome3 = () => {
         </GridItem>
         <GridItem area={"button1"}>
         <Button 
+          onClick={handleGoButtonClick}
           marginTop={"1%"}
           colorScheme='green' 
           variant='outline'
@@ -96,6 +117,31 @@ const AdminHome3 = () => {
         </Button>
       </GridItem>
         </Grid>
+        {showDateInput && (
+          <FormControl>
+            <FormLabel>Date Input</FormLabel>
+            <Input
+              margin={{ base: "0% 0% 1%", md: "0% 0% 3%" }}
+              width={{ base: "80%", md: "85%", lg: "90%" }}
+              variant="outline" 
+              borderColor="black" 
+              placeholder="Enter a date" 
+            />
+          </FormControl>
+        )}
+
+        {showTextInput && (
+          <FormControl>
+            <FormLabel>Text Input</FormLabel>
+            <Input
+              margin={{ base: "0% 0% 1%", md: "0% 0% 3%" }}
+              width={{ base: "80%", md: "85%", lg: "90%" }}
+              variant="outline" 
+              borderColor="black" 
+              placeholder="Enter the reason" 
+            />
+          </FormControl>
+        )}
       </Box>
 
       {/* Approval states */}
