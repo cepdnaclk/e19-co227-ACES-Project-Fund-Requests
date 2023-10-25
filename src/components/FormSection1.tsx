@@ -1,19 +1,15 @@
-import {
-  Text,
-  Grid,
-  GridItem,
-  Input,
-  Box,
-
-} from "@chakra-ui/react";
+import { Text, Grid, GridItem, Input, Box } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
 import * as z from "zod";
 
 import { useState } from "react";
+
+import { DUserTokenInterface } from "../models/TokenMoodel";
 import FundRequest from "../classes/fund_request";
 
 const inputBorderColor = "#97bfd4";
@@ -22,6 +18,7 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 interface Props {
+  userToken: DUserTokenInterface | null;
   onSetRequestObject: (requestobj: FundRequest) => void;
   requestObject: FundRequest | null;
   submitStatus: boolean;
@@ -37,8 +34,8 @@ const schema = z.object({
   }),
 
   email: z.string().email({ message: "Please enter a valid email address" }),
-  contactNo: z.string().min(10, {
-    message: "The contact number should be 10 characters long",
+  contactNo: z.string().length(10, {
+    message: "The contact number should be exactly 10 characters",
   }),
   otherName1: z.string().optional(),
   otherName2: z.string().optional(),
@@ -49,6 +46,7 @@ const schema = z.object({
 type formData = z.infer<typeof schema>;
 
 const FormSection1 = ({
+  userToken,
   submitStatus,
   onSubmit,
   requestObject,
@@ -83,7 +81,7 @@ const FormSection1 = ({
       </Text>
 
       <form
-        onSubmit={handleSubmit((data) => {
+        onSubmit={handleSubmit((data: any) => {
           if (!isValid) {
             return;
           }
@@ -104,6 +102,7 @@ const FormSection1 = ({
               leadersName: data.regname,
               email: data.email,
               contactNo: data.contactNo,
+              requester: userToken!.email as string,
             };
             console.log("Printing the object");
 
@@ -298,6 +297,9 @@ const FormSection1 = ({
               size={"sm"}
               color={inputFieldTextColor}
               marginTop={2}
+              placeholder={
+                userToken ? (userToken.email as string) : "Enter your email"
+              }
               border={
                 errors.email ? `1px solid red` : `1px solid ${inputBorderColor}`
               }

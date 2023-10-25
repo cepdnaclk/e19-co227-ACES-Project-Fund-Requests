@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react"; // Import useEffect
+import { useEffect, useState } from "react"; // Import useEffect
+
 import {
+  Text,
   Button,
   useDisclosure,
   Modal,
@@ -9,24 +11,45 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
+  Link,
 } from "@chakra-ui/react";
+
+import { GoogleLogin } from "@react-oauth/google";
+
+import jwt_decode from "jwt-decode";
 
 import StudentHome from "./Pages/StudentHome";
 import Admin from "./Pages/Admin";
 import AdminHome1 from "./Pages/AdminHome1";
 import AdminHome2 from "./Pages/AdminHome2";
 import AdminHome3 from "./Pages/AdminHome3";
+import axios from "axios";
+
+import { DUserTokenInterface } from "./models/TokenMoodel";
+
+import { PreviousRequest } from "./models/PreviousRequest";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [userToken, setUserToken] = useState<DUserTokenInterface | null>(null);
+  const [previousRequest, setPreviousRequest] =
+    useState<PreviousRequest | null>(null);
 
-  // Conditionally open the modal when the user is not logged in
-  const isUserLoggedIn = false; // Replace with logic to check if the user is logged in
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    if (userToken == null) {
       onOpen();
+    } else {
+      onClose();
+      console.log("Closed the modal");
+
+      axios
+        .get(`http://localhost:5000/findrequest/${userToken.email}`)
+        .then((response) => {
+          setPreviousRequest(response.data);
+          console.log(response.data);
+        });
     }
-  }, [isUserLoggedIn]);
+  }, [userToken]);
 
   return (
     <BrowserRouter>
@@ -44,15 +67,49 @@ function App() {
               >
                 <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(3px) " />
                 <ModalContent>
-                  <ModalHeader>ACES Project Fund Requests</ModalHeader>
-                  <ModalBody>
-                    {/* Insert your Google login button or authentication component here */}
-                    {/* You can use an external authentication library for Google OAuth */}
-                    <Button colorScheme="blue">Login with Google</Button>
+                  <ModalHeader
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    ACES Project Fund Requests
+                  </ModalHeader>
+                  <ModalBody
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Text pb="3" fontSize="sm">
+                      You need to login with your eng email
+                    </Text>
+                    <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        console.log(credentialResponse);
+
+                        var decodedUserToken: DUserTokenInterface = jwt_decode(
+                          credentialResponse.credential!
+                        );
+
+                        setUserToken(decodedUserToken);
+
+                        console.log(decodedUserToken);
+
+                        onClose();
+                      }}
+                      onError={() => {
+                        onOpen();
+                        console.log("Login Failed");
+                      }}
+                    />
                   </ModalBody>
                 </ModalContent>
               </Modal>
-              <StudentHome />
+              <StudentHome
+                previousRequest={previousRequest}
+                userToken={userToken}
+              />
             </>
           }
         />

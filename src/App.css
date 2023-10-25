@@ -19,7 +19,8 @@
 
 @font-face {
     font-family: poppins;
-    src: url(../public/Poppins/Poppins-Regular.ttf);
+    src: url(../Poppins/Poppins-Regular.ttf);
+    /* src: url(../public/Poppins/Poppins-Regular.ttf); */
 }
 .AdminUiTexts {
     font-family: poppins;
@@ -27,3 +28,7 @@
 .nextButton {
     font-family: poppins;
 }
+.grids {
+    max-width: 500px; 
+    min-width: 300px; 
+  }

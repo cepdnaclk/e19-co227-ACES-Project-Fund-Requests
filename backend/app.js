@@ -15,6 +15,9 @@ const Request = require("./models/fundrequest");
 
 app.use(express.static("./public"));
 
+app.use(cors());
+
+
 // Increase the request size limit to 50MB (or set it to your desired limit)
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
@@ -29,6 +32,24 @@ async function main() {
   await mongoose.connect(mongoDB);
   console.log("Database connected");
 }
+
+app.get("/getall", async (req, res) =>{
+
+  console.log("Getting all documents");
+
+  alldocs = await Request.find({});
+
+  if (alldocs) {
+    console.log("all: ", alldocs);
+    res.status(200).json({docs: alldocs})
+  }else {
+    console.log("Error occured");
+  }
+
+  
+  
+
+})
 
 app.get("/admin", (req, res) => {
   res.send("Hi there");
@@ -55,7 +76,6 @@ app.use(express.urlencoded({ extended: false })); // handle POST requests body. 
 app.use(express.json()); // Handle the data in the type "application/json"
 
 // app.use("/change/",countriesMiddleware);
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.status(200).json({ success: true });
@@ -127,9 +147,10 @@ app.post("/fundRequest", async (req, res) => {
       agreement: data.agreement,
       lecturer_name: data.lecturerName,
       lecturer_email: data.lecturerEmail,
-      lecturer_response: false,
-      hod_response: false,
-      aces_response: false,
+      requester: data.requester,
+      lecturer_response: "pending",
+      hod_response: "pending",
+      aces_response: "pending",
     });
 
     try {
@@ -144,7 +165,7 @@ app.post("/fundRequest", async (req, res) => {
       );
 
       // Respond with a success JSON response
-      res.status(200).json({ success: true });
+      res.status(200).json({ data });
     } catch (error) {
       console.error("Error saving request:", error);
       // Handle the error and respond with an error JSON response
@@ -156,6 +177,35 @@ app.post("/fundRequest", async (req, res) => {
   }
 });
 // sendToAdmin(data);
+
+async function deleteRequestByRequester(requesterName) {
+  try {
+    const deletedRequest = await Request.findOneAndDelete({ requester: requesterName }).exec();
+    if (deletedRequest) {
+      // Request with the specified requester name was found and deleted
+      console.log('Request deleted:', deletedRequest);
+      return deletedRequest;
+    } else {
+      // Request with the specified requester name was not found
+      console.log('Request not found.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error deleting request:', error);
+    throw error;
+  }
+}
+
+app.get("/delete/:requesterEmail", async (req, res) => {
+
+   requesterEmail = req.params.requesterEmail;
+  console.log(requesterEmail);
+
+  const deletedRequest = await deleteRequestByRequester(requesterEmail)
+
+  res.status(200).json({deletedRequest})
+ 
+})
 
 // GEt data from the database
 app.get("/find/:id", async (req, res) => {
@@ -173,9 +223,36 @@ app.get("/find/:id", async (req, res) => {
   }
 });
 
+async function searchRequestByRequester(requesterEmail) {
+  try {
+    const request = await Request.findOne({ requester: requesterEmail }).exec();
+    if (request) {
+      // Request with the specified requester name was found
+      console.log('Request found:', request);
+      return request;
+    } else {
+      // Request with the specified requester name was not found
+      console.log('Request not found.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error searching for request:', error);
+    throw error;
+  }
+}
+
+app.get("/findrequest/:requesterEmail", async (req, res) => {
+  requesterEmail = req.params.requesterEmail;
+  console.log(requesterEmail);
+
+  const previousRequest = await searchRequestByRequester(requesterEmail)
+
+  res.status(200).json(previousRequest)
+})
+
 app.get("/admin/:id", async (req, res) => {
   const id = req.params.id;
-
+  console.log(id)
   try {
     const foundRequest = await getRequestDataByID(id);
 

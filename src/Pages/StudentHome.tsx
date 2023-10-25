@@ -17,14 +17,22 @@ import FooterSection from "../components/FooterSection";
 import DeniedSection from "../components/DeniedSection";
 import FundRequest from "../classes/fund_request";
 
-function StudentHome() {
+import { DUserTokenInterface } from "../models/TokenMoodel";
+import { PreviousRequest } from "../models/PreviousRequest";
+
+interface Props {
+  previousRequest: PreviousRequest | null;
+  userToken: DUserTokenInterface | null;
+}
+
+function StudentHome({ previousRequest, userToken }: Props) {
   // const [count, setCount] = useState(0);
 
   const [requestObject, setRequestObject] = useState<FundRequest | null>(null);
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
-    count: 4,
+    count: 3,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -34,6 +42,7 @@ function StudentHome() {
 
   let formElements = [
     <FormSection1
+      userToken={userToken}
       onSetRequestObject={(requestobj: FundRequest) => {
         setRequestObject(requestobj);
       }}
@@ -65,12 +74,26 @@ function StudentHome() {
       }}
     ></FormSection3>,
 
-    <FormSection4></FormSection4>,
+    // <FormSection4></FormSection4>,
   ];
 
   function updateFormSection(index: number) {
     console.log(formElements[index]);
     return formElements[index];
+  }
+
+  if (previousRequest != null) {
+    return (
+      <>
+        {" "}
+        <Header></Header>
+        <ReviewSection
+          requestObject={requestObject}
+          previousRequest={previousRequest}
+          userToken={userToken}
+        ></ReviewSection>
+      </>
+    );
   }
 
   return (
@@ -90,7 +113,13 @@ function StudentHome() {
           }}
         ></NextButton>
       ) : null}
-      {isSubmitted3 && activeStep == 2 ? <ReviewSection></ReviewSection> : null}
+      {isSubmitted3 && activeStep == 2 ? (
+        <ReviewSection
+          requestObject={requestObject}
+          previousRequest={previousRequest}
+          userToken={userToken}
+        ></ReviewSection>
+      ) : null}
       {/* {activeStep == 2 ? <QualifiedSection></QualifiedSection> : null} */}
       {/* {activeStep == 2 ? <DeniedSection></DeniedSection> : null} */}
       <FooterSection></FooterSection>
