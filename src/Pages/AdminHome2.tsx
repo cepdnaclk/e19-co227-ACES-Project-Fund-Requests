@@ -45,168 +45,172 @@ const AdminHome2 = () => {
         </Text>
       </Box>
 
-      <form className="AdminUiTexts">
-        {/* Applicants */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+      <Box pb={"107px"}>
+        <form className="AdminUiTexts">
+          {/* Applicants */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
                 "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Applicants
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>
-              <ol>
-                <li>Jaliya</li>
-                <li>Another</li>
-              </ol>
-            </Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Applicants
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>
+                <ol>
+                  <li>Jaliya</li>
+                  <li>Another</li>
+                </ol>
+              </Text>
+            </GridItem>
+          </Grid>
 
-        {/* Head's Name */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Head's Name */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
               "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Leader's Name
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>Jaliya</Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Leader's Name
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>Jaliya</Text>
+            </GridItem>
+          </Grid>
 
-        {/* Email */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Email */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
               "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Email
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>e19210@eng.pdn.ac.lk</Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Email
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>e19210@eng.pdn.ac.lk</Text>
+            </GridItem>
+          </Grid>
 
-        {/* Contact */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Contact */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
               "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Contact
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>0773434343</Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Contact
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>0773434343</Text>
+            </GridItem>
+          </Grid>
 
-        {/* Next Button */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-        >
-          <Link to="/admin3">
-            <NextButtonAdmin
-              currrentStep={0}
-              onStepperChange={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          </Link>
-        </Grid>
-      </form>
-      <FooterSection></FooterSection>
+          {/* Next Button */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+          >
+            <Link to="/admin3">
+              <NextButtonAdmin
+                currrentStep={0}
+                onStepperChange={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            </Link>
+          </Grid>
+        </form>
+      </Box>
+      <Box width={"100%"} position={"fixed"} bottom={0}>
+        <FooterSection />
+      </Box>
     </>
   );
 };

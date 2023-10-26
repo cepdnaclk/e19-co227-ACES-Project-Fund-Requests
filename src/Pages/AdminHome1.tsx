@@ -67,309 +67,315 @@ const AdminHome1 = () => {
         </Text>
       </Box>
 
-      <form className="AdminUiTexts">
-        {/* Project Type */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+      <Box pb={"107px"}>
+        <form className="AdminUiTexts">
+          {/* Project Type */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Project Type
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>Hobby</Text>
-            {/* <Text marginTop={2} color={labelColor}>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Project Type
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>Hobby</Text>
+              {/* <Text marginTop={2} color={labelColor}>
               CO325
             </Text> */}
-          </GridItem>
-        </Grid>
+            </GridItem>
+          </Grid>
 
-        {/* Project Description */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Project Description */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Project Description
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>
-              The project aims to upgrade the existing manual inventory
-              management system of a small retail business to an automated
-              system. This upgrade is crucial for improving efficiency,
-              accuracy, and overall management of inventory, which will lead to
-              reduced operational costs and increased customer satisfaction.
-            </Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Project Description
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>
+                The project aims to upgrade the existing manual inventory
+                management system of a small retail business to an automated
+                system. This upgrade is crucial for improving efficiency,
+                accuracy, and overall management of inventory, which will lead
+                to reduced operational costs and increased customer
+                satisfaction.
+              </Text>
+            </GridItem>
+          </Grid>
 
-        {/* Project Goals and Roadmap */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Project Goals and Roadmap */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Project Goals and Roadmap
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>
-              Efficiency Improvement: The primary goal is to increase
-              operational efficiency. This will be achieved through the
-              implementation of an automated system that reduces the time and
-              effort required for inventory management. Data entry, tracking,
-              and restocking processes will be streamlined. Accuracy
-            </Text>
-            <Text mt={5}>
-              Enhancement: The new system will reduce human errors in data
-              entry, leading to more accurate inventory counts. Barcode scanning
-              and RFID technology will be used for real-time tracking, ensuring
-              inventory accuracy.
-            </Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Project Goals and Roadmap
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>
+                Efficiency Improvement: The primary goal is to increase
+                operational efficiency. This will be achieved through the
+                implementation of an automated system that reduces the time and
+                effort required for inventory management. Data entry, tracking,
+                and restocking processes will be streamlined. Accuracy
+              </Text>
+              <Text mt={5}>
+                Enhancement: The new system will reduce human errors in data
+                entry, leading to more accurate inventory counts. Barcode
+                scanning and RFID technology will be used for real-time
+                tracking, ensuring inventory accuracy.
+              </Text>
+            </GridItem>
+          </Grid>
 
-        {/* Project Risks and Reduction */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Project Risks and Reduction */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Project Risks and Reduction
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>
-              Data Loss or Corruption: To mitigate the risk of data loss or
-              corruption during the migration process, regular backups will be
-              maintained, and a robust data migration plan will be established.
-            </Text>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Project Risks and Reduction
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>
+                Data Loss or Corruption: To mitigate the risk of data loss or
+                corruption during the migration process, regular backups will be
+                maintained, and a robust data migration plan will be
+                established.
+              </Text>
 
-            <Text mt={5}>
-              Staff Resistance: Some employees may resist the change from manual
-              to automated systems. To address this, a change management plan
-              will be developed, including training, incentives, and
-              communication.
-            </Text>
-          </GridItem>
-        </Grid>
+              <Text mt={5}>
+                Staff Resistance: Some employees may resist the change from
+                manual to automated systems. To address this, a change
+                management plan will be developed, including training,
+                incentives, and communication.
+              </Text>
+            </GridItem>
+          </Grid>
 
-        {/* Starting Date */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Starting Date */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Starting Date
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>2023-10-19</Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Starting Date
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>2023-10-19</Text>
+            </GridItem>
+          </Grid>
 
-        {/* Ending Date */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Ending Date */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Ending Date
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Text color={labelColor}>2023-10-26</Text>
-          </GridItem>
-        </Grid>
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Ending Date
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Text color={labelColor}>2023-10-26</Text>
+            </GridItem>
+          </Grid>
 
-        {/* Budget Report */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-          templateAreas={{
-            base: `"title"
+          {/* Budget Report */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+            templateAreas={{
+              base: `"title"
             "answer"`,
-            md: `"title answer"`,
-          }}
-          gridTemplateColumns={{ md: "30% 70%" }}
-          gap={4}
-          marginBottom={5}
-        >
-          <GridItem area={"title"} colSpan={1}>
-            <Text
-              fontWeight="bold"
-              marginTop={2}
-              whiteSpace={"nowrap"}
-              color={labelColor}
-            >
-              Budegt Report
-            </Text>
-          </GridItem>
-          <GridItem
-            area={"answer"}
-            bg={gridBackgrougndColor}
-            borderRadius={7}
-            colSpan={1}
-            paddingX={{ base: "20px", md: "5%" }}
-            paddingY={{ base: "10px", md: "2%" }}
+              md: `"title answer"`,
+            }}
+            gridTemplateColumns={{ md: "30% 70%" }}
+            gap={4}
+            marginBottom={5}
           >
-            <Link color={"blue.700"} href={"#"}>
-              Budget repot.pdf
+            <GridItem area={"title"} colSpan={1}>
+              <Text
+                fontWeight="bold"
+                marginTop={2}
+                whiteSpace={"nowrap"}
+                color={labelColor}
+              >
+                Budegt Report
+              </Text>
+            </GridItem>
+            <GridItem
+              area={"answer"}
+              bg={gridBackgrougndColor}
+              borderRadius={7}
+              colSpan={1}
+              paddingX={{ base: "20px", md: "5%" }}
+              paddingY={{ base: "10px", md: "2%" }}
+            >
+              <Link color={"blue.700"} href={"#"}>
+                Budget repot.pdf
+              </Link>
+              {/* Don't know how to add the report and make it downloadable. */}
+            </GridItem>
+          </Grid>
+
+          {/* Next Button */}
+          <Grid
+            paddingX={{ base: "20px", md: "10%" }}
+            paddingY={{ base: "10px", md: "1%" }}
+          >
+            <Link href="/admin2">
+              <NextButtonAdmin
+                currrentStep={0}
+                onStepperChange={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </Link>
-            {/* Don't know how to add the report and make it downloadable. */}
-          </GridItem>
-        </Grid>
+          </Grid>
 
-        {/* Next Button */}
-        <Grid
-          paddingX={{ base: "20px", md: "10%" }}
-          paddingY={{ base: "10px", md: "1%" }}
-        >
-          <Link href="/admin2">
-            <NextButtonAdmin
-              currrentStep={0}
-              onStepperChange={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          </Link>
-        </Grid>
-
-        {/* <Link to="/admin2">
+          {/* <Link to="/admin2">
           <NextButtonAdmin currrentStep={0} onStepperChange={function (index: number): void {
             throw new Error("Function not implemented.");
           } } />
         </Link> */}
-      </form>
-      <FooterSection></FooterSection>
+        </form>
+      </Box>
+      <Box width={"100%"} position={"fixed"} bottom={0}>
+        <FooterSection />
+      </Box>
     </>
   );
 };
