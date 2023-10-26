@@ -46,8 +46,10 @@ const No = () => {
   //2013.11.26 end
 
   return (
-    <>
-      <Header></Header>
+    <Flex direction="column" minHeight="100vh">
+      <Box as="header">
+        <Header></Header>
+      </Box>
 
       {isLoading ? (
         <Text
@@ -187,7 +189,7 @@ const No = () => {
       <Box width={"100%"} position={"fixed"} bottom={0}>
         <FooterSection />
       </Box>
-    </>
+    </Flex>
   );
 };
 
