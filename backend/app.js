@@ -33,7 +33,7 @@ async function main() {
   console.log("Database connected");
 }
 
-app.get("/getall", async (req, res) =>{
+app.get("/getall", async (req, res) => {
 
   console.log("Getting all documents");
 
@@ -41,13 +41,13 @@ app.get("/getall", async (req, res) =>{
 
   if (alldocs) {
     console.log("all: ", alldocs);
-    res.status(200).json({docs: alldocs})
-  }else {
+    res.status(200).json({ docs: alldocs })
+  } else {
     console.log("Error occured");
   }
 
-  
-  
+
+
 
 })
 
@@ -198,13 +198,13 @@ async function deleteRequestByRequester(requesterName) {
 
 app.get("/delete/:requesterEmail", async (req, res) => {
 
-   requesterEmail = req.params.requesterEmail;
+  requesterEmail = req.params.requesterEmail;
   console.log(requesterEmail);
 
   const deletedRequest = await deleteRequestByRequester(requesterEmail)
 
-  res.status(200).json({deletedRequest})
- 
+  res.status(200).json({ deletedRequest })
+
 })
 
 // GEt data from the database
@@ -267,6 +267,60 @@ app.get("/admin/:id", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
+
+
+
+
+
+app.post("/approved", async (req, res) => {
+
+  const data = req.body;
+  const foundRequest = await getRequestDataByID(data.id);
+  if (foundRequest !== null) {
+    try {
+      foundRequest.aces_response = 'approved';
+      foundRequest.bill_settled = data.billSettle;
+      foundRequest.report_submitted = data.reportSubmit;
+      foundRequest.reason = '';
+
+      const updatedRequest = await Request.findByIdAndUpdate(data.id, foundRequest, { new: true });
+      console.log("Updated Request:", updatedRequest);
+
+      res.status(200).json({ success: true, message: "successfully approved !" });
+
+    } catch (error) {
+      console.error("Error updating request:", error);
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  } else {
+    res.status(404).json({ success: false, message: "Data not found" });
+  }
+});
+
+app.post("/denied", async (req, res) => {
+
+  const data = req.body;
+  const foundRequest = await getRequestDataByID(data.id);
+  if (foundRequest !== null) {
+    try {
+      foundRequest.aces_response = 'denied';
+      foundRequest.reason = data.reason;
+      foundRequest.bill_settled = '';
+      foundRequest.report_submitted = '';
+      const updatedRequest = await Request.findByIdAndUpdate(data.id, foundRequest, { new: true });
+      console.log("Updated Request:", updatedRequest);
+
+      res.status(200).json({ success: true, message: "successfully denied !" });
+
+    } catch (error) {
+      console.error("Error updating request:", error);
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  } else {
+    res.status(404).json({ success: false, message: "Data not found" });
+  }
+});
+
 
 app.listen(5000, () => {
   console.log("Server started and running on port 5000");
