@@ -11,6 +11,7 @@ import {
   Box,
 
 } from "@chakra-ui/react";
+import FooterSection from "../components/FooterSection";
 
 //const inputBorderColor = "#97bfd4";
 //const gridBackgrougndColor = "#F5F5F5";
@@ -143,7 +144,8 @@ const AdminHome3 = () => {
           </FormControl>
         )} */}
       </Box>
-
+      <FooterSection />
+      
       {/* Approval states */}
     </>
   );

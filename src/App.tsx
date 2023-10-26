@@ -23,11 +23,13 @@ import Admin from "./Pages/Admin";
 import AdminHome1 from "./Pages/AdminHome1";
 import AdminHome2 from "./Pages/AdminHome2";
 import AdminHome3 from "./Pages/AdminHome3";
+import Yes from "./Pages/Yes";
 import axios from "axios";
 
 import { DUserTokenInterface } from "./models/TokenMoodel";
 
 import { PreviousRequest } from "./models/PreviousRequest";
+// import Yes from "./Pages/Yes";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -139,6 +141,7 @@ function App() {
         <Route path="/admin1" element={<AdminHome1 />} />
         <Route path="/admin2" element={<AdminHome2 />} />
         <Route path="/admin3" element={<AdminHome3 />} />
+        <Route path="/yes" element={<Yes />} />
       </Routes>
     </BrowserRouter>
   );
