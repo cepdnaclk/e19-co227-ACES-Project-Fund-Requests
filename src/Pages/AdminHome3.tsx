@@ -1,7 +1,7 @@
 //import FooterSection from "../components/FooterSection";
 import React from "react";
 import Header from "../components/Header";
-import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Input, Button, FormControl, FormLabel, Flex } from "@chakra-ui/react";
 // import React, { useState } from 'react';
 
 import {
@@ -62,8 +62,11 @@ const AdminHome3 = () => {
   }
   //2013.11.26 end
   return (
-    <>
-      <Header></Header>
+    <Flex direction="column" minHeight="100vh">
+      <Box as="header">
+        <Header></Header>
+      </Box>
+      
       <Box
         paddingTop={"7%"}
         paddingBottom={"2%"}
@@ -170,10 +173,12 @@ const AdminHome3 = () => {
           </FormControl>
         )} */}
       </Box>
-      <FooterSection />
+        <Box as="footer" className="footer">
+          <FooterSection />  
+        </Box>
 
       {/* Approval states */}
-    </>
+    </Flex>
   );
 };
 

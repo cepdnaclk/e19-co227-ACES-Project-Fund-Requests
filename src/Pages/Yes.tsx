@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
-import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Input, Button, FormControl, FormLabel, Flex } from "@chakra-ui/react";
 import {
   Text,
   Grid,
@@ -51,22 +51,22 @@ const Yes = () => {
     }
     console.log("reportSubmit ", reportSubmit);
     console.log("billSettle ", billSettle);
-
-
-
   }
   //2013.11.26 end
 
-
   return (
-    <>
-      <Header></Header>
+    <Flex direction="column" minHeight="100vh">
+      <Box as="header">
+        <Header></Header>
+      </Box>
 
       {
         isLoading ?
           <Text
             margin={{ base: "0% 0% 1%", md: "0% 0% 3%" }}
-            fontWeight={"bold"} color={"grey"}>
+            fontWeight={"bold"} color={"grey"}
+            padding={"10%"}>
+            
             Submiting please wait ......
           </Text>
           :
@@ -302,9 +302,10 @@ const Yes = () => {
             </Box>
           </>
       }
-
-      <FooterSection />
-    </>
+       <Box as="footer" className="footer">
+        <FooterSection/>
+      </Box>
+    </Flex>
   );
 };
 

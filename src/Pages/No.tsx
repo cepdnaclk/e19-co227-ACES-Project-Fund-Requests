@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
-import { Input, Button, FormControl, FormLabel, Textarea } from "@chakra-ui/react";
+import { Input, Button, FormControl, FormLabel, Textarea, Flex } from "@chakra-ui/react";
 import {
   Text,
   Grid,
@@ -46,14 +46,18 @@ const No = () => {
 
 
   return (
-    <>
-      <Header></Header>
+    <Flex direction="column" minHeight="100vh">
+      <Box as="header">
+        <Header></Header>
+      </Box>
 
       {
         isLoading ?
           <Text
             margin={{ base: "0% 0% 1%", md: "0% 0% 3%" }}
-            fontWeight={"bold"} color={"grey"}>
+            fontWeight={"bold"} color={"grey"}
+            padding={"10%"}>
+              
             Submiting please wait ......
           </Text>
           :
@@ -92,7 +96,7 @@ const No = () => {
                 gap={2}
                 marginBottom={5}
               >
-                <GridItem area={"textitem"}>
+                {/* <GridItem area={"textitem"}>
                   <Text
                     fontSize={"smaller"}
                     margin={{ base: "5% 0% 0%", md: "3% 0% 0%" }}
@@ -100,7 +104,7 @@ const No = () => {
                   >
                     Provide your decision by typing Yes / No
                   </Text>
-                </GridItem>
+                </GridItem> */}
                 <GridItem area={"input"}>
                   <Input
                     disabled
@@ -178,9 +182,11 @@ const No = () => {
             </Box>
           </>
       }
-
-      <FooterSection />
-    </>
+        <Box as="footer" className="footer">
+          <FooterSection />  
+        </Box>
+      
+    </Flex>
   );
 };
 
