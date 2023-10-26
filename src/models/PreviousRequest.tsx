@@ -19,4 +19,5 @@ export interface PreviousRequest {
   lecturer_response: string;
   hod_response: string;
   aces_response: string;
+  reason: string;
 }

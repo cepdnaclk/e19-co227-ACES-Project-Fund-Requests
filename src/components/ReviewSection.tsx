@@ -230,6 +230,9 @@ const ReviewSection = ({
               >
                 {previousRequest?.aces_response}
               </Button>
+              <Text color={"grey"} pt={2} size={"sm"}>
+                {previousRequest?.reason}
+              </Text>
             </GridItem>
           </Grid>
         </Box>
