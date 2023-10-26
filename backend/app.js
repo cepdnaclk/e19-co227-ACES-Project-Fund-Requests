@@ -325,3 +325,10 @@ app.post("/denied", async (req, res) => {
 app.listen(5000, () => {
   console.log("Server started and running on port 5000");
 });
+
+// Close the MongoDB connection pool when the server is stopped
+process.on('SIGINT', function() {
+  mongoose.disconnect();
+});
+
+
