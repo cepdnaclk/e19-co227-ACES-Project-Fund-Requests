@@ -120,7 +120,7 @@ const Admin = () => {
               You need to login with your eng email
             </Text>
             <GoogleLogin
-              onSuccess={(credentialResponse) => {
+              onSuccess={(credentialResponse: { credential: any; }) => {
                 console.log(credentialResponse);
 
                 var decodedUserToken: DUserTokenInterface = jwt_decode(
@@ -194,20 +194,20 @@ const Admin = () => {
           ))}
         </Grid> */}
 
-        <Grid
-          paddingX={{ base: "10%", md: "0%",lg: "%10" }}
+        {/* <Grid
+          paddingX={{ base: "10%", md: "10%",lg: "%10" }}
           paddingBottom={{ base: "10px" }}
-          templateAreas={{
-            base: `"card1" "card2" "card3"`,
-              md: `"card1 card2" 
-              "card3"`,
-              lg: `"card1 card2 card3"`
-          }}
+          // templateAreas={{
+          //   base: `"card1" "card2" "card3"`,
+          //     md: `"card1 card2" 
+          //     "card3"`,
+          //     lg: `"card1 card2 card3"`
+          // }}
           gap={4}
           marginBottom={5}
           fontFamily="Poppins, sans-serif"
         >
-          <GridItem area={`card1`} colSpan={1} alignItems="center">
+          <GridItem area={`card`} colSpan={2} alignItems="center">
             {isLoading ? (
               <Stack>
                 <SkeletonText></SkeletonText>
@@ -226,7 +226,36 @@ const Admin = () => {
                   />
                 );
               })
-            )}
+            )} */}
+            <Grid
+              paddingX={{ base: "10%", md: "10%", lg: "10%" }}
+              paddingBottom={{ base: "10px" }}
+              gap={4}
+              marginBottom={5}
+              fontFamily="Poppins, sans-serif"
+              templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+            >
+              {isLoading ? (
+                <Stack>
+                  <SkeletonText></SkeletonText>
+                  <SkeletonText></SkeletonText>
+                </Stack>
+              ) : (
+                allRequests.map((eachRequest) => {
+                  return (
+                    <CardComponent
+                      key={eachRequest._id}
+                      cardImage={cardImage}
+                      bgColor="#BFD8F8"
+                      title={eachRequest.project_title}
+                      description={eachRequest.project_description}
+                      requestDate="2023-10-18"
+                    />
+                  );
+                })
+              )}
+            </Grid>
+
             {/* <CardComponent
               cardImage={cardImage}
               bgColor="#BFD8F8"
@@ -234,7 +263,7 @@ const Admin = () => {
               description="The project aims to upgrade the existing manual inventory management system of a small retail business to an automated system. This upgrade is crucial..."
               requestDate="2023-10-18"
             /> */}
-          </GridItem>
+          {/* </GridItem> */}
           {/* <GridItem area={`card2`} colSpan={1} alignItems="center">
             <CardComponent
                 cardImage={cardImage}
@@ -244,9 +273,9 @@ const Admin = () => {
                 requestDate="2023-10-17"
             />
             </GridItem> */}
-        </Grid>
+        {/* </Grid> */}
         <Divider my={4} />
-        <Box
+        {/* <Box
           paddingTop={"4%"}
           paddingBottom={"3%"}
           paddingX={"10%"}
@@ -304,7 +333,7 @@ const Admin = () => {
                 requestDate="2023-10-17"
               />
             </GridItem>
-          </Grid>
+          </Grid> */}
         
 
         {/* {previousRequests.map((request, index) => (
