@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Box,
   Container,
@@ -120,7 +121,7 @@ const Admin = () => {
               You need to login with your eng email
             </Text>
             <GoogleLogin
-              onSuccess={(credentialResponse: { credential: any; }) => {
+              onSuccess={(credentialResponse: { credential: any }) => {
                 console.log(credentialResponse);
 
                 var decodedUserToken: DUserTokenInterface = jwt_decode(
@@ -142,35 +143,36 @@ const Admin = () => {
         </ModalContent>
       </Modal>
       <Header />
-      <form className="AdminUiTexts">
-        <Box
-          paddingTop={"7%"}
-          paddingBottom={"2%"}
-          paddingX={"10%"}
-          display={"block"}
-        >
-          <Text
-            color={"#00334E"}
-            fontSize={"30px"}
-            fontWeight={"bold"}
-            paddingBottom={"4px"}
-            fontFamily={"Poppins, sans-serif"}
+      <Box pb={"107px"}>
+        <form className="AdminUiTexts">
+          <Box
+            paddingTop={"7%"}
+            paddingBottom={"2%"}
+            paddingX={"10%"}
+            display={"block"}
           >
-            Welcome To Project Fund Requests👋
-          </Text>
-          <Divider my={10} />
-          <Text
-            color={"#00334E"}
-            fontSize={"20px"}
-            fontWeight={"small"}
-            paddingBottom={"10px"}
-            fontFamily={"Poppins, sans-serif"}
-          >
-            Latest Requests
-          </Text>
-        </Box>
+            <Text
+              color={"#00334E"}
+              fontSize={"30px"}
+              fontWeight={"bold"}
+              paddingBottom={"4px"}
+              fontFamily={"Poppins, sans-serif"}
+            >
+              Welcome To Project Fund Requests👋
+            </Text>
+            <Divider my={10} />
+            <Text
+              color={"#00334E"}
+              fontSize={"20px"}
+              fontWeight={"small"}
+              paddingBottom={"10px"}
+              fontFamily={"Poppins, sans-serif"}
+            >
+              Latest Requests
+            </Text>
+          </Box>
 
-        {/* <Grid
+          {/* <Grid
           paddingX={{ base: "10%", md: "10%" }}
           paddingY={{ base: "10px" }}
           templateAreas={{
@@ -194,7 +196,7 @@ const Admin = () => {
           ))}
         </Grid> */}
 
-        {/* <Grid
+          {/* <Grid
           paddingX={{ base: "10%", md: "10%",lg: "%10" }}
           paddingBottom={{ base: "10px" }}
           // templateAreas={{
@@ -227,36 +229,40 @@ const Admin = () => {
                 );
               })
             )} */}
-            <Grid
-              paddingX={{ base: "10%", md: "10%", lg: "10%" }}
-              paddingBottom={{ base: "10px" }}
-              gap={4}
-              marginBottom={5}
-              fontFamily="Poppins, sans-serif"
-              templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-            >
-              {isLoading ? (
-                <Stack>
-                  <SkeletonText></SkeletonText>
-                  <SkeletonText></SkeletonText>
-                </Stack>
-              ) : (
-                allRequests.map((eachRequest) => {
-                  return (
-                    <CardComponent
-                      key={eachRequest._id}
-                      cardImage={cardImage}
-                      bgColor="#BFD8F8"
-                      title={eachRequest.project_title}
-                      description={eachRequest.project_description}
-                      requestDate="2023-10-18"
-                    />
-                  );
-                })
-              )}
-            </Grid>
+          <Grid
+            paddingX={{ base: "10%", md: "10%", lg: "10%" }}
+            paddingBottom={{ base: "10px" }}
+            gap={4}
+            marginBottom={5}
+            fontFamily="Poppins, sans-serif"
+            templateColumns={{
+              base: "1fr",
+              md: "repeat(2, 1fr)",
+              lg: "repeat(3, 1fr)",
+            }}
+          >
+            {isLoading ? (
+              <Stack>
+                <SkeletonText></SkeletonText>
+                <SkeletonText></SkeletonText>
+              </Stack>
+            ) : (
+              allRequests.map((eachRequest) => {
+                return (
+                  <CardComponent
+                    key={eachRequest._id}
+                    cardImage={cardImage}
+                    bgColor="#BFD8F8"
+                    title={eachRequest.project_title}
+                    description={eachRequest.project_description}
+                    requestDate="2023-10-18"
+                  />
+                );
+              })
+            )}
+          </Grid>
 
-            {/* <CardComponent
+          {/* <CardComponent
               cardImage={cardImage}
               bgColor="#BFD8F8"
               title="Automated Inventory Management..."
@@ -273,9 +279,9 @@ const Admin = () => {
                 requestDate="2023-10-17"
             />
             </GridItem> */}
-        {/* </Grid> */}
-        <Divider my={4} />
-        {/* <Box
+          {/* </Grid> */}
+          <Divider my={4} />
+          {/* <Box
           paddingTop={"4%"}
           paddingBottom={"3%"}
           paddingX={"10%"}
@@ -334,9 +340,8 @@ const Admin = () => {
               />
             </GridItem>
           </Grid> */}
-        
 
-        {/* {previousRequests.map((request, index) => (
+          {/* {previousRequests.map((request, index) => (
             <GridItem area={`card${index + 1}`} colSpan={1} alignItems="center" key={index}>
               <CardComponent
                 cardImage={cardImage}
@@ -347,8 +352,11 @@ const Admin = () => {
               />
             </GridItem>
           ))} */}
-      </form>
-      <FooterSection />
+        </form>
+      </Box>
+      <Box width={"100%"} position={"fixed"} bottom={0}>
+        <FooterSection />
+      </Box>
     </>
   );
 };

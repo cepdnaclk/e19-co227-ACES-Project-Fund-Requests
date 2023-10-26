@@ -10,12 +10,9 @@ import {
   GridItem,
   //Textarea,
   Box,
-
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import FooterSection from "../components/FooterSection";
-
-
 
 //const inputBorderColor = "#97bfd4";
 //const gridBackgrougndColor = "#F5F5F5";
@@ -45,21 +42,19 @@ const AdminHome3 = () => {
   //2013.11.26 start
 
   const navigate = useNavigate();
-  const [decisionInput, setDecisionInput] = React.useState('');
+  const [decisionInput, setDecisionInput] = React.useState("");
 
   const handleGoButtonClick = () => {
     const input = decisionInput.toLowerCase();
 
-    if (input == 'yes') {
+    if (input == "yes") {
       navigate("/yes");
-    }
-    else if (input == 'no') {
+    } else if (input == "no") {
       navigate("/no");
-    }
-    else {
+    } else {
       alert("Invalid Input !");
     }
-  }
+  };
   //2013.11.26 end
   return (
     <Flex direction="column" minHeight="100vh">
@@ -87,13 +82,14 @@ const AdminHome3 = () => {
       </Box>
 
       <Box
+        pb={"107px"}
         //bg={gridBackgrougndColor}
         paddingX={{ base: "15%", md: "20%" }}
         className="AdminUiTexts"
       >
-        <Text
-          fontWeight={"bold"} >
-          Do you agree to provide financial support for the project mentioned above?
+        <Text fontWeight={"bold"}>
+          Do you agree to provide financial support for the project mentioned
+          above?
         </Text>
 
         <Grid
@@ -128,7 +124,9 @@ const AdminHome3 = () => {
               variant="outline"
               borderColor="black"
               placeholder="Yes / No"
-              onChange={(e) => { setDecisionInput(e.target.value) }}
+              onChange={(e) => {
+                setDecisionInput(e.target.value);
+              }}
               value={decisionInput}
             />
           </GridItem>
@@ -136,8 +134,8 @@ const AdminHome3 = () => {
             <Button
               onClick={handleGoButtonClick}
               marginTop={"1%"}
-              colorScheme='green'
-              variant='outline'
+              colorScheme="green"
+              variant="outline"
               paddingX={"5%"}
               paddingY={"3%"}
               borderRadius={"20px"}
@@ -173,13 +171,12 @@ const AdminHome3 = () => {
           </FormControl>
         )} */}
       </Box>
-        <Box as="footer" className="footer">
-          <FooterSection />  
-        </Box>
+      <Box width={"100%"} position={"fixed"} bottom={0}>
+        <FooterSection />
+      </Box>
 
       {/* Approval states */}
     </Flex>
   );
 };
-
-export default AdminHome3; 
+export default AdminHome3;
