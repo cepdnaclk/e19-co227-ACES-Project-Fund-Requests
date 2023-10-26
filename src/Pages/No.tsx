@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
-import { Input, Button, FormControl, FormLabel, Textarea } from "@chakra-ui/react";
 import {
-  Text,
-  Grid,
-  GridItem,
-  Box,
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  Textarea,
 } from "@chakra-ui/react";
+import { Text, Grid, GridItem, Box } from "@chakra-ui/react";
 import FooterSection from "../components/FooterSection";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -17,33 +18,32 @@ const inputFieldTextColor = "black";
 const labelColor = "black";
 
 const No = () => {
-
   //2013.11.26 start
-  const [reason, setReason] = React.useState('');
+  const [reason, setReason] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
   const onSubmitClick = () => {
-    if (reason == '') {
-      alert("Please provide a reason !")
-    }
-    else {
+    if (reason == "") {
+      alert("Please provide a reason !");
+    } else {
       setIsLoading(true);
       const obj = {
         id: "652ffd472fd82b9a09fd96e9",
         reason: reason,
-      }
-      axios.post("http://localhost:5000/denied", obj).then((res) => {
-        setIsLoading(false);
-        navigate('/admin');
-      }).catch(error => {
-        setIsLoading(false)
-        alert(error);
-      });;
+      };
+      axios
+        .post("http://localhost:5000/denied", obj)
+        .then((res) => {
+          setIsLoading(false);
+          navigate("/admin");
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          alert(error);
+        });
     }
-
-  }
+  };
   //2013.11.26 end
-
 
   return (
     <>
@@ -76,7 +76,11 @@ const No = () => {
             </Text>
           </Box>
 
-          <Box paddingX={{ base: "15%", md: "20%" }} className="AdminUiTexts">
+          <Box
+            pb={"107px"}
+            paddingX={{ base: "15%", md: "20%" }}
+            className="AdminUiTexts"
+          >
             <Text fontWeight={"bold"} color={"grey"}>
               Do you agree to provide financial support for the project
               mentioned above?
@@ -191,4 +195,3 @@ export default No;
 function register(arg0: string) {
   throw new Error("Function not implemented.");
 }
-

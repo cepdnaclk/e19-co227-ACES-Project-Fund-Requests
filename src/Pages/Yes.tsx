@@ -77,7 +77,11 @@ const Yes = () => {
             </Text>
           </Box>
 
-          <Box paddingX={{ base: "15%", md: "20%" }} className="AdminUiTexts">
+          <Box
+            pb={"107px"}
+            paddingX={{ base: "15%", md: "20%" }}
+            className="AdminUiTexts"
+          >
             <Text fontWeight={"bold"} color={"grey"}>
               Do you agree to provide financial support for the project
               mentioned above?
