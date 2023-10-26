@@ -185,7 +185,7 @@ const No = () => {
       <Box width={"100%"} position={"fixed"} bottom={0}>
         <FooterSection />
       </Box>
-    </>
+    </Flex>
   );
 };
 
